@@ -1,0 +1,54 @@
+--- mmc.c
++++ mmc.c
+@@ -1,8 +1,6 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
+-#define matSize 1100
+-#define maxTest 10
+ 
+ /* Row-major order (Same as Fortran).
+    
+@@ -20,7 +18,7 @@ double second(void);
+ int main(int argc, char *argv[])
+ {
+     double sum, tStart, tEnd, tLoop, rate, t;
+-    int    i, j, k, tests;
++    int    i, j, k, tests, repeats;
+ 
+     /* Initialize the matrics */
+     /* Note that this is *not* in the best order with respect to cache;
+@@ -35,6 +33,7 @@ int main(int argc, char *argv[])
+     tLoop = 1.0e10;
+     for (tests=0; tests<maxTest; tests++) {
+ 	tStart = second();
++	for (repeats=0; repeats<numRepeats; repeats++)
+ 	for (i=0; i<matSize; i++)
+ 	    for (j=0; j<matSize; j++) {
+ 		sum = 0.0;
+@@ -43,7 +42,7 @@ int main(int argc, char *argv[])
+ 		matC[ind(i,j)] = sum;
+ 	    }
+ 	tEnd = second();
+-	t = tEnd - tStart;
++	t = (tEnd - tStart) / numRepeats;
+ 	if (t < tLoop) tLoop = t;
+ 	if (matC[ind(0,0)] < 0) {
+ 	    fprintf(stderr, "Failed matC sign test\n");
+@@ -64,6 +63,7 @@ int main(int argc, char *argv[])
+ #include <sys/types.h>
+ #include <sys/times.h>
+ #include <time.h>
++#include <unistd.h>
+ 
+ double second(void)
+ {
+@@ -72,7 +72,7 @@ double second(void)
+     struct tms realbuf;
+ 
+     times(&realbuf);
+-    secx = ( realbuf.tms_stime + realbuf.tms_utime ) / (float) CLK_TCK;
++    secx = ( realbuf.tms_stime + realbuf.tms_utime ) / (float) sysconf(_SC_CLK_TCK);
+     return ((double) secx);
+ }
+ 
