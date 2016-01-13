@@ -29,11 +29,11 @@ def parse_logging_level(level):
         return lvl
     logging.warn("Invalid logging level: " + level)
 
-def init_logging():
+def init_logging(level=None):
     config = {
         "format": "[%(levelname)s] %(message)s",
     }
-    level = parse_logging_level(os.environ.get("LOGLEVEL", None))
+    level = parse_logging_level(level or os.environ.get("LOGLEVEL", None))
     if level is not None:
         config["level"] = level
     logging.basicConfig(**config)
@@ -51,10 +51,12 @@ CFLAGS = ["-O2", "-mtune=native"]
 CC = "clang"
 
 def suggested_num_repeats(mat_size, **params):
-    return 1 + int(params["num_repeat_param"] / mat_size ** 3)
+    return (params["num_repeats_offset"] + 1 +
+            int(params["num_repeats_factor"] / mat_size ** 3))
 
 def suggested_max_test(mat_size, num_repeats, **params):
-    return 2 + int(params["max_test_param"] / (mat_size ** 3 * num_repeats))
+    return (params["max_test_offset"] + 1 +
+            int(params["max_test_factor"] / (mat_size ** 3 * num_repeats)))
 
 def bench(mat_size, num_repeats=None, max_test=None, **params):
     num_repeats = num_repeats or suggested_num_repeats(mat_size, **params)
@@ -95,12 +97,15 @@ def run_bench(data_fn):
 
     mat_sizes = [100, 200, 400, 800, 1000, 1200, 1400, 1600, 2000]
     params = {}
+    # if your system is much faster than what I used you may want to increase
+    # these parameters a bit; doing so will increase timing accuracy at the
+    # cost of taking more time
     bench_params = {
-        # if your system is much faster than what I used you may want to
-        # increase these parameters a bit; doing so will increase timing
-        # accuracy at the cost of requiring more time
-        "num_repeat_param": 1e8,
-        "max_test_param": 1e9,
+        # all parameters must be positive
+        "num_repeats_offset": 3,
+        "num_repeats_factor": 1e9,
+        "max_test_offset": 3,
+        "max_test_factor": 1e10,
     }
     logging.debug("benchmark parameters: {0}".format(bench_params))
 
@@ -159,12 +164,20 @@ def show_plot(data_fn):
 
     plt.show()
 
+def arg_parser(*args, **kwargs):
+    import argparse
+    p = argparse.ArgumentParser()
+
+    p.add_argument("--data-file", required=True)
+
+    return p
+
 def main():
+    args = arg_parser().parse_args()
     init_logging()
 
-    data_fn = "data.json"
-    run_bench(data_fn)
-    show_plot(data_fn)
+    run_bench(args.data_file)
+    show_plot(args.data_file)
 
 if __name__ == "__main__":
     main()
