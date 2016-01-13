@@ -3,6 +3,7 @@
 .nfs????
 dist/
 *~
+*.json
 *.log
 *.tmp
 
