@@ -38,17 +38,55 @@ def init_logging(level=None):
         config["level"] = level
     logging.basicConfig(**config)
 
-def compile_c_exe(src_fn, exe_fn=None, macros={}, cc="cc", cflags=[]):
-    exe_fn = exe_fn or os.path.splitext(src_fn)[0]
-    macro_flags = (["-D", name + "=" + definition]
-                   for name, definition in macros.items())
-    macro_flags = list(itertools.chain(*macro_flags))
-    args = [cc] + macro_flags + cflags + ["-o", exe_fn, src_fn]
+def guess_src_lang(ext):
+    if ext.startswith("."):
+        ext = ext[1:]
+    if ext == "c":
+        return "c"
+    if ext in [".cc", ".cpp", ".cxx", ".c++"]:
+        return "c++"
+    return ext
+
+def guess_compiler(lang):
+    if lang == "c":
+        return os.environ.get("CC", "cc")
+    if lang == "c++":
+        return os.environ.get("CXX", "c++")
+    raise ValueError("Unknown lang: " + str(lang))
+
+def guess_linker(lang=None):
+    if lang:
+        return guess_compiler(lang)
+    return os.environ.get("LD", "ld")
+
+def macros_to_flags(macros):
+    return list(itertools.chain(*(
+        ["-D", name + "=" + definition]
+        for name, definition in macros.items()
+    )))
+
+def compile_src(*src_fns, out_fn=None, lang=None, link=False,
+                macros={}, compiler=None, flags=[]):
+    src_bn, src_ext = os.path.splitext(src_fns[0])
+    lang = guess_src_lang(src_ext)
+    if link:
+        out_fn = out_fn or src_bn
+    else:
+        out_fn = out_fn or src_fns[0] + ".o"
+        flags = ["-c"] + flags
+    compiler = compiler or guess_compiler(lang=lang)
+    flags = macros_to_flags(macros) + flags
+    args = [compiler] + flags + ["-o", out_fn] + list(src_fns)
     logging.debug("Compiling {0} ...".format(args))
     subprocess.check_call(args)
 
+def link_objs(lang, out_fn, *obj_fns, linker=None, flags=[]):
+    linker = linker or guess_linker(lang=lang)
+    args = [linker] + flags + ["-o", out_fn] + list(obj_fns)
+    logging.debug("Linking {0} ...".format(args))
+    subprocess.check_call(args)
+
 CFLAGS = ["-O2", "-mtune=native"]
-CC = "clang"
 
 def suggested_num_repeats(mat_size, **params):
     return (params["num_repeats_offset"] + 1 +
@@ -57,6 +95,12 @@ def suggested_num_repeats(mat_size, **params):
 def suggested_max_test(mat_size, num_repeats, **params):
     return (params["max_test_offset"] + 1 +
             int(params["max_test_factor"] / (mat_size ** 3 * num_repeats)))
+
+def build(macros):
+    compile_src("dummy.c", flags=CFLAGS)
+    compile_src("mysecond.c", flags=CFLAGS)
+    compile_src("mmc.c", macros=macros, flags=CFLAGS)
+    link_objs("c", "mmc", "mmc.c.o", "dummy.c.o", "mysecond.c")
 
 def bench(mat_size, num_repeats=None, max_test=None, **params):
     num_repeats = num_repeats or suggested_num_repeats(mat_size, **params)
@@ -69,7 +113,7 @@ def bench(mat_size, num_repeats=None, max_test=None, **params):
     logging.info("Benchmarking with matSize = {0}, "
                  "maxTest = {1}, numRepeats = {2} ..."
                  .format(mat_size, max_test, num_repeats))
-    compile_c_exe("mmc.c", macros=macros, cc=CC, cflags=CFLAGS)
+    build(macros)
     output = subprocess.check_output(["./mmc"], universal_newlines=True)
     output = parse_keyvalues(output, sep="=")
     return {
