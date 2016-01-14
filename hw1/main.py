@@ -5,6 +5,18 @@ import numpy as np
 
 PREFERREDENCODING = locale.getpreferredencoding(True)
 
+def map_dict_values(f, d):
+    return dict((k, f(v)) for k, v in d.items())
+
+def freeze_value(value):
+    if isinstance(value, list):
+        return tuple(map(freeze_value, value))
+    if isinstance(value, dict):
+        return tuple(sorted(map_dict_values(freeze_value, value).items()))
+    if isinstance(value, set):
+        return frozenset(map(freeze_value, value))
+    return value
+
 def first_word(string):
     return re.match("([\S]+)", string).group(1)
 
@@ -60,10 +72,37 @@ def guess_linker(lang=None):
     return os.environ.get("LD", "ld")
 
 def macros_to_flags(macros):
-    return list(itertools.chain(*(
-        ["-D", name + "=" + definition]
-        for name, definition in macros.items()
-    )))
+    return ["-D{0}={1}".format(name, definition)
+            for name, definition in macros.items()]
+
+def file_dependency(filename):
+    return {
+        "type": "file",
+        "": "",
+    }
+
+def executable(*srcs, **kwargs):
+    rules = {}
+    frozen_kwargs = freeze_value(kwargs)
+    rule_ids = []
+    for src in map(to_src, src):
+        rule_id = _
+        rules[rule_id] = {
+            "type": "target",
+            "dependencies": raw_src(src["filename"]),
+            "output_name": _,
+            "output_extension":
+            "action": lambda: compile_src(src["filename"], **kwargs),
+        }
+        rule_ids.append(rule_ids)
+    rules[("link", frozen_kwargs, rule_id)] = {
+        "type": "target",
+        "dependencies": rule_id,
+        "output_name": _,
+        "output_extension": _,
+        "action": _,
+    }
+    return rules
 
 def compile_src(*src_fns, out_fn=None, lang=None, link=False,
                 macros={}, compiler=None, flags=[]):
@@ -86,15 +125,15 @@ def link_objs(lang, out_fn, *obj_fns, linker=None, flags=[]):
     logging.debug("Linking {0} ...".format(args))
     subprocess.check_call(args)
 
-CFLAGS = ["-O2", "-mtune=native"]
+CFLAGS = ["-O2"]
 
 def suggested_num_repeats(mat_size, **params):
-    return (params["num_repeats_offset"] + 1 +
-            int(params["num_repeats_factor"] / mat_size ** 3))
+    return (1 + params.get("num_repeats_offset", 0) +
+            int(params.get("num_repeats_factor", 0) / mat_size ** 3))
 
 def suggested_max_test(mat_size, num_repeats, **params):
-    return (params["max_test_offset"] + 1 +
-            int(params["max_test_factor"] / (mat_size ** 3 * num_repeats)))
+    return (1 + params.get("max_test_offset", 0) +
+            int(params.get("max_test_factor", 0) / (mat_size ** 3 * num_repeats)))
 
 def build(macros):
     compile_src("dummy.c", flags=CFLAGS)

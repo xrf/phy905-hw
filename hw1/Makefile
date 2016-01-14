@@ -1,3 +1,8 @@
-mmc: mmc.c
-	@mkdir -p `dirname $@`
-	$(CC) -O2 -mtune=native -o $@ mmc.c
+CFLAGS=-O2 -mtune=native
+CPPFLAGS=-D
+
+.SUFFIXES:
+.SUFFIXES: .c .o
+
+.c.o:
+	$(CC) $(CPPFLAGS) $(CFLAGS) -o $@ .c
