@@ -1,13 +1,58 @@
 #!/usr/bin/env python
+#@slot/imports[
+#@]
 import itertools, json, locale, logging, os, re, subprocess
 import matplotlib.pyplot as plt
 import numpy as np
 
+#@slot/globals[
 PREFERREDENCODING = locale.getpreferredencoding(True)
+#@]
 
+#@slot/functions[
+#@snip/uncons[
+def uncons(iterable, type=None):
+    '''
+    (Iterable(a), type=None) -> (a, Iterator(a)) | None
+    (Iterable(a), type=(Iterator(a) -> b)) -> (a, b) | None
+
+    Obtain the first element of an iterable along with the remaining part.
+    The type of the remaining part depends on `type`.  By default, an iterator
+    is returned.  If the iterator is empty, `None` is returned.'''
+    it = iter(iterable)
+    for x in it:
+        rest = it if type is None else type(it)
+        return x, rest
+#@]
+
+#@snip/optapply[
+#@requires: uncons
+def optapply(*func_args, **kwargs):
+    '''
+    (((*args, **kwargs) -> b) | None, *opt_args, **opt_kwargs) -> b
+    '''
+    func, args = uncons(func_args)
+    if not (func is None or None in args or None in kwargs.values()):
+        return func(*args, **kwargs)
+#@]
+
+#@snip/none_if_valueerror[
+#@requires: uncons
+def none_if_valueerror(func_args, **kwargs):
+    func, args = uncons(func_args)
+    try:
+        return func(*args, **kwargs)
+    except ValueError:
+        pass
+#@]
+
+#@snip/map_dict_values[
 def map_dict_values(f, d):
     return dict((k, f(v)) for k, v in d.items())
+#@]
 
+#@snip/freeze_value[
+#@requires: map_dict_values
 def freeze_value(value):
     if isinstance(value, list):
         return tuple(map(freeze_value, value))
@@ -16,39 +61,52 @@ def freeze_value(value):
     if isinstance(value, set):
         return frozenset(map(freeze_value, value))
     return value
+#@]
 
+#@snip/first_word[
+#@requires: module:re
 def first_word(string):
     return re.match("([\S]+)", string).group(1)
+#@]
 
+#@snip/parse_keyvalue_entry[
 def parse_keyvalue_entry(line, sep):
     key, value = line.split(sep, 1)
     return key.strip(), value.strip()
+#@]
 
+#@snip/parse_keyvalues[
+#@requires: parse_keyvalue_entry
 def parse_keyvalues(string, sep):
     lines = string.split("\n")
     return dict(parse_keyvalue_entry(line, sep) for line in lines if line)
+#@]
 
-def parse_logging_level(level):
-    if level is None:
-        return
+#@snip/parse_loglevel[
+#@requires: module:logging none_if_valueerror
+def parse_loglevel(level):
     level = str(level).upper()
-    try:
-        return int(level)
-    except ValueError:
-        pass
-    lvl = getattr(logging, level, None)
-    if isinstance(lvl, int):
-        return lvl
-    logging.warn("Invalid logging level: " + level)
+    level = (none_if_valueerror(int, level) or
+             getattr(logging, level, None))
+    if not isinstance(lvl, int):
+        raise ValueError("Invalid logging level: " + level)
+    return level
+#@]
 
+#@snip/init_logging[
+#@requires: module:logging module:os opt_apply parse_loglevel
 def init_logging(level=None):
     config = {
         "format": "[%(levelname)s] %(message)s",
     }
-    level = parse_logging_level(level or os.environ.get("LOGLEVEL", None))
-    if level is not None:
-        config["level"] = level
+    try:
+        config["level"] = opt_apply(parse_loglevel,
+                                    level or os.environ.get("LOGLEVEL", None))
+    except ValueError:
+        pass
     logging.basicConfig(**config)
+#@]
+#@]
 
 def guess_src_lang(ext):
     if ext.startswith("."):
