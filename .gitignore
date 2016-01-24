@@ -5,6 +5,7 @@ dist/
 *~
 *.json
 *.log
+*.svg
 *.tmp
 
 # native

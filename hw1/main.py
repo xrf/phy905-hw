@@ -135,7 +135,7 @@ def get_model_c(mat_size, time):
 def model(mat_size, c):
     return 2 * c * mat_size ** 3
 
-def run_bench(data_fn):
+def run_bench(data_fn, **kwargs):
     if os.path.exists(data_fn):
         return
 
@@ -184,7 +184,7 @@ def run_bench(data_fn):
     with open(data_fn, "w") as f:
         json.dump(params, f)
 
-def show_plot(data_fn):
+def show_plot(data_fn, fig_time_fn, fig_perf_fn, quiet=False, **kwargs):
     with open(data_fn, "r") as f:
         params = json.load(f)
 
@@ -193,35 +193,65 @@ def show_plot(data_fn):
     model1 = model(mat_size_range, params["c1"])
     model2 = model(mat_size_range, params["c2"])
 
-    ax = plt.subplots()[1]
+    figsize = (6, 4.5)
+
+    fig, ax = plt.subplots(figsize=figsize)
     ax.set_ylim(0, max(rate))
     ax.semilogx(mat_size, rate, "-x")
     ax.set_xlabel("matrix size (N)")
     ax.set_ylabel("performance /MFLOPS")
+    if fig_perf_fn is not None:
+        fig.savefig(fig_perf_fn, transparent=True)
 
-    ax = plt.subplots()[1]
-    ax.loglog(mat_size, time, "-x")
-    ax.loglog(mat_size_range, model1)
-    ax.loglog(mat_size_range, model2)
+    fig, ax = plt.subplots(figsize=figsize)
+    ax.loglog(mat_size, time, "-x", label="measured")
+    ax.loglog(mat_size_range, model1, label="model #1")
+    ax.loglog(mat_size_range, model2, label="model #2")
     ax.set_xlabel("matrix size (N)")
     ax.set_ylabel("time /s")
+    ax.legend(loc=4)
+    if fig_time_fn is not None:
+        fig.savefig(fig_time_fn, transparent=True)
 
-    plt.show()
+    if not quiet:
+        plt.show()
 
 def arg_parser(*args, **kwargs):
     import argparse
     p = argparse.ArgumentParser()
 
-    p.add_argument("--data-file", required=True)
+    p.add_argument(
+        "--data",
+        dest="data_fn",
+        metavar="FILE",
+        required=True,
+        help="where to write/read the data file",
+    )
+    p.add_argument(
+        "--fig-time",
+        dest="fig_time_fn",
+        metavar="FILE",
+        help="where to save the figure",
+    )
+    p.add_argument(
+        "--fig-perf",
+        dest="fig_perf_fn",
+        metavar="FILE",
+        help="where to save the figure",
+    )
+    p.add_argument(
+        "-q", "--quiet",
+        action="store_true",
+        help="don't display figures",
+    )
 
     return p
 
 def main():
-    args = arg_parser().parse_args()
+    args = vars(arg_parser().parse_args())
     init_logging()
-
-    run_bench(args.data_file)
-    show_plot(args.data_file)
+    run_bench(**args)
+    show_plot(**args)
 
 if __name__ == "__main__":
     main()
