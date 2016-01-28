@@ -1,6 +1,5 @@
 build:
-	./main.py -q --data data.json --fig-perf fig-perf.svg --fig-time fig-time.svg
-	./table.py
+	./main.py --data data.json --fig-perf fig-perf.svg --fig-time fig-time.svg
 
 mmc: mmc.c
 	@mkdir -p `dirname $@`

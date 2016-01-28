@@ -1,7 +1,9 @@
 #!/usr/bin/env python
-import itertools, json, locale, logging, os, re, subprocess
+import itertools, json, locale, logging, os, re, subprocess, sys
 import matplotlib.pyplot as plt
 import numpy as np
+sys.path = ["../utils"] + list(sys.path)
+from utils import *
 
 PREFERREDENCODING = locale.getpreferredencoding(True)
 
@@ -181,10 +183,9 @@ def run_bench(data_fn, **kwargs):
     print("c1 = {0}".format(params["c1"]))
     print("c2 = {0}".format(params["c2"]))
     params["data"] = data
-    with open(data_fn, "w") as f:
-        json.dump(params, f)
+    write_file(data_fn, json.dumps(params, f))
 
-def show_plot(data_fn, fig_time_fn, fig_perf_fn, quiet=False, **kwargs):
+def show_plot(data_fn, fig_time_fn, fig_perf_fn, **kwargs):
     with open(data_fn, "r") as f:
         params = json.load(f)
 
@@ -213,13 +214,10 @@ def show_plot(data_fn, fig_time_fn, fig_perf_fn, quiet=False, **kwargs):
     if fig_time_fn is not None:
         fig.savefig(fig_time_fn, transparent=True)
 
-    if not quiet:
-        plt.show()
 
-def arg_parser(*args, **kwargs):
+def argparser(*args, **kwargs):
     import argparse
     p = argparse.ArgumentParser()
-
     p.add_argument(
         "--data",
         dest="data_fn",
@@ -239,19 +237,26 @@ def arg_parser(*args, **kwargs):
         metavar="FILE",
         help="where to save the figure",
     )
-    p.add_argument(
-        "-q", "--quiet",
-        action="store_true",
-        help="don't display figures",
-    )
-
     return p
 
 def main():
-    args = vars(arg_parser().parse_args())
+    args = vars(argparser().parse_args())
     init_logging()
     run_bench(**args)
     show_plot(**args)
+
+def main_table():
+    import json
+    data = json.loads(read_file("data.json"))
+    data["c1"] = "{:.3g}".format(data["c1"] * 1e9)
+    data["c2"] = "{:.3g}".format(data["c2"] * 1e9)
+    table = transpose(data["data"])
+    table[1] = ["{:.0f}".format(x) for x in table[1]]
+    table[3] = ["{:.3g}".format(x) for x in table[3]]
+    table[4] = ["{:.3g}".format(x) for x in table[4]]
+    data["data"] = table_to_html(transpose(table)).rstrip()
+    write_file("index.html",
+               main_template(substitute_template("template.html", data)))
 
 if __name__ == "__main__":
     main()

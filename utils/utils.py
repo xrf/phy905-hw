@@ -1,32 +1,51 @@
-#@snip/PersistentTemporaryFile[
-#@requires: rename
-class PersistentTemporaryFile(object):
-    '''A context manager for a temporary file that is deleted only if the body
-    of the `with` statement fails with some exception.'''
+#@snip/TemporarySaveFile[
+#@requires: rename, wrapped_open
+class TemporarySaveFile(object):
+    '''A context manager for a saving files atomically.  The context manager
+    creates a temporary file to which data may be written.  If the body of the
+    `with` statement succeeds, the temporary file is renamed to the target
+    filename, overwriting any existing file.  Otherwise, the temporary file is
+    deleted.'''
 
-    def __init__(self, filename, mode, suffix=None, prefix=None):
+    def __init__(self, filename, mode="w", suffix=None, prefix=None, **kwargs):
         import os
-        self._args = {
+        self._fn = filename
+        kwargs = dict(kwargs)
+        kwargs.update({
             "mode": mode,
             "suffix": ".tmpsave~" if suffix is None else suffix,
-            "prefix": "." + os.path.basename(filename)
+            "prefix": (".#" + os.path.basename(filename)).rstrip(".") + "."
                       if prefix is None else prefix,
             "dir": os.path.dirname(filename),
             "delete": False,
-        }
+        })
+        self._kwargs = kwargs
 
     def __enter__(self):
         import tempfile
-        stream = tempfile.NamedTemporaryFile(**self._args)
-        self._tmpfn = stream.name
+        if hasattr(self, "_stream"):
+            raise ValueError("attempted to __enter__ twice")
+        stream = wrapped_open(tempfile.NamedTemporaryFile, **self._kwargs)
+        self._stream = stream
         return stream
 
     def __exit__(self, exc_type, exc_value, traceback):
-        if exc_type is None and exc_value is None and traceback is None:
-            return
+        try:
+            self._stream.close()
+            if exc_type is None and exc_value is None and traceback is None:
+                rename(self._stream.name, self._fn)
+            else:
+                self._cleanup()
+        except:
+            self._cleanup()
+            raise
+        finally:
+            del self._stream
+
+    def _cleanup(self):
         import os
         try:
-            os.remove(self._tmpfn)
+            os.remove(self._stream.name)
         except OSError:
             pass
 #@]
@@ -49,26 +68,106 @@ def rename(src, dest):
         os.rename(src, dest)
 #@]
 
-#@snip/read_file[
-def read_file(filename, binary=False):
-    '''Read the contents of a file.'''
-    mode = "r" + ("b" if binary else "t")
-    with open(filename, mode) as file:
-        contents = file.read()
-    return contents
+#@snip/wrapped_open[
+def wrapped_open(open, mode="r", encoding=None,
+                 errors=None, newline=None, **kwargs):
+    '''Enhance an `open`-like function to accept some additional arguments for
+    controlling the text processing.  This is mainly done for compatibility
+    with Python 2, where these additional arguments are often not accepted.'''
+    if "b" in mode:
+        if encoding is not None:
+            raise Exception("'encoding' argument not supported in binary mode")
+        if errors is not None:
+            raise Exception("'errors' argument not supported in binary mode")
+        if newline is not None:
+            raise Exception("'newline' argument not supported in binary mode")
+        return open(mode=mode, **kwargs)
+    else:
+        import io
+        mode = mode.replace("t", "") + "b"
+        return io.TextIOWrapper(open(mode=mode, **kwargs),
+                                encoding=encoding, errors=errors,
+                                newline=newline)
 #@]
 
-#@snip/writefile[
-#@requires: PersistentTemporaryFile
-def write_file(filename, contents, binary=False, safe=True):
+#@snip/safe_open[
+#@requires: TemporarySaveFile
+def safe_open(filename, mode="rt", encoding=None,
+              errors=None, newline=None, safe=True):
+    truncated_write = "w" in mode and "+" not in mode
+    if safe and truncated_write and not isinstance(filename, int):
+        open_file = TemporarySaveFile
+    else:
+        from io import open as open_file
+    return open_file(filename, mode, encoding=encoding,
+                     errors=errors, newline=newline)
+#@]
+
+#@snip/load_file[
+def load_file(filename, binary=False, encoding=None,
+              errors=None, newline=None):
+    '''Read the contents of a file.'''
+    from io import open
+    mode = "r" + ("b" if binary else "")
+    with open(filename, mode, encoding=encoding,
+              errors=errors, newline=newline) as stream:
+        return stream.read()
+#@]
+
+#@snip/save_file[
+#@requires: safe_open
+def save_file(filename, contents, binary=False, encoding=None,
+              errors=None, newline=None, safe=True):
     '''Write the contents to a file.  If `safe` is true, it is performed by
     first writing into a temporary file and then replacing the original file
     with the temporary file.  This ensures that the file will not end up in a
     half-written state.  Note that there is a small possibility that the
     temporary file might remain if the program crashes while writing.'''
-    mode = "w" + ("b" if binary else "t")
-    openfile = PersistentTemporaryFile if safe else open
-    with openfile(filename, mode) as stream:
+    mode = "w" + ("b" if binary else "")
+    with safe_open(filename, mode, encoding=encoding,
+                   errors=errors, newline=newline, safe=safe) as stream:
         stream.write(contents)
-        rename(stream.name, filename)
 #@]
+
+#@snip/save_json_file[
+#@requires: safe_open
+def save_json_file(filename, contents, encoding=None,
+                   errors=None, newline=None, safe=True):
+    import json
+    with safe_open(filename, "wt", encoding=encoding,
+                   errors=errors, newline=newline, safe=safe) as stream:
+        json.dump(contents, stream)
+#@]
+
+#@snip/load_json_file[
+def load_json_file(filename, encoding=None, errors=None, newline=None):
+    import json
+    from io import open
+    with open(filename, "rt", encoding=encoding,
+              errors=errors, newline=newline) as stream:
+        return json.load(stream)
+#@]
+
+def transpose(table):
+    return list(zip(*table))
+
+def substitute_template(filename, params):
+    import string
+    return string.Template(load_file(filename)).substitute(params)
+
+def main_template(html):
+    import re
+    title = re.match("<h1>(.*)</h1>\n", html).group(1)
+    return substitute_template("../utils/template.html", {
+        "title": title,
+        "body": html,
+    })
+
+def table_to_html(rows):
+    s = []
+    for row in rows:
+        s.append("<tr>")
+        for cell in row:
+            s.extend(["<td>", str(cell), "</td>"])
+        s.append("</tr>")
+    return "".join(s)
