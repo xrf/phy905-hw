@@ -1,16 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../utils/utils.h"
+#ifndef SIZE
+#define SIZE 250
+#endif
+#ifndef REPEATS
+#define REPEATS 8
+#endif
 
-void init_random_arrayd(double *array, size_t count)
-{
-    size_t i;
-    for (i = 0; i < count; ++i) {
-        array[i] = rand();
-    }
-}
-
-void copy_arrayd(double *dest, double *src, size_t count)
+void copy_array_d(double *dest, double *src, size_t count)
 {
     size_t i;
     for (i = 0; i < count; ++i) {
@@ -18,48 +16,26 @@ void copy_arrayd(double *dest, double *src, size_t count)
     }
 }
 
-int benchmark(size_t *i, double *time, size_t *count, double preferred_time)
-{
-    double timediff, now;
-    ++*i;
-    if (*i < *count) {
-        return 1;
-    }
-    now = mysecond();
-    timediff = now - *time;
-    if (timediff < preferred_time) {
-        *i = 0;
-        *time = now;
-        *count *= 2;
-        return 1;
-    }
-    *time = timediff / *count;
-    return 0;
-}
-
 int main(void)
 {
-    size_t k;
     double c[SIZE], a[SIZE];
-    struct statistics_state s;
+    size_t k, num_subrepeats = 4; /* initial guess */
     struct statistics st;
-    size_t num_subrepeats = 4;
-
+    struct statistics_state s = statistics_initial;
     mysecond_init();
-    init_random_arrayd(a, SIZE);
-    statistics_init(&s);
-
+    init_random_array_d(a, SIZE);
     for (k = 0; k < REPEATS; ++k) {
         size_t j = 0;
         double time = mysecond();
+        /* repeat until time taken is greater than 1 second */
         while (benchmark(&j, &time, &num_subrepeats, 1.)) {
-            copy_arrayd(c, a, SIZE);
+            copy_array_d(c, a, SIZE);
             dummy(a);
             dummy(c);
         }
-        statistics_update(&s, k + 1, time);
+        statistics_update(&s, time);
     }
-    st = statistics_get(&s, k + 1);
+    st = statistics_get(&s);
     printf("min = %.17g\n"
            "mean = %.17g\n"
            "stdev = %.17g\n"
@@ -68,6 +44,5 @@ int main(void)
            st.mean,
            st.stdev,
            num_subrepeats);
-
     return 0;
 }

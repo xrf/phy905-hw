@@ -11,7 +11,7 @@ extern "C" {
     @note     The Windows version of this file needs some testing.
 */
 
-struct lt_mclock {
+struct rf_mclock {
     uint64_t data;
 };
 
@@ -19,17 +19,17 @@ struct lt_mclock {
     does not need to be deinitialized.
 
     @param mclock
-    An existing `lt_mclock` structure to be initialized.
+    An existing `rf_mclock` structure to be initialized.
 
     @return
     Zero on success, nonzero on failure.
 */
-int lt_mclock_init(struct lt_mclock *mclock);
+int rf_mclock_init(struct rf_mclock *mclock);
 
 /** Retrieve the time from a monotonic wall clock in seconds.
 
     @param mclock
-    An `lt_mclock` structure previously initialized by `lt_mclock_init`.
+    An `rf_mclock` structure previously initialized by `rf_mclock_init`.
 
     @return
     Duration relative to some unspecified reference time in seconds.
@@ -39,7 +39,7 @@ int lt_mclock_init(struct lt_mclock *mclock);
     is at worst (for an ideal system with hundreds of years in uptime) limited
     to about a few microseconds.  In practice, it is usually much less.
  */
-double lt_mclock_getf(const struct lt_mclock *mclock);
+double rf_mclock_getf(const struct rf_mclock *mclock);
 
 #ifdef __cplusplus
 }

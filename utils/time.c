@@ -13,7 +13,7 @@
 extern "C" {
 #endif
 
-int lt_mclock_init(struct lt_mclock *self)
+int rf_mclock_init(struct rf_mclock *self)
 {
 #if defined _WIN32
     LARGE_INTEGER freq;
@@ -26,12 +26,14 @@ int lt_mclock_init(struct lt_mclock *self)
     if (mach_timebase_info(&base)) {
         return 1;
     }
-    *self = (uint64_t)base.numer << 32 | base.denom
+    *self = (uint64_t)base.numer << 32 | base.denom;
+#else
+    (void)self;
 #endif
     return 0;
 }
 
-double lt_mclock_getf(const struct lt_mclock *self)
+double rf_mclock_getf(const struct rf_mclock *self)
 {
 #if defined _WIN32
     LARGE_INTEGER count;
