@@ -1,14 +1,34 @@
+import functools
 from makegen import *
+import params
 
-def build_copy(**kwargs):
-    macros = dict((k.upper(), str(v)) for k, v in kwargs.items())
-    return build_program("dist/copy_" + hash_json(kwargs), [
-        compile_source("copy.c", macros=macros),
-        compile_source("../utils/time.c"),
-        compile_source("../utils/utils.c"),
-    ], libraries="m")
+b = RelocatedBuilder(root="..")
 
-save_makefile("Makefile", alias("all", [
-    build_copy(size=size, repeats=8)
-    for size in [100, 1000, 10000]
-]).emit())
+build_copy = [b.build_program("hw2_copy_{0}".format(size), [
+    b.compile_source("copy.c", macros={
+        "SIZE": str(size),
+        "REPEATS": str(8),
+    }, suffix="_{0}".format(size)),
+    b.compile_source("../utils/utils.c"),
+    b.compile_source("../utils/time.c"),
+], libraries=[Library("m")]) for size in params.SIZES]
+
+bench = simple_command("./main.py bench", "data.json", build_copy)
+
+analyze = simple_command("./main.py analyze fig-time.svg fig-rate.svg",
+                         "../dist/tmp/analyze.ok", [bench])
+
+stream = b.build_program("stream", [
+    b.compile_source("../ext/stream.c", macros={
+        "STREAM_ARRAY_SIZE": "$(STREAM_ARRAY_SIZE)"
+    }),
+]).merge(Ruleset(macros={"STREAM_ARRAY_SIZE": str(2 ** 24)}))
+
+alias("all", (
+    [
+        stream,
+        analyze
+    ]
+)).merge(Ruleset(macros={
+    "CFLAGS": "-O2 -mtune=native"
+})).save()

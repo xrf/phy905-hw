@@ -60,9 +60,9 @@ int main(void)
         statistics_update(&s, k + 1, time);
     }
     st = statistics_get(&s, k + 1);
-    printf("min   = %.10f\n"
-           "mean  = %.10f\n"
-           "stdev = %.10f\n"
+    printf("min = %.17g\n"
+           "mean = %.17g\n"
+           "stdev = %.17g\n"
            "num_subrepeats = %zu\n",
            st.min,
            st.mean,

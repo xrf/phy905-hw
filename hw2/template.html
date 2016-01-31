@@ -1,0 +1,46 @@
+<h1>PHY 905 004 HW #2</h1>
+<address rel="author">Fei Yuan</address>
+<h2>Part 1</h2>
+<p>System information:</p>
+<ul>
+  <li>Intel Core i5-2500K 3.3GHz (maximum 4.2GHz)</li>
+  <li>Corsair DDR3 SDRAM 1333 9-9-9-24</li>
+  <li>ASUS P8Z68-V/GEN3 LGA 1155</li>
+</ul>
+<table>
+  <tr>
+    <td><var>n</var></td>
+    <td>Time for loop /s</td>
+    <td>Rate /(MB/s)</td>
+  </tr>
+  ${data}
+</table>
+<figure>
+  <a href="fig-time.svg"><img src="fig-time.svg"/></a>
+  <figcaption>Figure 1: Time taken vs size of array.</figcaption>
+</figure>
+<figure>
+  <a href="fig-rate.svg"><img src="fig-rate.svg"/></a>
+  <figcaption>Figure 2: Rate vs size of array.</figcaption>
+</figure>
+<pre><code>${report}</code></pre>
+<ol class="page-break-before">
+  <li>
+    <p><b>How well does the formula work?</b></p>
+    <p>It works okay for small matrix sizes, but it significantly underpredicts the time for larger ones (up to about one order of magnitude).</p>
+  </li>
+  <li>
+    <p><b>How close is <var>c</var> computed from the clock speed?</b></p>
+    <p>About 20% off.</p>
+    <p><b>Is there an integer <var>k</var>&nbsp;>&nbsp;1 such that <var>c</var>/<var>k</var> is a better predictor for your machine?</b></p>
+    <p>No, because <var>c</var> is already underpredicted.</p>
+    <p><b>Why might <var>c</var>/<var>k</var> be a better value for the formula?</b></p>
+    <p>Compiler optimizations, instruction-level parallelism, intrinsics such as fused multiply-add can all contribute to reductions in the time taken.</p>
+  </li>
+  <li>
+    <p><b>Graph the measured performance.  Are there obvious sudden changes in performance?</b></p>
+    <p>Between matrix sizes 200 and 400, there is a noticeable drop by about a factor of two.  Between 1400 and 1600, there is another drop by a factor of two.</p>
+    <p><b>What might you do to efficiently find the value of <var>N</var> where the performance has a sudden change?</b>
+    <p>Perform more measurements in the nearby area.  Assuming the transition is indeed sharp, it should only take a few careful bisections.</p>
+  </li>
+</ol>

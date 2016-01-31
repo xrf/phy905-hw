@@ -10,36 +10,6 @@ PREFERREDENCODING = locale.getpreferredencoding(True)
 def first_word(string):
     return re.match("([\S]+)", string).group(1)
 
-def parse_keyvalue_entry(line, sep):
-    key, value = line.split(sep, 1)
-    return key.strip(), value.strip()
-
-def parse_keyvalues(string, sep):
-    lines = string.split("\n")
-    return dict(parse_keyvalue_entry(line, sep) for line in lines if line)
-
-def parse_logging_level(level):
-    if level is None:
-        return
-    level = str(level).upper()
-    try:
-        return int(level)
-    except ValueError:
-        pass
-    lvl = getattr(logging, level, None)
-    if isinstance(lvl, int):
-        return lvl
-    logging.warn("Invalid logging level: " + level)
-
-def init_logging(level=None):
-    config = {
-        "format": "[%(levelname)s] %(message)s",
-    }
-    level = parse_logging_level(level or os.environ.get("LOGLEVEL", None))
-    if level is not None:
-        config["level"] = level
-    logging.basicConfig(**config)
-
 def guess_src_lang(ext):
     if ext.startswith("."):
         ext = ext[1:]

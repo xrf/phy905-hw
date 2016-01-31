@@ -151,6 +151,25 @@ def load_json_file(filename, encoding=None, errors=None, newline=None):
 def transpose(table):
     return list(zip(*table))
 
+def tablerows_to_tablecols(table):
+    headers = table[0]
+    rows = table[1:]
+    cols = transpose(rows)
+    return dict(zip(headers, cols))
+
+def parse_keyvalue_entry(line, sep):
+    key, value = line.split(sep, 1)
+    return key.strip(), value.strip()
+
+def parse_keyvalues(string, sep):
+    lines = string.split("\n")
+    return dict(parse_keyvalue_entry(line, sep) for line in lines if line)
+
+def run_and_get_keyvalues(args):
+    import subprocess
+    out = subprocess.check_output(args, universal_newlines=True)
+    return parse_keyvalues(out, sep="=")
+
 def substitute_template(filename, params):
     import string
     return string.Template(load_file(filename)).substitute(params)
@@ -171,3 +190,49 @@ def table_to_html(rows):
             s.extend(["<td>", str(cell), "</td>"])
         s.append("</tr>")
     return "".join(s)
+
+def parse_logging_level(level):
+    if level is None:
+        return
+    level = str(level).upper()
+    try:
+        return int(level)
+    except ValueError:
+        pass
+    import logging
+    lvl = getattr(logging, level, None)
+    if isinstance(lvl, int):
+        return lvl
+    logging.warn("Invalid logging level: " + level)
+
+def init_logging(level=None):
+    import logging, os
+    config = {
+        "format": "[%(levelname)s] %(message)s",
+    }
+    level = parse_logging_level(level or os.environ.get("LOGLEVEL", None))
+    if level is not None:
+        config["level"] = level
+    logging.basicConfig(**config)
+
+def register_command(commands):
+    def inner(func):
+        commands[func.__name__] = func
+    return inner
+
+def run_command(commands):
+    import sys
+    try:
+        command = sys.argv[1]
+    except IndexError:
+        command = ""
+    func = commands.get(command, None)
+    if not func:
+        sys.stderr.write(
+            "Unrecognized command: {0}\n"
+            "Valid commands are:\n{1}"
+            .format(command, "".join("  {0}\n".format(c)
+                                     for c in commands))
+        )
+        exit(2)
+    func(*sys.argv[2:])
