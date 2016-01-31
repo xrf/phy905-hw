@@ -8,7 +8,43 @@ STREAM_ARRAY_SIZE=16777216
 all: ../dist/bin/stream ../dist/tmp/analyze.ok
 
 clean:
-	rm -fr -- ../dist/bin/stream ../dist/tmp/analyze.ok ../dist/tmp/ext/stream_BUXaw-oFf_eHA7HFeSUb.o
+	rm -fr -- ../dist/bin/hw2_copy_1000 ../dist/bin/hw2_copy_10000 ../dist/bin/hw2_copy_100000 ../dist/bin/hw2_copy_1000000 ../dist/bin/hw2_copy_250 ../dist/bin/hw2_copy_5000 ../dist/bin/hw2_copy_50000 ../dist/bin/hw2_copy_500000 ../dist/bin/hw2_copy_5000000 ../dist/bin/stream ../dist/tmp/analyze.ok ../dist/tmp/ext/stream_BUXaw-oFf_eHA7HFeSUb.o ../dist/tmp/hw2/copy_1000.o ../dist/tmp/hw2/copy_10000.o ../dist/tmp/hw2/copy_100000.o ../dist/tmp/hw2/copy_1000000.o ../dist/tmp/hw2/copy_250.o ../dist/tmp/hw2/copy_5000.o ../dist/tmp/hw2/copy_50000.o ../dist/tmp/hw2/copy_500000.o ../dist/tmp/hw2/copy_5000000.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o data.json
+
+../dist/bin/hw2_copy_1000: ../dist/tmp/hw2/copy_1000.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw2/copy_1000.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+
+../dist/bin/hw2_copy_10000: ../dist/tmp/hw2/copy_10000.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw2/copy_10000.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+
+../dist/bin/hw2_copy_100000: ../dist/tmp/hw2/copy_100000.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw2/copy_100000.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+
+../dist/bin/hw2_copy_1000000: ../dist/tmp/hw2/copy_1000000.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw2/copy_1000000.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+
+../dist/bin/hw2_copy_250: ../dist/tmp/hw2/copy_250.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw2/copy_250.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+
+../dist/bin/hw2_copy_5000: ../dist/tmp/hw2/copy_5000.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw2/copy_5000.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+
+../dist/bin/hw2_copy_50000: ../dist/tmp/hw2/copy_50000.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw2/copy_50000.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+
+../dist/bin/hw2_copy_500000: ../dist/tmp/hw2/copy_500000.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw2/copy_500000.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+
+../dist/bin/hw2_copy_5000000: ../dist/tmp/hw2/copy_5000000.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw2/copy_5000000.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
 
 ../dist/bin/stream: ../dist/tmp/ext/stream_BUXaw-oFf_eHA7HFeSUb.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
@@ -21,5 +57,52 @@ clean:
 ../dist/tmp/ext/stream_BUXaw-oFf_eHA7HFeSUb.o: ../ext/stream.c
 	@d=`dirname '$@'` && mkdir -p "$$d"
 	$(CC) $(CPPFLAGS) $(CFLAGS) '-DSTREAM_ARRAY_SIZE=$(STREAM_ARRAY_SIZE)' -c -o '$@' ../ext/stream.c
+
+../dist/tmp/hw2/copy_1000.o: ../utils/utils.h copy.c
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CPPFLAGS) $(CFLAGS) -DREPEATS=8 -DSIZE=1000 -c -o '$@' copy.c
+
+../dist/tmp/hw2/copy_10000.o: ../utils/utils.h copy.c
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CPPFLAGS) $(CFLAGS) -DREPEATS=8 -DSIZE=10000 -c -o '$@' copy.c
+
+../dist/tmp/hw2/copy_100000.o: ../utils/utils.h copy.c
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CPPFLAGS) $(CFLAGS) -DREPEATS=8 -DSIZE=100000 -c -o '$@' copy.c
+
+../dist/tmp/hw2/copy_1000000.o: ../utils/utils.h copy.c
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CPPFLAGS) $(CFLAGS) -DREPEATS=8 -DSIZE=1000000 -c -o '$@' copy.c
+
+../dist/tmp/hw2/copy_250.o: ../utils/utils.h copy.c
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CPPFLAGS) $(CFLAGS) -DREPEATS=8 -DSIZE=250 -c -o '$@' copy.c
+
+../dist/tmp/hw2/copy_5000.o: ../utils/utils.h copy.c
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CPPFLAGS) $(CFLAGS) -DREPEATS=8 -DSIZE=5000 -c -o '$@' copy.c
+
+../dist/tmp/hw2/copy_50000.o: ../utils/utils.h copy.c
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CPPFLAGS) $(CFLAGS) -DREPEATS=8 -DSIZE=50000 -c -o '$@' copy.c
+
+../dist/tmp/hw2/copy_500000.o: ../utils/utils.h copy.c
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CPPFLAGS) $(CFLAGS) -DREPEATS=8 -DSIZE=500000 -c -o '$@' copy.c
+
+../dist/tmp/hw2/copy_5000000.o: ../utils/utils.h copy.c
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CPPFLAGS) $(CFLAGS) -DREPEATS=8 -DSIZE=5000000 -c -o '$@' copy.c
+
+../dist/tmp/utils/time.o: ../utils/time.c ../utils/time.h
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o '$@' ../utils/time.c
+
+../dist/tmp/utils/utils.o: ../utils/time.h ../utils/utils.c ../utils/utils.h
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o '$@' ../utils/utils.c
+
+data.json: ../dist/bin/hw2_copy_1000 ../dist/bin/hw2_copy_10000 ../dist/bin/hw2_copy_100000 ../dist/bin/hw2_copy_1000000 ../dist/bin/hw2_copy_250 ../dist/bin/hw2_copy_5000 ../dist/bin/hw2_copy_50000 ../dist/bin/hw2_copy_500000 ../dist/bin/hw2_copy_5000000
+	./main.py bench '$@' ../dist/bin/hw2_copy_250 ../dist/bin/hw2_copy_1000 ../dist/bin/hw2_copy_5000 ../dist/bin/hw2_copy_10000 ../dist/bin/hw2_copy_50000 ../dist/bin/hw2_copy_100000 ../dist/bin/hw2_copy_500000 ../dist/bin/hw2_copy_1000000 ../dist/bin/hw2_copy_5000000
 
 .PHONY: all clean
