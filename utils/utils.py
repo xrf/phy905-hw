@@ -1,5 +1,5 @@
 #@snip/TemporarySaveFile[
-#@requires: rename, wrapped_open
+#@requires: rename try_remove wrapped_open
 class TemporarySaveFile(object):
     '''A context manager for a saving files atomically.  The context manager
     creates a temporary file to which data may be written.  If the body of the
@@ -22,10 +22,18 @@ class TemporarySaveFile(object):
         self._kwargs = kwargs
 
     def __enter__(self):
-        import tempfile
+        import shutil, tempfile
         if hasattr(self, "_stream"):
             raise ValueError("attempted to __enter__ twice")
         stream = wrapped_open(tempfile.NamedTemporaryFile, **self._kwargs)
+        try:
+            shutil.copystat(self._fn, stream.name)
+        except:
+            try:
+                stream.close()
+            finally:
+                try_remove(stream.name)
+            raise
         self._stream = stream
         return stream
 
@@ -35,19 +43,12 @@ class TemporarySaveFile(object):
             if exc_type is None and exc_value is None and traceback is None:
                 rename(self._stream.name, self._fn)
             else:
-                self._cleanup()
+                try_remove(self._stream.name)
         except:
-            self._cleanup()
+            try_remove(self._stream.name)
             raise
         finally:
             del self._stream
-
-    def _cleanup(self):
-        import os
-        try:
-            os.remove(self._stream.name)
-        except OSError:
-            pass
 #@]
 
 #@snip/rename[
@@ -68,6 +69,16 @@ def rename(src, dest):
         os.rename(src, dest)
 #@]
 
+#@snip/try_remove[
+def try_remove(path):
+    import os
+    try:
+        os.remove(path)
+    except OSError:
+        return False
+    return True
+#@]
+
 #@snip/wrapped_open[
 def wrapped_open(open, mode="r", encoding=None,
                  errors=None, newline=None, **kwargs):
@@ -85,9 +96,13 @@ def wrapped_open(open, mode="r", encoding=None,
     else:
         import io
         mode = mode.replace("t", "") + "b"
-        return io.TextIOWrapper(open(mode=mode, **kwargs),
-                                encoding=encoding, errors=errors,
-                                newline=newline)
+        stream = open(mode=mode, **kwargs)
+        try:
+            return io.TextIOWrapper(stream, encoding=encoding,
+                                    errors=errors, newline=newline)
+        except:
+            stream.close()
+            raise
 #@]
 
 #@snip/safe_open[
