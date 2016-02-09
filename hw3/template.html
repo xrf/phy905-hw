@@ -1,0 +1,30 @@
+<h1>PHY 905 004 HW #3</h1>
+<address rel="author">Fei Yuan</address>
+<figure>
+  <table>
+    <tr>
+      <td>Size</td>
+      <td>Basic /μs</td>
+      <td>Model /μs</td>
+      <td>Blocked /μs</td>
+      <td>Cache-oblivious /μs</td>
+    </tr>
+    ${data}
+  </table>
+  <figcaption>Table 1: Time vs size of matrix.</figcaption>
+</figure>
+<figure>
+  <a href="${fig_time_fn}"><img src="${fig_time_fn}"/></a>
+  <figcaption>Figure 1: Time vs size of matrix.</figcaption>
+</figure>
+<figure>
+  <a href="${fig_compare_fn}"><img src="${fig_compare_fn}"/></a>
+  <figcaption>Figure 2: Ratio of time taken over model time vs size of matrix.</figcaption>
+</figure>
+<p>From last week's homework, the STREAM bandwidth was found to be 6770 MB/s.  Therefore, a naive estimate would be given by the formula:</p>
+<p class="equation"><code>(16 <var>n</var><sup>2</sup> / 6770) μs</code></p>
+<p>We assume transferring each double-precision floating point number involves a read and a write of 8 bytes.</p>
+<p>Figure 1, which simply plots time against the matrix size, is difficult to read.  Figure 2 makes the differences more obvious by taking a ratio between the actual time taken and the time as estimated by this model.  Compared to the actual data, the model seems to be too optimistic, as the graph almost always stays above 1.  This is suggests that transposition is a little more complicated than merely copying data: the CPU probably has a harder time prefetching data as the access pattern is not as regular as a simple array copy.</p>
+<p><b>Which method is best?  Does it depend on the matrix size?</b></p>
+<p>The best method for large matrices (size more than 200) is the blocked method.  In this case, the cache-oblivious method performs worse, but not substantially so.  The basic method is much worse and, when extrapolated, appears to get even worse for larger datasets.</p>
+<p>The best method for small matrices (size less than 100) is the basic method.  In this case, both the cache-oblivious method and blocked perform slightly worse.  In particular, the cache-oblivious method is unusually bad for a size of exactly 100.</p>
