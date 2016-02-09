@@ -103,3 +103,53 @@ struct statistics statistics_get(const struct statistics_state *self)
     out.min = self->min;
     return out;
 }
+
+/* ------------------------------------------------------------------------ */
+
+struct fullbenchmark fullbenchmark_begin(size_t num_repeats)
+{
+    struct fullbenchmark self;
+    mysecond_init();
+    self.stats = statistics_initial;
+    self.num_repeats = num_repeats;
+    self.num_subrepeats = 4; /* initial guess */
+    self.repeat_index = 0;
+    self.first = 1;
+    return self;
+}
+
+int fullbenchmark(struct fullbenchmark *self)
+{
+    if (self->first) {
+        self->first = 0;
+        goto first;
+    }
+inner:
+    if (benchmark(&self->subrepeat_index, &self->time,
+                  &self->num_subrepeats, 1.)) {
+        return 1;
+    }
+    statistics_update(&self->stats, self->time);
+    ++self->repeat_index;
+first:
+    if (self->repeat_index < self->num_repeats) {
+        self->subrepeat_index = 0;
+        self->time = mysecond();
+        goto inner;
+    }
+    return 0;
+}
+
+void fullbenchmark_end(const struct fullbenchmark *self)
+{
+    struct statistics st = statistics_get(&self->stats);
+    printf("min = %.17g\n"
+           "mean = %.17g\n"
+           "stdev = %.17g\n"
+           "num_subrepeats = %zu\n",
+           st.min,
+           st.mean,
+           st.stdev,
+           self->num_subrepeats);
+    fflush(stdout);
+}

@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "../utils/utils.h"
 #ifndef SIZE
 #define SIZE 250

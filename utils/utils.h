@@ -49,6 +49,21 @@ void statistics_update(struct statistics_state *self, double x);
 /** Obtain the statistics from the given state. */
 struct statistics statistics_get(const struct statistics_state *self);
 
+/* ------------------------------------------------------------------------ */
+
+struct fullbenchmark {
+    struct statistics_state stats;
+    size_t num_repeats, num_subrepeats, repeat_index, subrepeat_index;
+    double time;
+    int first;
+};
+
+struct fullbenchmark fullbenchmark_begin(size_t num_repeats);
+
+int fullbenchmark(struct fullbenchmark *self);
+
+void fullbenchmark_end(const struct fullbenchmark *self);
+
 #ifdef __cplusplus
 }
 #endif
