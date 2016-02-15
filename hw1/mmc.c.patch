@@ -1,15 +1,27 @@
 --- mmc.c
 +++ mmc.c
-@@ -1,8 +1,6 @@
+@@ -1,12 +1,8 @@
  #include <stdio.h>
  #include <stdlib.h>
  
 -#define matSize 1100
 -#define maxTest 10
  
- /* Row-major order (Same as Fortran). */
+-/* Row-major order (Same as Fortran).
+-   
+- */
++/* Row-major order (Same as Fortran). */
  #define ind(i,j) (j)*matSize+i
-@@ -19,7 +17,7 @@ void dummy(double *a, double *b, double *c);
+ 
+ 
+@@ -15,12 +11,13 @@
+    in more detail later in the course. */
+ double matA[matSize*matSize], matB[matSize*matSize], matC[matSize*matSize];
+ 
+-double second(void);
++double mysecond(void);
++void dummy(void *);
+ 
  int main(int argc, char *argv[])
  {
      double sum, tStart, tEnd, tLoop, rate, t;
@@ -18,20 +30,51 @@
  
      /* Initialize the matrics */
      /* Note that this is *not* in the best order with respect to cache;
-@@ -34,6 +32,7 @@ int main(int argc, char *argv[])
+@@ -34,7 +31,8 @@
+ 
      tLoop = 1.0e10;
      for (tests=0; tests<maxTest; tests++) {
- 	tStart = mysecond();
+-	tStart = second();
++	tStart = mysecond();
 +	for (repeats=0; repeats<numRepeats; repeats++)
  	for (i=0; i<matSize; i++)
  	    for (j=0; j<matSize; j++) {
  		sum = 0.0;
-@@ -42,7 +41,7 @@ int main(int argc, char *argv[])
+@@ -42,8 +40,9 @@
+ 		    sum += matA[ind(i,k)] * matB[ind(k,j)];
  		matC[ind(i,j)] = sum;
  	    }
- 	tEnd = mysecond();
+-	tEnd = second();
 -	t = tEnd - tStart;
++	tEnd = mysecond();
 +	t = (tEnd - tStart) / numRepeats;
- 	dummy(matA, matB, matC);
++	dummy(matA); dummy(matB); dummy(matC);
  	if (t < tLoop) tLoop = t;
  	if (matC[ind(0,0)] < 0) {
+ 	    fprintf(stderr, "Failed matC sign test\n");
+@@ -59,25 +58,3 @@
+ 
+     return 0;
+ }
+-
+-#include <sys/param.h>
+-#include <sys/types.h>
+-#include <sys/times.h>
+-#include <time.h>
+-
+-double second(void)
+-{
+-    long sec;
+-    double secx;
+-    struct tms realbuf;
+-
+-    times(&realbuf);
+-    secx = ( realbuf.tms_stime + realbuf.tms_utime ) / (float) CLK_TCK;
+-    return ((double) secx);
+-}
+-
+-#if 0
+-double second(void)
+-{
+-}
+-#endif
