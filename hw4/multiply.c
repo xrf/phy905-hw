@@ -15,7 +15,7 @@
 #define REPEATS 8
 #endif
 #ifndef VERIFY_THRESHOLD
-#define VERIFY_THRESHOLD 1e-12
+#define VERIFY_THRESHOLD 1e-11
 #endif
 
 static void multiply(size_t n, double *restrict c,

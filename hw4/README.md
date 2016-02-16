@@ -18,7 +18,7 @@ To build and run with a specific compiler such as `clang`, specify:
 
 To test a BLAS implementation, specify:
 
-    make CFLAGS="-Wall -O3 -DUSE_BLAS" LIBS="-l<blas> -lm"
+    make CPPFLAGS=-DUSE_BLAS LIBS="-l<blas> -lm"
 
 where `<blas>` is a placeholder for the name of the BLAS library (e.g. for
 OpenBLAS it would be `-lopenblas`).  Note that for OpenBLAS you should `export
@@ -28,8 +28,7 @@ To test a different implementation, you will need to compile a BLAS-like
 wrapper and then link with that.  For example, this is how you can test Eigen:
 
     (cd wrapper && make)
-    make CFLAGS="-Wall -O3 -DUSE_BLAS" CPPFLAGS=-Iwrapper \
-         LIBS="wrapper/eigen.o -lstdc++ -lm"
+    make CPPFLAGS="-DUSE_BLAS -Iwrapper" LIBS="wrapper/eigen.o -lstdc++ -lm"
 
 Note that since we are wrapping a C++ library, `-lstdc++` is required.
 
