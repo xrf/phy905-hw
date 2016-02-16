@@ -33,25 +33,29 @@ def merge(out_fn, *fns):
     data = records_to_dataframe(load_json_file(fn) for fn in fns)
     save_json_file(out_fn, data, json_args=JSON_ARGS)
 
+def analyze_group(series, group):
+    group.sort(key=lambda x: x["size"])
+    group = records_to_dataframe(group)
+    size = np.array(group["size"])
+    time = np.array(group["time_mean"])
+    time_err = np.array(group["time_stdev"])
+    performance = 2 * size ** 3 / time
+    performance_err = performance * time_err / time
+    series.update({
+        "size": size.tolist(),
+        "time": time.tolist(),
+        "time_err": time_err.tolist(),
+        "performance": performance.tolist(),
+        "performance_err": performance_err.tolist(),
+    })
+
 @register_command(commands)
 def analyze(out_fn, fn):
     records = dataframe_to_records(load_json_file(fn))
     groups = group_records_by(records, ["optlevel", "bsize"])
     data = []
     for (optlevel, bsize), group in sorted(groups.items()):
-        group.sort(key=lambda x: x["size"])
-        group = records_to_dataframe(group)
-        size = np.array(group["size"])
-        time = np.array(group["time_mean"])
-        time_err = np.array(group["time_stdev"])
-        performance = 2 * size ** 3 / time
-        performance_err = performance * time_err / time
-        data.append({
-            "size": size.tolist(),
-            "time": time.tolist(),
-            "time_err": time_err.tolist(),
-            "performance": performance.tolist(),
-            "performance_err": performance_err.tolist(),
+        series = {
             "color": {
                 0: "#e91e63",
                 1: "#f29312",
@@ -63,7 +67,32 @@ def analyze(out_fn, fn):
                 optlevel,
                 " blocked" if (bsize or 1) > 1 else "",
             ),
-        })
+        }
+        analyze_group(series, group)
+        data.append(series)
+    save_json_file(out_fn, data, json_args=JSON_ARGS)
+
+@register_command(commands)
+def analyze_series(out_fn, *fns):
+    import os
+    data = []
+    for fn in fns:
+        label = os.path.splitext(os.path.basename(fn))[0]
+        records = dataframe_to_records(load_json_file(fn))
+        group = group_records_by(records, ["optlevel"])[(3,)]
+        group = [x for x in group if x["bsize"] > 1 or x["bsize"] is None]
+        series = {
+            "color": {
+                "gcc-data": "#e91e63",
+                "clang-data": "#f29312",
+                "eigen-data": "#4caf50",
+                "openblas-data": "#2196f3",
+                "openblas-4threads-data": "#1a237e",
+            }.get(label, None),
+            "label": label,
+        }
+        analyze_group(series, group)
+        data.append(series)
     save_json_file(out_fn, data, json_args=JSON_ARGS)
 
 @register_command(commands)
@@ -87,8 +116,8 @@ def plot(out_fn, data_fn):
             series["time"],
             yerr=series["time_err"],
             label=series["label"],
-            color=series["color"],
-            linestyle=series["linestyle"],
+            color=series.get("color", None),
+            linestyle=series.get("linestyle", "-"),
             **plot_args
         )
     ax.set_xlabel("matrix size (n)")
@@ -110,8 +139,8 @@ def plot(out_fn, data_fn):
             np.array(series["performance"]) / 1e9,
             yerr=np.array(series["performance_err"]) / 1e9,
             label=series["label"],
-            color=series["color"],
-            linestyle=series["linestyle"],
+            color=series.get("color", None),
+            linestyle=series.get("linestyle", "-"),
             **plot_args
         )
     ax.set_xlabel("matrix size (n)")
