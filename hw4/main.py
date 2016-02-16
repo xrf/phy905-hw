@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 import logging, sys
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 sys.path = ["../utils"] + list(sys.path)
 from utils import *
 commands = {}
