@@ -5,8 +5,10 @@ CFLAGS=-Wall -O3
 
 all: index.html
 
+build: ../dist/tmp/hw4_multiply_build.ok
+
 clean:
-	rm -fr -- ../dist/bin/hw4_multiply_001_0020_0 ../dist/bin/hw4_multiply_001_0020_1 ../dist/bin/hw4_multiply_001_0020_2 ../dist/bin/hw4_multiply_001_0020_3 ../dist/bin/hw4_multiply_001_0040_0 ../dist/bin/hw4_multiply_001_0040_1 ../dist/bin/hw4_multiply_001_0040_2 ../dist/bin/hw4_multiply_001_0040_3 ../dist/bin/hw4_multiply_001_0060_0 ../dist/bin/hw4_multiply_001_0060_1 ../dist/bin/hw4_multiply_001_0060_2 ../dist/bin/hw4_multiply_001_0060_3 ../dist/bin/hw4_multiply_001_0080_0 ../dist/bin/hw4_multiply_001_0080_1 ../dist/bin/hw4_multiply_001_0080_2 ../dist/bin/hw4_multiply_001_0080_3 ../dist/bin/hw4_multiply_001_0100_0 ../dist/bin/hw4_multiply_001_0100_1 ../dist/bin/hw4_multiply_001_0100_2 ../dist/bin/hw4_multiply_001_0100_3 ../dist/bin/hw4_multiply_001_0150_0 ../dist/bin/hw4_multiply_001_0150_1 ../dist/bin/hw4_multiply_001_0150_2 ../dist/bin/hw4_multiply_001_0150_3 ../dist/bin/hw4_multiply_001_0200_0 ../dist/bin/hw4_multiply_001_0200_1 ../dist/bin/hw4_multiply_001_0200_2 ../dist/bin/hw4_multiply_001_0200_3 ../dist/bin/hw4_multiply_001_0300_0 ../dist/bin/hw4_multiply_001_0300_1 ../dist/bin/hw4_multiply_001_0300_2 ../dist/bin/hw4_multiply_001_0300_3 ../dist/bin/hw4_multiply_001_0400_0 ../dist/bin/hw4_multiply_001_0400_1 ../dist/bin/hw4_multiply_001_0400_2 ../dist/bin/hw4_multiply_001_0400_3 ../dist/bin/hw4_multiply_001_0600_0 ../dist/bin/hw4_multiply_001_0600_1 ../dist/bin/hw4_multiply_001_0600_2 ../dist/bin/hw4_multiply_001_0600_3 ../dist/bin/hw4_multiply_001_0800_0 ../dist/bin/hw4_multiply_001_0800_1 ../dist/bin/hw4_multiply_001_0800_2 ../dist/bin/hw4_multiply_001_0800_3 ../dist/bin/hw4_multiply_001_1000_0 ../dist/bin/hw4_multiply_001_1000_1 ../dist/bin/hw4_multiply_001_1000_2 ../dist/bin/hw4_multiply_001_1000_3 ../dist/bin/hw4_multiply_128_0020_0 ../dist/bin/hw4_multiply_128_0020_1 ../dist/bin/hw4_multiply_128_0020_2 ../dist/bin/hw4_multiply_128_0020_3 ../dist/bin/hw4_multiply_128_0040_0 ../dist/bin/hw4_multiply_128_0040_1 ../dist/bin/hw4_multiply_128_0040_2 ../dist/bin/hw4_multiply_128_0040_3 ../dist/bin/hw4_multiply_128_0060_0 ../dist/bin/hw4_multiply_128_0060_1 ../dist/bin/hw4_multiply_128_0060_2 ../dist/bin/hw4_multiply_128_0060_3 ../dist/bin/hw4_multiply_128_0080_0 ../dist/bin/hw4_multiply_128_0080_1 ../dist/bin/hw4_multiply_128_0080_2 ../dist/bin/hw4_multiply_128_0080_3 ../dist/bin/hw4_multiply_128_0100_0 ../dist/bin/hw4_multiply_128_0100_1 ../dist/bin/hw4_multiply_128_0100_2 ../dist/bin/hw4_multiply_128_0100_3 ../dist/bin/hw4_multiply_128_0150_0 ../dist/bin/hw4_multiply_128_0150_1 ../dist/bin/hw4_multiply_128_0150_2 ../dist/bin/hw4_multiply_128_0150_3 ../dist/bin/hw4_multiply_128_0200_0 ../dist/bin/hw4_multiply_128_0200_1 ../dist/bin/hw4_multiply_128_0200_2 ../dist/bin/hw4_multiply_128_0200_3 ../dist/bin/hw4_multiply_128_0300_0 ../dist/bin/hw4_multiply_128_0300_1 ../dist/bin/hw4_multiply_128_0300_2 ../dist/bin/hw4_multiply_128_0300_3 ../dist/bin/hw4_multiply_128_0400_0 ../dist/bin/hw4_multiply_128_0400_1 ../dist/bin/hw4_multiply_128_0400_2 ../dist/bin/hw4_multiply_128_0400_3 ../dist/bin/hw4_multiply_128_0600_0 ../dist/bin/hw4_multiply_128_0600_1 ../dist/bin/hw4_multiply_128_0600_2 ../dist/bin/hw4_multiply_128_0600_3 ../dist/bin/hw4_multiply_128_0800_0 ../dist/bin/hw4_multiply_128_0800_1 ../dist/bin/hw4_multiply_128_0800_2 ../dist/bin/hw4_multiply_128_0800_3 ../dist/bin/hw4_multiply_128_1000_0 ../dist/bin/hw4_multiply_128_1000_1 ../dist/bin/hw4_multiply_128_1000_2 ../dist/bin/hw4_multiply_128_1000_3 ../dist/tmp/hw4/multiply_001_0020_0.o ../dist/tmp/hw4/multiply_001_0020_1.o ../dist/tmp/hw4/multiply_001_0020_2.o ../dist/tmp/hw4/multiply_001_0020_3.o ../dist/tmp/hw4/multiply_001_0040_0.o ../dist/tmp/hw4/multiply_001_0040_1.o ../dist/tmp/hw4/multiply_001_0040_2.o ../dist/tmp/hw4/multiply_001_0040_3.o ../dist/tmp/hw4/multiply_001_0060_0.o ../dist/tmp/hw4/multiply_001_0060_1.o ../dist/tmp/hw4/multiply_001_0060_2.o ../dist/tmp/hw4/multiply_001_0060_3.o ../dist/tmp/hw4/multiply_001_0080_0.o ../dist/tmp/hw4/multiply_001_0080_1.o ../dist/tmp/hw4/multiply_001_0080_2.o ../dist/tmp/hw4/multiply_001_0080_3.o ../dist/tmp/hw4/multiply_001_0100_0.o ../dist/tmp/hw4/multiply_001_0100_1.o ../dist/tmp/hw4/multiply_001_0100_2.o ../dist/tmp/hw4/multiply_001_0100_3.o ../dist/tmp/hw4/multiply_001_0150_0.o ../dist/tmp/hw4/multiply_001_0150_1.o ../dist/tmp/hw4/multiply_001_0150_2.o ../dist/tmp/hw4/multiply_001_0150_3.o ../dist/tmp/hw4/multiply_001_0200_0.o ../dist/tmp/hw4/multiply_001_0200_1.o ../dist/tmp/hw4/multiply_001_0200_2.o ../dist/tmp/hw4/multiply_001_0200_3.o ../dist/tmp/hw4/multiply_001_0300_0.o ../dist/tmp/hw4/multiply_001_0300_1.o ../dist/tmp/hw4/multiply_001_0300_2.o ../dist/tmp/hw4/multiply_001_0300_3.o ../dist/tmp/hw4/multiply_001_0400_0.o ../dist/tmp/hw4/multiply_001_0400_1.o ../dist/tmp/hw4/multiply_001_0400_2.o ../dist/tmp/hw4/multiply_001_0400_3.o ../dist/tmp/hw4/multiply_001_0600_0.o ../dist/tmp/hw4/multiply_001_0600_1.o ../dist/tmp/hw4/multiply_001_0600_2.o ../dist/tmp/hw4/multiply_001_0600_3.o ../dist/tmp/hw4/multiply_001_0800_0.o ../dist/tmp/hw4/multiply_001_0800_1.o ../dist/tmp/hw4/multiply_001_0800_2.o ../dist/tmp/hw4/multiply_001_0800_3.o ../dist/tmp/hw4/multiply_001_1000_0.o ../dist/tmp/hw4/multiply_001_1000_1.o ../dist/tmp/hw4/multiply_001_1000_2.o ../dist/tmp/hw4/multiply_001_1000_3.o ../dist/tmp/hw4/multiply_128_0020_0.o ../dist/tmp/hw4/multiply_128_0020_1.o ../dist/tmp/hw4/multiply_128_0020_2.o ../dist/tmp/hw4/multiply_128_0020_3.o ../dist/tmp/hw4/multiply_128_0040_0.o ../dist/tmp/hw4/multiply_128_0040_1.o ../dist/tmp/hw4/multiply_128_0040_2.o ../dist/tmp/hw4/multiply_128_0040_3.o ../dist/tmp/hw4/multiply_128_0060_0.o ../dist/tmp/hw4/multiply_128_0060_1.o ../dist/tmp/hw4/multiply_128_0060_2.o ../dist/tmp/hw4/multiply_128_0060_3.o ../dist/tmp/hw4/multiply_128_0080_0.o ../dist/tmp/hw4/multiply_128_0080_1.o ../dist/tmp/hw4/multiply_128_0080_2.o ../dist/tmp/hw4/multiply_128_0080_3.o ../dist/tmp/hw4/multiply_128_0100_0.o ../dist/tmp/hw4/multiply_128_0100_1.o ../dist/tmp/hw4/multiply_128_0100_2.o ../dist/tmp/hw4/multiply_128_0100_3.o ../dist/tmp/hw4/multiply_128_0150_0.o ../dist/tmp/hw4/multiply_128_0150_1.o ../dist/tmp/hw4/multiply_128_0150_2.o ../dist/tmp/hw4/multiply_128_0150_3.o ../dist/tmp/hw4/multiply_128_0200_0.o ../dist/tmp/hw4/multiply_128_0200_1.o ../dist/tmp/hw4/multiply_128_0200_2.o ../dist/tmp/hw4/multiply_128_0200_3.o ../dist/tmp/hw4/multiply_128_0300_0.o ../dist/tmp/hw4/multiply_128_0300_1.o ../dist/tmp/hw4/multiply_128_0300_2.o ../dist/tmp/hw4/multiply_128_0300_3.o ../dist/tmp/hw4/multiply_128_0400_0.o ../dist/tmp/hw4/multiply_128_0400_1.o ../dist/tmp/hw4/multiply_128_0400_2.o ../dist/tmp/hw4/multiply_128_0400_3.o ../dist/tmp/hw4/multiply_128_0600_0.o ../dist/tmp/hw4/multiply_128_0600_1.o ../dist/tmp/hw4/multiply_128_0600_2.o ../dist/tmp/hw4/multiply_128_0600_3.o ../dist/tmp/hw4/multiply_128_0800_0.o ../dist/tmp/hw4/multiply_128_0800_1.o ../dist/tmp/hw4/multiply_128_0800_2.o ../dist/tmp/hw4/multiply_128_0800_3.o ../dist/tmp/hw4/multiply_128_1000_0.o ../dist/tmp/hw4/multiply_128_1000_1.o ../dist/tmp/hw4/multiply_128_1000_2.o ../dist/tmp/hw4/multiply_128_1000_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o Makefile data.json data_001_0020_0.json data_001_0020_1.json data_001_0020_2.json data_001_0020_3.json data_001_0040_0.json data_001_0040_1.json data_001_0040_2.json data_001_0040_3.json data_001_0060_0.json data_001_0060_1.json data_001_0060_2.json data_001_0060_3.json data_001_0080_0.json data_001_0080_1.json data_001_0080_2.json data_001_0080_3.json data_001_0100_0.json data_001_0100_1.json data_001_0100_2.json data_001_0100_3.json data_001_0150_0.json data_001_0150_1.json data_001_0150_2.json data_001_0150_3.json data_001_0200_0.json data_001_0200_1.json data_001_0200_2.json data_001_0200_3.json data_001_0300_0.json data_001_0300_1.json data_001_0300_2.json data_001_0300_3.json data_001_0400_0.json data_001_0400_1.json data_001_0400_2.json data_001_0400_3.json data_001_0600_0.json data_001_0600_1.json data_001_0600_2.json data_001_0600_3.json data_001_0800_0.json data_001_0800_1.json data_001_0800_2.json data_001_0800_3.json data_001_1000_0.json data_001_1000_1.json data_001_1000_2.json data_001_1000_3.json data_128_0020_0.json data_128_0020_1.json data_128_0020_2.json data_128_0020_3.json data_128_0040_0.json data_128_0040_1.json data_128_0040_2.json data_128_0040_3.json data_128_0060_0.json data_128_0060_1.json data_128_0060_2.json data_128_0060_3.json data_128_0080_0.json data_128_0080_1.json data_128_0080_2.json data_128_0080_3.json data_128_0100_0.json data_128_0100_1.json data_128_0100_2.json data_128_0100_3.json data_128_0150_0.json data_128_0150_1.json data_128_0150_2.json data_128_0150_3.json data_128_0200_0.json data_128_0200_1.json data_128_0200_2.json data_128_0200_3.json data_128_0300_0.json data_128_0300_1.json data_128_0300_2.json data_128_0300_3.json data_128_0400_0.json data_128_0400_1.json data_128_0400_2.json data_128_0400_3.json data_128_0600_0.json data_128_0600_1.json data_128_0600_2.json data_128_0600_3.json data_128_0800_0.json data_128_0800_1.json data_128_0800_2.json data_128_0800_3.json data_128_1000_0.json data_128_1000_1.json data_128_1000_2.json data_128_1000_3.json figs.json index.html
+	rm -fr -- ../dist/bin/hw4_multiply_001_0020_0 ../dist/bin/hw4_multiply_001_0020_1 ../dist/bin/hw4_multiply_001_0020_2 ../dist/bin/hw4_multiply_001_0020_3 ../dist/bin/hw4_multiply_001_0040_0 ../dist/bin/hw4_multiply_001_0040_1 ../dist/bin/hw4_multiply_001_0040_2 ../dist/bin/hw4_multiply_001_0040_3 ../dist/bin/hw4_multiply_001_0060_0 ../dist/bin/hw4_multiply_001_0060_1 ../dist/bin/hw4_multiply_001_0060_2 ../dist/bin/hw4_multiply_001_0060_3 ../dist/bin/hw4_multiply_001_0080_0 ../dist/bin/hw4_multiply_001_0080_1 ../dist/bin/hw4_multiply_001_0080_2 ../dist/bin/hw4_multiply_001_0080_3 ../dist/bin/hw4_multiply_001_0100_0 ../dist/bin/hw4_multiply_001_0100_1 ../dist/bin/hw4_multiply_001_0100_2 ../dist/bin/hw4_multiply_001_0100_3 ../dist/bin/hw4_multiply_001_0150_0 ../dist/bin/hw4_multiply_001_0150_1 ../dist/bin/hw4_multiply_001_0150_2 ../dist/bin/hw4_multiply_001_0150_3 ../dist/bin/hw4_multiply_001_0200_0 ../dist/bin/hw4_multiply_001_0200_1 ../dist/bin/hw4_multiply_001_0200_2 ../dist/bin/hw4_multiply_001_0200_3 ../dist/bin/hw4_multiply_001_0300_0 ../dist/bin/hw4_multiply_001_0300_1 ../dist/bin/hw4_multiply_001_0300_2 ../dist/bin/hw4_multiply_001_0300_3 ../dist/bin/hw4_multiply_001_0400_0 ../dist/bin/hw4_multiply_001_0400_1 ../dist/bin/hw4_multiply_001_0400_2 ../dist/bin/hw4_multiply_001_0400_3 ../dist/bin/hw4_multiply_001_0600_0 ../dist/bin/hw4_multiply_001_0600_1 ../dist/bin/hw4_multiply_001_0600_2 ../dist/bin/hw4_multiply_001_0600_3 ../dist/bin/hw4_multiply_001_0800_0 ../dist/bin/hw4_multiply_001_0800_1 ../dist/bin/hw4_multiply_001_0800_2 ../dist/bin/hw4_multiply_001_0800_3 ../dist/bin/hw4_multiply_001_1000_0 ../dist/bin/hw4_multiply_001_1000_1 ../dist/bin/hw4_multiply_001_1000_2 ../dist/bin/hw4_multiply_001_1000_3 ../dist/bin/hw4_multiply_128_0020_0 ../dist/bin/hw4_multiply_128_0020_1 ../dist/bin/hw4_multiply_128_0020_2 ../dist/bin/hw4_multiply_128_0020_3 ../dist/bin/hw4_multiply_128_0040_0 ../dist/bin/hw4_multiply_128_0040_1 ../dist/bin/hw4_multiply_128_0040_2 ../dist/bin/hw4_multiply_128_0040_3 ../dist/bin/hw4_multiply_128_0060_0 ../dist/bin/hw4_multiply_128_0060_1 ../dist/bin/hw4_multiply_128_0060_2 ../dist/bin/hw4_multiply_128_0060_3 ../dist/bin/hw4_multiply_128_0080_0 ../dist/bin/hw4_multiply_128_0080_1 ../dist/bin/hw4_multiply_128_0080_2 ../dist/bin/hw4_multiply_128_0080_3 ../dist/bin/hw4_multiply_128_0100_0 ../dist/bin/hw4_multiply_128_0100_1 ../dist/bin/hw4_multiply_128_0100_2 ../dist/bin/hw4_multiply_128_0100_3 ../dist/bin/hw4_multiply_128_0150_0 ../dist/bin/hw4_multiply_128_0150_1 ../dist/bin/hw4_multiply_128_0150_2 ../dist/bin/hw4_multiply_128_0150_3 ../dist/bin/hw4_multiply_128_0200_0 ../dist/bin/hw4_multiply_128_0200_1 ../dist/bin/hw4_multiply_128_0200_2 ../dist/bin/hw4_multiply_128_0200_3 ../dist/bin/hw4_multiply_128_0300_0 ../dist/bin/hw4_multiply_128_0300_1 ../dist/bin/hw4_multiply_128_0300_2 ../dist/bin/hw4_multiply_128_0300_3 ../dist/bin/hw4_multiply_128_0400_0 ../dist/bin/hw4_multiply_128_0400_1 ../dist/bin/hw4_multiply_128_0400_2 ../dist/bin/hw4_multiply_128_0400_3 ../dist/bin/hw4_multiply_128_0600_0 ../dist/bin/hw4_multiply_128_0600_1 ../dist/bin/hw4_multiply_128_0600_2 ../dist/bin/hw4_multiply_128_0600_3 ../dist/bin/hw4_multiply_128_0800_0 ../dist/bin/hw4_multiply_128_0800_1 ../dist/bin/hw4_multiply_128_0800_2 ../dist/bin/hw4_multiply_128_0800_3 ../dist/bin/hw4_multiply_128_1000_0 ../dist/bin/hw4_multiply_128_1000_1 ../dist/bin/hw4_multiply_128_1000_2 ../dist/bin/hw4_multiply_128_1000_3 ../dist/tmp/hw4/multiply_001_0020_0.o ../dist/tmp/hw4/multiply_001_0020_1.o ../dist/tmp/hw4/multiply_001_0020_2.o ../dist/tmp/hw4/multiply_001_0020_3.o ../dist/tmp/hw4/multiply_001_0040_0.o ../dist/tmp/hw4/multiply_001_0040_1.o ../dist/tmp/hw4/multiply_001_0040_2.o ../dist/tmp/hw4/multiply_001_0040_3.o ../dist/tmp/hw4/multiply_001_0060_0.o ../dist/tmp/hw4/multiply_001_0060_1.o ../dist/tmp/hw4/multiply_001_0060_2.o ../dist/tmp/hw4/multiply_001_0060_3.o ../dist/tmp/hw4/multiply_001_0080_0.o ../dist/tmp/hw4/multiply_001_0080_1.o ../dist/tmp/hw4/multiply_001_0080_2.o ../dist/tmp/hw4/multiply_001_0080_3.o ../dist/tmp/hw4/multiply_001_0100_0.o ../dist/tmp/hw4/multiply_001_0100_1.o ../dist/tmp/hw4/multiply_001_0100_2.o ../dist/tmp/hw4/multiply_001_0100_3.o ../dist/tmp/hw4/multiply_001_0150_0.o ../dist/tmp/hw4/multiply_001_0150_1.o ../dist/tmp/hw4/multiply_001_0150_2.o ../dist/tmp/hw4/multiply_001_0150_3.o ../dist/tmp/hw4/multiply_001_0200_0.o ../dist/tmp/hw4/multiply_001_0200_1.o ../dist/tmp/hw4/multiply_001_0200_2.o ../dist/tmp/hw4/multiply_001_0200_3.o ../dist/tmp/hw4/multiply_001_0300_0.o ../dist/tmp/hw4/multiply_001_0300_1.o ../dist/tmp/hw4/multiply_001_0300_2.o ../dist/tmp/hw4/multiply_001_0300_3.o ../dist/tmp/hw4/multiply_001_0400_0.o ../dist/tmp/hw4/multiply_001_0400_1.o ../dist/tmp/hw4/multiply_001_0400_2.o ../dist/tmp/hw4/multiply_001_0400_3.o ../dist/tmp/hw4/multiply_001_0600_0.o ../dist/tmp/hw4/multiply_001_0600_1.o ../dist/tmp/hw4/multiply_001_0600_2.o ../dist/tmp/hw4/multiply_001_0600_3.o ../dist/tmp/hw4/multiply_001_0800_0.o ../dist/tmp/hw4/multiply_001_0800_1.o ../dist/tmp/hw4/multiply_001_0800_2.o ../dist/tmp/hw4/multiply_001_0800_3.o ../dist/tmp/hw4/multiply_001_1000_0.o ../dist/tmp/hw4/multiply_001_1000_1.o ../dist/tmp/hw4/multiply_001_1000_2.o ../dist/tmp/hw4/multiply_001_1000_3.o ../dist/tmp/hw4/multiply_128_0020_0.o ../dist/tmp/hw4/multiply_128_0020_1.o ../dist/tmp/hw4/multiply_128_0020_2.o ../dist/tmp/hw4/multiply_128_0020_3.o ../dist/tmp/hw4/multiply_128_0040_0.o ../dist/tmp/hw4/multiply_128_0040_1.o ../dist/tmp/hw4/multiply_128_0040_2.o ../dist/tmp/hw4/multiply_128_0040_3.o ../dist/tmp/hw4/multiply_128_0060_0.o ../dist/tmp/hw4/multiply_128_0060_1.o ../dist/tmp/hw4/multiply_128_0060_2.o ../dist/tmp/hw4/multiply_128_0060_3.o ../dist/tmp/hw4/multiply_128_0080_0.o ../dist/tmp/hw4/multiply_128_0080_1.o ../dist/tmp/hw4/multiply_128_0080_2.o ../dist/tmp/hw4/multiply_128_0080_3.o ../dist/tmp/hw4/multiply_128_0100_0.o ../dist/tmp/hw4/multiply_128_0100_1.o ../dist/tmp/hw4/multiply_128_0100_2.o ../dist/tmp/hw4/multiply_128_0100_3.o ../dist/tmp/hw4/multiply_128_0150_0.o ../dist/tmp/hw4/multiply_128_0150_1.o ../dist/tmp/hw4/multiply_128_0150_2.o ../dist/tmp/hw4/multiply_128_0150_3.o ../dist/tmp/hw4/multiply_128_0200_0.o ../dist/tmp/hw4/multiply_128_0200_1.o ../dist/tmp/hw4/multiply_128_0200_2.o ../dist/tmp/hw4/multiply_128_0200_3.o ../dist/tmp/hw4/multiply_128_0300_0.o ../dist/tmp/hw4/multiply_128_0300_1.o ../dist/tmp/hw4/multiply_128_0300_2.o ../dist/tmp/hw4/multiply_128_0300_3.o ../dist/tmp/hw4/multiply_128_0400_0.o ../dist/tmp/hw4/multiply_128_0400_1.o ../dist/tmp/hw4/multiply_128_0400_2.o ../dist/tmp/hw4/multiply_128_0400_3.o ../dist/tmp/hw4/multiply_128_0600_0.o ../dist/tmp/hw4/multiply_128_0600_1.o ../dist/tmp/hw4/multiply_128_0600_2.o ../dist/tmp/hw4/multiply_128_0600_3.o ../dist/tmp/hw4/multiply_128_0800_0.o ../dist/tmp/hw4/multiply_128_0800_1.o ../dist/tmp/hw4/multiply_128_0800_2.o ../dist/tmp/hw4/multiply_128_0800_3.o ../dist/tmp/hw4/multiply_128_1000_0.o ../dist/tmp/hw4/multiply_128_1000_1.o ../dist/tmp/hw4/multiply_128_1000_2.o ../dist/tmp/hw4/multiply_128_1000_3.o ../dist/tmp/hw4_multiply_001_0020_0.json ../dist/tmp/hw4_multiply_001_0020_1.json ../dist/tmp/hw4_multiply_001_0020_2.json ../dist/tmp/hw4_multiply_001_0020_3.json ../dist/tmp/hw4_multiply_001_0040_0.json ../dist/tmp/hw4_multiply_001_0040_1.json ../dist/tmp/hw4_multiply_001_0040_2.json ../dist/tmp/hw4_multiply_001_0040_3.json ../dist/tmp/hw4_multiply_001_0060_0.json ../dist/tmp/hw4_multiply_001_0060_1.json ../dist/tmp/hw4_multiply_001_0060_2.json ../dist/tmp/hw4_multiply_001_0060_3.json ../dist/tmp/hw4_multiply_001_0080_0.json ../dist/tmp/hw4_multiply_001_0080_1.json ../dist/tmp/hw4_multiply_001_0080_2.json ../dist/tmp/hw4_multiply_001_0080_3.json ../dist/tmp/hw4_multiply_001_0100_0.json ../dist/tmp/hw4_multiply_001_0100_1.json ../dist/tmp/hw4_multiply_001_0100_2.json ../dist/tmp/hw4_multiply_001_0100_3.json ../dist/tmp/hw4_multiply_001_0150_0.json ../dist/tmp/hw4_multiply_001_0150_1.json ../dist/tmp/hw4_multiply_001_0150_2.json ../dist/tmp/hw4_multiply_001_0150_3.json ../dist/tmp/hw4_multiply_001_0200_0.json ../dist/tmp/hw4_multiply_001_0200_1.json ../dist/tmp/hw4_multiply_001_0200_2.json ../dist/tmp/hw4_multiply_001_0200_3.json ../dist/tmp/hw4_multiply_001_0300_0.json ../dist/tmp/hw4_multiply_001_0300_1.json ../dist/tmp/hw4_multiply_001_0300_2.json ../dist/tmp/hw4_multiply_001_0300_3.json ../dist/tmp/hw4_multiply_001_0400_0.json ../dist/tmp/hw4_multiply_001_0400_1.json ../dist/tmp/hw4_multiply_001_0400_2.json ../dist/tmp/hw4_multiply_001_0400_3.json ../dist/tmp/hw4_multiply_001_0600_0.json ../dist/tmp/hw4_multiply_001_0600_1.json ../dist/tmp/hw4_multiply_001_0600_2.json ../dist/tmp/hw4_multiply_001_0600_3.json ../dist/tmp/hw4_multiply_001_0800_0.json ../dist/tmp/hw4_multiply_001_0800_1.json ../dist/tmp/hw4_multiply_001_0800_2.json ../dist/tmp/hw4_multiply_001_0800_3.json ../dist/tmp/hw4_multiply_001_1000_0.json ../dist/tmp/hw4_multiply_001_1000_1.json ../dist/tmp/hw4_multiply_001_1000_2.json ../dist/tmp/hw4_multiply_001_1000_3.json ../dist/tmp/hw4_multiply_128_0020_0.json ../dist/tmp/hw4_multiply_128_0020_1.json ../dist/tmp/hw4_multiply_128_0020_2.json ../dist/tmp/hw4_multiply_128_0020_3.json ../dist/tmp/hw4_multiply_128_0040_0.json ../dist/tmp/hw4_multiply_128_0040_1.json ../dist/tmp/hw4_multiply_128_0040_2.json ../dist/tmp/hw4_multiply_128_0040_3.json ../dist/tmp/hw4_multiply_128_0060_0.json ../dist/tmp/hw4_multiply_128_0060_1.json ../dist/tmp/hw4_multiply_128_0060_2.json ../dist/tmp/hw4_multiply_128_0060_3.json ../dist/tmp/hw4_multiply_128_0080_0.json ../dist/tmp/hw4_multiply_128_0080_1.json ../dist/tmp/hw4_multiply_128_0080_2.json ../dist/tmp/hw4_multiply_128_0080_3.json ../dist/tmp/hw4_multiply_128_0100_0.json ../dist/tmp/hw4_multiply_128_0100_1.json ../dist/tmp/hw4_multiply_128_0100_2.json ../dist/tmp/hw4_multiply_128_0100_3.json ../dist/tmp/hw4_multiply_128_0150_0.json ../dist/tmp/hw4_multiply_128_0150_1.json ../dist/tmp/hw4_multiply_128_0150_2.json ../dist/tmp/hw4_multiply_128_0150_3.json ../dist/tmp/hw4_multiply_128_0200_0.json ../dist/tmp/hw4_multiply_128_0200_1.json ../dist/tmp/hw4_multiply_128_0200_2.json ../dist/tmp/hw4_multiply_128_0200_3.json ../dist/tmp/hw4_multiply_128_0300_0.json ../dist/tmp/hw4_multiply_128_0300_1.json ../dist/tmp/hw4_multiply_128_0300_2.json ../dist/tmp/hw4_multiply_128_0300_3.json ../dist/tmp/hw4_multiply_128_0400_0.json ../dist/tmp/hw4_multiply_128_0400_1.json ../dist/tmp/hw4_multiply_128_0400_2.json ../dist/tmp/hw4_multiply_128_0400_3.json ../dist/tmp/hw4_multiply_128_0600_0.json ../dist/tmp/hw4_multiply_128_0600_1.json ../dist/tmp/hw4_multiply_128_0600_2.json ../dist/tmp/hw4_multiply_128_0600_3.json ../dist/tmp/hw4_multiply_128_0800_0.json ../dist/tmp/hw4_multiply_128_0800_1.json ../dist/tmp/hw4_multiply_128_0800_2.json ../dist/tmp/hw4_multiply_128_0800_3.json ../dist/tmp/hw4_multiply_128_1000_0.json ../dist/tmp/hw4_multiply_128_1000_1.json ../dist/tmp/hw4_multiply_128_1000_2.json ../dist/tmp/hw4_multiply_128_1000_3.json ../dist/tmp/hw4_multiply_build.ok ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o Makefile analysis.json data.json figs.json index.html
 
 ../dist/bin/hw4_multiply_001_0020_0: ../dist/tmp/hw4/multiply_001_0020_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
@@ -776,6 +778,394 @@ clean:
 	@d=`dirname '$@'` && mkdir -p "$$d"
 	$(CC) $(CPPFLAGS) $(CFLAGS) -DBSIZE=128 -DSIZE=1000 -O3 -c -o '$@' multiply.c
 
+../dist/tmp/hw4_multiply_001_0020_0.json: ../dist/bin/hw4_multiply_001_0020_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0020_0
+
+../dist/tmp/hw4_multiply_001_0020_1.json: ../dist/bin/hw4_multiply_001_0020_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0020_1
+
+../dist/tmp/hw4_multiply_001_0020_2.json: ../dist/bin/hw4_multiply_001_0020_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0020_2
+
+../dist/tmp/hw4_multiply_001_0020_3.json: ../dist/bin/hw4_multiply_001_0020_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0020_3
+
+../dist/tmp/hw4_multiply_001_0040_0.json: ../dist/bin/hw4_multiply_001_0040_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0040_0
+
+../dist/tmp/hw4_multiply_001_0040_1.json: ../dist/bin/hw4_multiply_001_0040_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0040_1
+
+../dist/tmp/hw4_multiply_001_0040_2.json: ../dist/bin/hw4_multiply_001_0040_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0040_2
+
+../dist/tmp/hw4_multiply_001_0040_3.json: ../dist/bin/hw4_multiply_001_0040_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0040_3
+
+../dist/tmp/hw4_multiply_001_0060_0.json: ../dist/bin/hw4_multiply_001_0060_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0060_0
+
+../dist/tmp/hw4_multiply_001_0060_1.json: ../dist/bin/hw4_multiply_001_0060_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0060_1
+
+../dist/tmp/hw4_multiply_001_0060_2.json: ../dist/bin/hw4_multiply_001_0060_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0060_2
+
+../dist/tmp/hw4_multiply_001_0060_3.json: ../dist/bin/hw4_multiply_001_0060_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0060_3
+
+../dist/tmp/hw4_multiply_001_0080_0.json: ../dist/bin/hw4_multiply_001_0080_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0080_0
+
+../dist/tmp/hw4_multiply_001_0080_1.json: ../dist/bin/hw4_multiply_001_0080_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0080_1
+
+../dist/tmp/hw4_multiply_001_0080_2.json: ../dist/bin/hw4_multiply_001_0080_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0080_2
+
+../dist/tmp/hw4_multiply_001_0080_3.json: ../dist/bin/hw4_multiply_001_0080_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0080_3
+
+../dist/tmp/hw4_multiply_001_0100_0.json: ../dist/bin/hw4_multiply_001_0100_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0100_0
+
+../dist/tmp/hw4_multiply_001_0100_1.json: ../dist/bin/hw4_multiply_001_0100_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0100_1
+
+../dist/tmp/hw4_multiply_001_0100_2.json: ../dist/bin/hw4_multiply_001_0100_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0100_2
+
+../dist/tmp/hw4_multiply_001_0100_3.json: ../dist/bin/hw4_multiply_001_0100_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0100_3
+
+../dist/tmp/hw4_multiply_001_0150_0.json: ../dist/bin/hw4_multiply_001_0150_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0150_0
+
+../dist/tmp/hw4_multiply_001_0150_1.json: ../dist/bin/hw4_multiply_001_0150_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0150_1
+
+../dist/tmp/hw4_multiply_001_0150_2.json: ../dist/bin/hw4_multiply_001_0150_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0150_2
+
+../dist/tmp/hw4_multiply_001_0150_3.json: ../dist/bin/hw4_multiply_001_0150_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0150_3
+
+../dist/tmp/hw4_multiply_001_0200_0.json: ../dist/bin/hw4_multiply_001_0200_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0200_0
+
+../dist/tmp/hw4_multiply_001_0200_1.json: ../dist/bin/hw4_multiply_001_0200_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0200_1
+
+../dist/tmp/hw4_multiply_001_0200_2.json: ../dist/bin/hw4_multiply_001_0200_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0200_2
+
+../dist/tmp/hw4_multiply_001_0200_3.json: ../dist/bin/hw4_multiply_001_0200_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0200_3
+
+../dist/tmp/hw4_multiply_001_0300_0.json: ../dist/bin/hw4_multiply_001_0300_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0300_0
+
+../dist/tmp/hw4_multiply_001_0300_1.json: ../dist/bin/hw4_multiply_001_0300_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0300_1
+
+../dist/tmp/hw4_multiply_001_0300_2.json: ../dist/bin/hw4_multiply_001_0300_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0300_2
+
+../dist/tmp/hw4_multiply_001_0300_3.json: ../dist/bin/hw4_multiply_001_0300_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0300_3
+
+../dist/tmp/hw4_multiply_001_0400_0.json: ../dist/bin/hw4_multiply_001_0400_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0400_0
+
+../dist/tmp/hw4_multiply_001_0400_1.json: ../dist/bin/hw4_multiply_001_0400_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0400_1
+
+../dist/tmp/hw4_multiply_001_0400_2.json: ../dist/bin/hw4_multiply_001_0400_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0400_2
+
+../dist/tmp/hw4_multiply_001_0400_3.json: ../dist/bin/hw4_multiply_001_0400_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0400_3
+
+../dist/tmp/hw4_multiply_001_0600_0.json: ../dist/bin/hw4_multiply_001_0600_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0600_0
+
+../dist/tmp/hw4_multiply_001_0600_1.json: ../dist/bin/hw4_multiply_001_0600_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0600_1
+
+../dist/tmp/hw4_multiply_001_0600_2.json: ../dist/bin/hw4_multiply_001_0600_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0600_2
+
+../dist/tmp/hw4_multiply_001_0600_3.json: ../dist/bin/hw4_multiply_001_0600_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0600_3
+
+../dist/tmp/hw4_multiply_001_0800_0.json: ../dist/bin/hw4_multiply_001_0800_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0800_0
+
+../dist/tmp/hw4_multiply_001_0800_1.json: ../dist/bin/hw4_multiply_001_0800_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0800_1
+
+../dist/tmp/hw4_multiply_001_0800_2.json: ../dist/bin/hw4_multiply_001_0800_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0800_2
+
+../dist/tmp/hw4_multiply_001_0800_3.json: ../dist/bin/hw4_multiply_001_0800_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0800_3
+
+../dist/tmp/hw4_multiply_001_1000_0.json: ../dist/bin/hw4_multiply_001_1000_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_1000_0
+
+../dist/tmp/hw4_multiply_001_1000_1.json: ../dist/bin/hw4_multiply_001_1000_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_1000_1
+
+../dist/tmp/hw4_multiply_001_1000_2.json: ../dist/bin/hw4_multiply_001_1000_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_1000_2
+
+../dist/tmp/hw4_multiply_001_1000_3.json: ../dist/bin/hw4_multiply_001_1000_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_001_1000_3
+
+../dist/tmp/hw4_multiply_128_0020_0.json: ../dist/bin/hw4_multiply_128_0020_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0020_0
+
+../dist/tmp/hw4_multiply_128_0020_1.json: ../dist/bin/hw4_multiply_128_0020_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0020_1
+
+../dist/tmp/hw4_multiply_128_0020_2.json: ../dist/bin/hw4_multiply_128_0020_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0020_2
+
+../dist/tmp/hw4_multiply_128_0020_3.json: ../dist/bin/hw4_multiply_128_0020_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0020_3
+
+../dist/tmp/hw4_multiply_128_0040_0.json: ../dist/bin/hw4_multiply_128_0040_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0040_0
+
+../dist/tmp/hw4_multiply_128_0040_1.json: ../dist/bin/hw4_multiply_128_0040_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0040_1
+
+../dist/tmp/hw4_multiply_128_0040_2.json: ../dist/bin/hw4_multiply_128_0040_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0040_2
+
+../dist/tmp/hw4_multiply_128_0040_3.json: ../dist/bin/hw4_multiply_128_0040_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0040_3
+
+../dist/tmp/hw4_multiply_128_0060_0.json: ../dist/bin/hw4_multiply_128_0060_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0060_0
+
+../dist/tmp/hw4_multiply_128_0060_1.json: ../dist/bin/hw4_multiply_128_0060_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0060_1
+
+../dist/tmp/hw4_multiply_128_0060_2.json: ../dist/bin/hw4_multiply_128_0060_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0060_2
+
+../dist/tmp/hw4_multiply_128_0060_3.json: ../dist/bin/hw4_multiply_128_0060_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0060_3
+
+../dist/tmp/hw4_multiply_128_0080_0.json: ../dist/bin/hw4_multiply_128_0080_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0080_0
+
+../dist/tmp/hw4_multiply_128_0080_1.json: ../dist/bin/hw4_multiply_128_0080_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0080_1
+
+../dist/tmp/hw4_multiply_128_0080_2.json: ../dist/bin/hw4_multiply_128_0080_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0080_2
+
+../dist/tmp/hw4_multiply_128_0080_3.json: ../dist/bin/hw4_multiply_128_0080_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0080_3
+
+../dist/tmp/hw4_multiply_128_0100_0.json: ../dist/bin/hw4_multiply_128_0100_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0100_0
+
+../dist/tmp/hw4_multiply_128_0100_1.json: ../dist/bin/hw4_multiply_128_0100_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0100_1
+
+../dist/tmp/hw4_multiply_128_0100_2.json: ../dist/bin/hw4_multiply_128_0100_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0100_2
+
+../dist/tmp/hw4_multiply_128_0100_3.json: ../dist/bin/hw4_multiply_128_0100_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0100_3
+
+../dist/tmp/hw4_multiply_128_0150_0.json: ../dist/bin/hw4_multiply_128_0150_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0150_0
+
+../dist/tmp/hw4_multiply_128_0150_1.json: ../dist/bin/hw4_multiply_128_0150_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0150_1
+
+../dist/tmp/hw4_multiply_128_0150_2.json: ../dist/bin/hw4_multiply_128_0150_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0150_2
+
+../dist/tmp/hw4_multiply_128_0150_3.json: ../dist/bin/hw4_multiply_128_0150_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0150_3
+
+../dist/tmp/hw4_multiply_128_0200_0.json: ../dist/bin/hw4_multiply_128_0200_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0200_0
+
+../dist/tmp/hw4_multiply_128_0200_1.json: ../dist/bin/hw4_multiply_128_0200_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0200_1
+
+../dist/tmp/hw4_multiply_128_0200_2.json: ../dist/bin/hw4_multiply_128_0200_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0200_2
+
+../dist/tmp/hw4_multiply_128_0200_3.json: ../dist/bin/hw4_multiply_128_0200_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0200_3
+
+../dist/tmp/hw4_multiply_128_0300_0.json: ../dist/bin/hw4_multiply_128_0300_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0300_0
+
+../dist/tmp/hw4_multiply_128_0300_1.json: ../dist/bin/hw4_multiply_128_0300_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0300_1
+
+../dist/tmp/hw4_multiply_128_0300_2.json: ../dist/bin/hw4_multiply_128_0300_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0300_2
+
+../dist/tmp/hw4_multiply_128_0300_3.json: ../dist/bin/hw4_multiply_128_0300_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0300_3
+
+../dist/tmp/hw4_multiply_128_0400_0.json: ../dist/bin/hw4_multiply_128_0400_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0400_0
+
+../dist/tmp/hw4_multiply_128_0400_1.json: ../dist/bin/hw4_multiply_128_0400_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0400_1
+
+../dist/tmp/hw4_multiply_128_0400_2.json: ../dist/bin/hw4_multiply_128_0400_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0400_2
+
+../dist/tmp/hw4_multiply_128_0400_3.json: ../dist/bin/hw4_multiply_128_0400_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0400_3
+
+../dist/tmp/hw4_multiply_128_0600_0.json: ../dist/bin/hw4_multiply_128_0600_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0600_0
+
+../dist/tmp/hw4_multiply_128_0600_1.json: ../dist/bin/hw4_multiply_128_0600_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0600_1
+
+../dist/tmp/hw4_multiply_128_0600_2.json: ../dist/bin/hw4_multiply_128_0600_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0600_2
+
+../dist/tmp/hw4_multiply_128_0600_3.json: ../dist/bin/hw4_multiply_128_0600_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0600_3
+
+../dist/tmp/hw4_multiply_128_0800_0.json: ../dist/bin/hw4_multiply_128_0800_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0800_0
+
+../dist/tmp/hw4_multiply_128_0800_1.json: ../dist/bin/hw4_multiply_128_0800_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0800_1
+
+../dist/tmp/hw4_multiply_128_0800_2.json: ../dist/bin/hw4_multiply_128_0800_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0800_2
+
+../dist/tmp/hw4_multiply_128_0800_3.json: ../dist/bin/hw4_multiply_128_0800_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0800_3
+
+../dist/tmp/hw4_multiply_128_1000_0.json: ../dist/bin/hw4_multiply_128_1000_0 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_1000_0
+
+../dist/tmp/hw4_multiply_128_1000_1.json: ../dist/bin/hw4_multiply_128_1000_1 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_1000_1
+
+../dist/tmp/hw4_multiply_128_1000_2.json: ../dist/bin/hw4_multiply_128_1000_2 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_1000_2
+
+../dist/tmp/hw4_multiply_128_1000_3.json: ../dist/bin/hw4_multiply_128_1000_3 ../dist/tmp/hw4_multiply_build.ok
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	python main.py bench '$@' ../dist/bin/hw4_multiply_128_1000_3
+
+../dist/tmp/hw4_multiply_build.ok: ../dist/bin/hw4_multiply_001_0020_0 ../dist/bin/hw4_multiply_001_0020_1 ../dist/bin/hw4_multiply_001_0020_2 ../dist/bin/hw4_multiply_001_0020_3 ../dist/bin/hw4_multiply_001_0040_0 ../dist/bin/hw4_multiply_001_0040_1 ../dist/bin/hw4_multiply_001_0040_2 ../dist/bin/hw4_multiply_001_0040_3 ../dist/bin/hw4_multiply_001_0060_0 ../dist/bin/hw4_multiply_001_0060_1 ../dist/bin/hw4_multiply_001_0060_2 ../dist/bin/hw4_multiply_001_0060_3 ../dist/bin/hw4_multiply_001_0080_0 ../dist/bin/hw4_multiply_001_0080_1 ../dist/bin/hw4_multiply_001_0080_2 ../dist/bin/hw4_multiply_001_0080_3 ../dist/bin/hw4_multiply_001_0100_0 ../dist/bin/hw4_multiply_001_0100_1 ../dist/bin/hw4_multiply_001_0100_2 ../dist/bin/hw4_multiply_001_0100_3 ../dist/bin/hw4_multiply_001_0150_0 ../dist/bin/hw4_multiply_001_0150_1 ../dist/bin/hw4_multiply_001_0150_2 ../dist/bin/hw4_multiply_001_0150_3 ../dist/bin/hw4_multiply_001_0200_0 ../dist/bin/hw4_multiply_001_0200_1 ../dist/bin/hw4_multiply_001_0200_2 ../dist/bin/hw4_multiply_001_0200_3 ../dist/bin/hw4_multiply_001_0300_0 ../dist/bin/hw4_multiply_001_0300_1 ../dist/bin/hw4_multiply_001_0300_2 ../dist/bin/hw4_multiply_001_0300_3 ../dist/bin/hw4_multiply_001_0400_0 ../dist/bin/hw4_multiply_001_0400_1 ../dist/bin/hw4_multiply_001_0400_2 ../dist/bin/hw4_multiply_001_0400_3 ../dist/bin/hw4_multiply_001_0600_0 ../dist/bin/hw4_multiply_001_0600_1 ../dist/bin/hw4_multiply_001_0600_2 ../dist/bin/hw4_multiply_001_0600_3 ../dist/bin/hw4_multiply_001_0800_0 ../dist/bin/hw4_multiply_001_0800_1 ../dist/bin/hw4_multiply_001_0800_2 ../dist/bin/hw4_multiply_001_0800_3 ../dist/bin/hw4_multiply_001_1000_0 ../dist/bin/hw4_multiply_001_1000_1 ../dist/bin/hw4_multiply_001_1000_2 ../dist/bin/hw4_multiply_001_1000_3 ../dist/bin/hw4_multiply_128_0020_0 ../dist/bin/hw4_multiply_128_0020_1 ../dist/bin/hw4_multiply_128_0020_2 ../dist/bin/hw4_multiply_128_0020_3 ../dist/bin/hw4_multiply_128_0040_0 ../dist/bin/hw4_multiply_128_0040_1 ../dist/bin/hw4_multiply_128_0040_2 ../dist/bin/hw4_multiply_128_0040_3 ../dist/bin/hw4_multiply_128_0060_0 ../dist/bin/hw4_multiply_128_0060_1 ../dist/bin/hw4_multiply_128_0060_2 ../dist/bin/hw4_multiply_128_0060_3 ../dist/bin/hw4_multiply_128_0080_0 ../dist/bin/hw4_multiply_128_0080_1 ../dist/bin/hw4_multiply_128_0080_2 ../dist/bin/hw4_multiply_128_0080_3 ../dist/bin/hw4_multiply_128_0100_0 ../dist/bin/hw4_multiply_128_0100_1 ../dist/bin/hw4_multiply_128_0100_2 ../dist/bin/hw4_multiply_128_0100_3 ../dist/bin/hw4_multiply_128_0150_0 ../dist/bin/hw4_multiply_128_0150_1 ../dist/bin/hw4_multiply_128_0150_2 ../dist/bin/hw4_multiply_128_0150_3 ../dist/bin/hw4_multiply_128_0200_0 ../dist/bin/hw4_multiply_128_0200_1 ../dist/bin/hw4_multiply_128_0200_2 ../dist/bin/hw4_multiply_128_0200_3 ../dist/bin/hw4_multiply_128_0300_0 ../dist/bin/hw4_multiply_128_0300_1 ../dist/bin/hw4_multiply_128_0300_2 ../dist/bin/hw4_multiply_128_0300_3 ../dist/bin/hw4_multiply_128_0400_0 ../dist/bin/hw4_multiply_128_0400_1 ../dist/bin/hw4_multiply_128_0400_2 ../dist/bin/hw4_multiply_128_0400_3 ../dist/bin/hw4_multiply_128_0600_0 ../dist/bin/hw4_multiply_128_0600_1 ../dist/bin/hw4_multiply_128_0600_2 ../dist/bin/hw4_multiply_128_0600_3 ../dist/bin/hw4_multiply_128_0800_0 ../dist/bin/hw4_multiply_128_0800_1 ../dist/bin/hw4_multiply_128_0800_2 ../dist/bin/hw4_multiply_128_0800_3 ../dist/bin/hw4_multiply_128_1000_0 ../dist/bin/hw4_multiply_128_1000_1 ../dist/bin/hw4_multiply_128_1000_2 ../dist/bin/hw4_multiply_128_1000_3
+	@d=`dirname '$@'` && mkdir -p "$$d"
+	touch '$@'
+
 ../dist/tmp/utils/time.o: ../utils/time.c ../utils/time.h
 	@d=`dirname '$@'` && mkdir -p "$$d"
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o '$@' ../utils/time.c
@@ -787,303 +1177,18 @@ clean:
 Makefile: make.py
 	makegen make.py
 
-data.json: data_001_0020_0.json data_001_0020_1.json data_001_0020_2.json data_001_0020_3.json data_001_0040_0.json data_001_0040_1.json data_001_0040_2.json data_001_0040_3.json data_001_0060_0.json data_001_0060_1.json data_001_0060_2.json data_001_0060_3.json data_001_0080_0.json data_001_0080_1.json data_001_0080_2.json data_001_0080_3.json data_001_0100_0.json data_001_0100_1.json data_001_0100_2.json data_001_0100_3.json data_001_0150_0.json data_001_0150_1.json data_001_0150_2.json data_001_0150_3.json data_001_0200_0.json data_001_0200_1.json data_001_0200_2.json data_001_0200_3.json data_001_0300_0.json data_001_0300_1.json data_001_0300_2.json data_001_0300_3.json data_001_0400_0.json data_001_0400_1.json data_001_0400_2.json data_001_0400_3.json data_001_0600_0.json data_001_0600_1.json data_001_0600_2.json data_001_0600_3.json data_001_0800_0.json data_001_0800_1.json data_001_0800_2.json data_001_0800_3.json data_001_1000_0.json data_001_1000_1.json data_001_1000_2.json data_001_1000_3.json data_128_0020_0.json data_128_0020_1.json data_128_0020_2.json data_128_0020_3.json data_128_0040_0.json data_128_0040_1.json data_128_0040_2.json data_128_0040_3.json data_128_0060_0.json data_128_0060_1.json data_128_0060_2.json data_128_0060_3.json data_128_0080_0.json data_128_0080_1.json data_128_0080_2.json data_128_0080_3.json data_128_0100_0.json data_128_0100_1.json data_128_0100_2.json data_128_0100_3.json data_128_0150_0.json data_128_0150_1.json data_128_0150_2.json data_128_0150_3.json data_128_0200_0.json data_128_0200_1.json data_128_0200_2.json data_128_0200_3.json data_128_0300_0.json data_128_0300_1.json data_128_0300_2.json data_128_0300_3.json data_128_0400_0.json data_128_0400_1.json data_128_0400_2.json data_128_0400_3.json data_128_0600_0.json data_128_0600_1.json data_128_0600_2.json data_128_0600_3.json data_128_0800_0.json data_128_0800_1.json data_128_0800_2.json data_128_0800_3.json data_128_1000_0.json data_128_1000_1.json data_128_1000_2.json data_128_1000_3.json main.py
-	python main.py merge '$@' data_001_0020_0.json data_001_0020_1.json data_001_0020_2.json data_001_0020_3.json data_001_0040_0.json data_001_0040_1.json data_001_0040_2.json data_001_0040_3.json data_001_0060_0.json data_001_0060_1.json data_001_0060_2.json data_001_0060_3.json data_001_0080_0.json data_001_0080_1.json data_001_0080_2.json data_001_0080_3.json data_001_0100_0.json data_001_0100_1.json data_001_0100_2.json data_001_0100_3.json data_001_0150_0.json data_001_0150_1.json data_001_0150_2.json data_001_0150_3.json data_001_0200_0.json data_001_0200_1.json data_001_0200_2.json data_001_0200_3.json data_001_0300_0.json data_001_0300_1.json data_001_0300_2.json data_001_0300_3.json data_001_0400_0.json data_001_0400_1.json data_001_0400_2.json data_001_0400_3.json data_001_0600_0.json data_001_0600_1.json data_001_0600_2.json data_001_0600_3.json data_001_0800_0.json data_001_0800_1.json data_001_0800_2.json data_001_0800_3.json data_001_1000_0.json data_001_1000_1.json data_001_1000_2.json data_001_1000_3.json data_128_0020_0.json data_128_0020_1.json data_128_0020_2.json data_128_0020_3.json data_128_0040_0.json data_128_0040_1.json data_128_0040_2.json data_128_0040_3.json data_128_0060_0.json data_128_0060_1.json data_128_0060_2.json data_128_0060_3.json data_128_0080_0.json data_128_0080_1.json data_128_0080_2.json data_128_0080_3.json data_128_0100_0.json data_128_0100_1.json data_128_0100_2.json data_128_0100_3.json data_128_0150_0.json data_128_0150_1.json data_128_0150_2.json data_128_0150_3.json data_128_0200_0.json data_128_0200_1.json data_128_0200_2.json data_128_0200_3.json data_128_0300_0.json data_128_0300_1.json data_128_0300_2.json data_128_0300_3.json data_128_0400_0.json data_128_0400_1.json data_128_0400_2.json data_128_0400_3.json data_128_0600_0.json data_128_0600_1.json data_128_0600_2.json data_128_0600_3.json data_128_0800_0.json data_128_0800_1.json data_128_0800_2.json data_128_0800_3.json data_128_1000_0.json data_128_1000_1.json data_128_1000_2.json data_128_1000_3.json
+analysis.json: data.json main.py
+	python main.py analyze '$@' data.json
 
-data_001_0020_0.json: ../dist/bin/hw4_multiply_001_0020_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0020_0
+data.json: ../dist/tmp/hw4_multiply_001_0020_0.json ../dist/tmp/hw4_multiply_001_0020_1.json ../dist/tmp/hw4_multiply_001_0020_2.json ../dist/tmp/hw4_multiply_001_0020_3.json ../dist/tmp/hw4_multiply_001_0040_0.json ../dist/tmp/hw4_multiply_001_0040_1.json ../dist/tmp/hw4_multiply_001_0040_2.json ../dist/tmp/hw4_multiply_001_0040_3.json ../dist/tmp/hw4_multiply_001_0060_0.json ../dist/tmp/hw4_multiply_001_0060_1.json ../dist/tmp/hw4_multiply_001_0060_2.json ../dist/tmp/hw4_multiply_001_0060_3.json ../dist/tmp/hw4_multiply_001_0080_0.json ../dist/tmp/hw4_multiply_001_0080_1.json ../dist/tmp/hw4_multiply_001_0080_2.json ../dist/tmp/hw4_multiply_001_0080_3.json ../dist/tmp/hw4_multiply_001_0100_0.json ../dist/tmp/hw4_multiply_001_0100_1.json ../dist/tmp/hw4_multiply_001_0100_2.json ../dist/tmp/hw4_multiply_001_0100_3.json ../dist/tmp/hw4_multiply_001_0150_0.json ../dist/tmp/hw4_multiply_001_0150_1.json ../dist/tmp/hw4_multiply_001_0150_2.json ../dist/tmp/hw4_multiply_001_0150_3.json ../dist/tmp/hw4_multiply_001_0200_0.json ../dist/tmp/hw4_multiply_001_0200_1.json ../dist/tmp/hw4_multiply_001_0200_2.json ../dist/tmp/hw4_multiply_001_0200_3.json ../dist/tmp/hw4_multiply_001_0300_0.json ../dist/tmp/hw4_multiply_001_0300_1.json ../dist/tmp/hw4_multiply_001_0300_2.json ../dist/tmp/hw4_multiply_001_0300_3.json ../dist/tmp/hw4_multiply_001_0400_0.json ../dist/tmp/hw4_multiply_001_0400_1.json ../dist/tmp/hw4_multiply_001_0400_2.json ../dist/tmp/hw4_multiply_001_0400_3.json ../dist/tmp/hw4_multiply_001_0600_0.json ../dist/tmp/hw4_multiply_001_0600_1.json ../dist/tmp/hw4_multiply_001_0600_2.json ../dist/tmp/hw4_multiply_001_0600_3.json ../dist/tmp/hw4_multiply_001_0800_0.json ../dist/tmp/hw4_multiply_001_0800_1.json ../dist/tmp/hw4_multiply_001_0800_2.json ../dist/tmp/hw4_multiply_001_0800_3.json ../dist/tmp/hw4_multiply_001_1000_0.json ../dist/tmp/hw4_multiply_001_1000_1.json ../dist/tmp/hw4_multiply_001_1000_2.json ../dist/tmp/hw4_multiply_001_1000_3.json ../dist/tmp/hw4_multiply_128_0020_0.json ../dist/tmp/hw4_multiply_128_0020_1.json ../dist/tmp/hw4_multiply_128_0020_2.json ../dist/tmp/hw4_multiply_128_0020_3.json ../dist/tmp/hw4_multiply_128_0040_0.json ../dist/tmp/hw4_multiply_128_0040_1.json ../dist/tmp/hw4_multiply_128_0040_2.json ../dist/tmp/hw4_multiply_128_0040_3.json ../dist/tmp/hw4_multiply_128_0060_0.json ../dist/tmp/hw4_multiply_128_0060_1.json ../dist/tmp/hw4_multiply_128_0060_2.json ../dist/tmp/hw4_multiply_128_0060_3.json ../dist/tmp/hw4_multiply_128_0080_0.json ../dist/tmp/hw4_multiply_128_0080_1.json ../dist/tmp/hw4_multiply_128_0080_2.json ../dist/tmp/hw4_multiply_128_0080_3.json ../dist/tmp/hw4_multiply_128_0100_0.json ../dist/tmp/hw4_multiply_128_0100_1.json ../dist/tmp/hw4_multiply_128_0100_2.json ../dist/tmp/hw4_multiply_128_0100_3.json ../dist/tmp/hw4_multiply_128_0150_0.json ../dist/tmp/hw4_multiply_128_0150_1.json ../dist/tmp/hw4_multiply_128_0150_2.json ../dist/tmp/hw4_multiply_128_0150_3.json ../dist/tmp/hw4_multiply_128_0200_0.json ../dist/tmp/hw4_multiply_128_0200_1.json ../dist/tmp/hw4_multiply_128_0200_2.json ../dist/tmp/hw4_multiply_128_0200_3.json ../dist/tmp/hw4_multiply_128_0300_0.json ../dist/tmp/hw4_multiply_128_0300_1.json ../dist/tmp/hw4_multiply_128_0300_2.json ../dist/tmp/hw4_multiply_128_0300_3.json ../dist/tmp/hw4_multiply_128_0400_0.json ../dist/tmp/hw4_multiply_128_0400_1.json ../dist/tmp/hw4_multiply_128_0400_2.json ../dist/tmp/hw4_multiply_128_0400_3.json ../dist/tmp/hw4_multiply_128_0600_0.json ../dist/tmp/hw4_multiply_128_0600_1.json ../dist/tmp/hw4_multiply_128_0600_2.json ../dist/tmp/hw4_multiply_128_0600_3.json ../dist/tmp/hw4_multiply_128_0800_0.json ../dist/tmp/hw4_multiply_128_0800_1.json ../dist/tmp/hw4_multiply_128_0800_2.json ../dist/tmp/hw4_multiply_128_0800_3.json ../dist/tmp/hw4_multiply_128_1000_0.json ../dist/tmp/hw4_multiply_128_1000_1.json ../dist/tmp/hw4_multiply_128_1000_2.json ../dist/tmp/hw4_multiply_128_1000_3.json main.py
+	python main.py merge '$@' ../dist/tmp/hw4_multiply_001_0020_0.json ../dist/tmp/hw4_multiply_001_0020_1.json ../dist/tmp/hw4_multiply_001_0020_2.json ../dist/tmp/hw4_multiply_001_0020_3.json ../dist/tmp/hw4_multiply_001_0040_0.json ../dist/tmp/hw4_multiply_001_0040_1.json ../dist/tmp/hw4_multiply_001_0040_2.json ../dist/tmp/hw4_multiply_001_0040_3.json ../dist/tmp/hw4_multiply_001_0060_0.json ../dist/tmp/hw4_multiply_001_0060_1.json ../dist/tmp/hw4_multiply_001_0060_2.json ../dist/tmp/hw4_multiply_001_0060_3.json ../dist/tmp/hw4_multiply_001_0080_0.json ../dist/tmp/hw4_multiply_001_0080_1.json ../dist/tmp/hw4_multiply_001_0080_2.json ../dist/tmp/hw4_multiply_001_0080_3.json ../dist/tmp/hw4_multiply_001_0100_0.json ../dist/tmp/hw4_multiply_001_0100_1.json ../dist/tmp/hw4_multiply_001_0100_2.json ../dist/tmp/hw4_multiply_001_0100_3.json ../dist/tmp/hw4_multiply_001_0150_0.json ../dist/tmp/hw4_multiply_001_0150_1.json ../dist/tmp/hw4_multiply_001_0150_2.json ../dist/tmp/hw4_multiply_001_0150_3.json ../dist/tmp/hw4_multiply_001_0200_0.json ../dist/tmp/hw4_multiply_001_0200_1.json ../dist/tmp/hw4_multiply_001_0200_2.json ../dist/tmp/hw4_multiply_001_0200_3.json ../dist/tmp/hw4_multiply_001_0300_0.json ../dist/tmp/hw4_multiply_001_0300_1.json ../dist/tmp/hw4_multiply_001_0300_2.json ../dist/tmp/hw4_multiply_001_0300_3.json ../dist/tmp/hw4_multiply_001_0400_0.json ../dist/tmp/hw4_multiply_001_0400_1.json ../dist/tmp/hw4_multiply_001_0400_2.json ../dist/tmp/hw4_multiply_001_0400_3.json ../dist/tmp/hw4_multiply_001_0600_0.json ../dist/tmp/hw4_multiply_001_0600_1.json ../dist/tmp/hw4_multiply_001_0600_2.json ../dist/tmp/hw4_multiply_001_0600_3.json ../dist/tmp/hw4_multiply_001_0800_0.json ../dist/tmp/hw4_multiply_001_0800_1.json ../dist/tmp/hw4_multiply_001_0800_2.json ../dist/tmp/hw4_multiply_001_0800_3.json ../dist/tmp/hw4_multiply_001_1000_0.json ../dist/tmp/hw4_multiply_001_1000_1.json ../dist/tmp/hw4_multiply_001_1000_2.json ../dist/tmp/hw4_multiply_001_1000_3.json ../dist/tmp/hw4_multiply_128_0020_0.json ../dist/tmp/hw4_multiply_128_0020_1.json ../dist/tmp/hw4_multiply_128_0020_2.json ../dist/tmp/hw4_multiply_128_0020_3.json ../dist/tmp/hw4_multiply_128_0040_0.json ../dist/tmp/hw4_multiply_128_0040_1.json ../dist/tmp/hw4_multiply_128_0040_2.json ../dist/tmp/hw4_multiply_128_0040_3.json ../dist/tmp/hw4_multiply_128_0060_0.json ../dist/tmp/hw4_multiply_128_0060_1.json ../dist/tmp/hw4_multiply_128_0060_2.json ../dist/tmp/hw4_multiply_128_0060_3.json ../dist/tmp/hw4_multiply_128_0080_0.json ../dist/tmp/hw4_multiply_128_0080_1.json ../dist/tmp/hw4_multiply_128_0080_2.json ../dist/tmp/hw4_multiply_128_0080_3.json ../dist/tmp/hw4_multiply_128_0100_0.json ../dist/tmp/hw4_multiply_128_0100_1.json ../dist/tmp/hw4_multiply_128_0100_2.json ../dist/tmp/hw4_multiply_128_0100_3.json ../dist/tmp/hw4_multiply_128_0150_0.json ../dist/tmp/hw4_multiply_128_0150_1.json ../dist/tmp/hw4_multiply_128_0150_2.json ../dist/tmp/hw4_multiply_128_0150_3.json ../dist/tmp/hw4_multiply_128_0200_0.json ../dist/tmp/hw4_multiply_128_0200_1.json ../dist/tmp/hw4_multiply_128_0200_2.json ../dist/tmp/hw4_multiply_128_0200_3.json ../dist/tmp/hw4_multiply_128_0300_0.json ../dist/tmp/hw4_multiply_128_0300_1.json ../dist/tmp/hw4_multiply_128_0300_2.json ../dist/tmp/hw4_multiply_128_0300_3.json ../dist/tmp/hw4_multiply_128_0400_0.json ../dist/tmp/hw4_multiply_128_0400_1.json ../dist/tmp/hw4_multiply_128_0400_2.json ../dist/tmp/hw4_multiply_128_0400_3.json ../dist/tmp/hw4_multiply_128_0600_0.json ../dist/tmp/hw4_multiply_128_0600_1.json ../dist/tmp/hw4_multiply_128_0600_2.json ../dist/tmp/hw4_multiply_128_0600_3.json ../dist/tmp/hw4_multiply_128_0800_0.json ../dist/tmp/hw4_multiply_128_0800_1.json ../dist/tmp/hw4_multiply_128_0800_2.json ../dist/tmp/hw4_multiply_128_0800_3.json ../dist/tmp/hw4_multiply_128_1000_0.json ../dist/tmp/hw4_multiply_128_1000_1.json ../dist/tmp/hw4_multiply_128_1000_2.json ../dist/tmp/hw4_multiply_128_1000_3.json
 
-data_001_0020_1.json: ../dist/bin/hw4_multiply_001_0020_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0020_1
+figs.json: analysis.json main.py
+	python main.py plot '$@' analysis.json
 
-data_001_0020_2.json: ../dist/bin/hw4_multiply_001_0020_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0020_2
+index.html: analysis.json figs.json main.py template.html
+	python main.py report '$@' analysis.json figs.json template.html
 
-data_001_0020_3.json: ../dist/bin/hw4_multiply_001_0020_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0020_3
+.PHONY: all build clean
 
-data_001_0040_0.json: ../dist/bin/hw4_multiply_001_0040_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0040_0
-
-data_001_0040_1.json: ../dist/bin/hw4_multiply_001_0040_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0040_1
-
-data_001_0040_2.json: ../dist/bin/hw4_multiply_001_0040_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0040_2
-
-data_001_0040_3.json: ../dist/bin/hw4_multiply_001_0040_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0040_3
-
-data_001_0060_0.json: ../dist/bin/hw4_multiply_001_0060_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0060_0
-
-data_001_0060_1.json: ../dist/bin/hw4_multiply_001_0060_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0060_1
-
-data_001_0060_2.json: ../dist/bin/hw4_multiply_001_0060_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0060_2
-
-data_001_0060_3.json: ../dist/bin/hw4_multiply_001_0060_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0060_3
-
-data_001_0080_0.json: ../dist/bin/hw4_multiply_001_0080_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0080_0
-
-data_001_0080_1.json: ../dist/bin/hw4_multiply_001_0080_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0080_1
-
-data_001_0080_2.json: ../dist/bin/hw4_multiply_001_0080_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0080_2
-
-data_001_0080_3.json: ../dist/bin/hw4_multiply_001_0080_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0080_3
-
-data_001_0100_0.json: ../dist/bin/hw4_multiply_001_0100_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0100_0
-
-data_001_0100_1.json: ../dist/bin/hw4_multiply_001_0100_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0100_1
-
-data_001_0100_2.json: ../dist/bin/hw4_multiply_001_0100_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0100_2
-
-data_001_0100_3.json: ../dist/bin/hw4_multiply_001_0100_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0100_3
-
-data_001_0150_0.json: ../dist/bin/hw4_multiply_001_0150_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0150_0
-
-data_001_0150_1.json: ../dist/bin/hw4_multiply_001_0150_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0150_1
-
-data_001_0150_2.json: ../dist/bin/hw4_multiply_001_0150_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0150_2
-
-data_001_0150_3.json: ../dist/bin/hw4_multiply_001_0150_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0150_3
-
-data_001_0200_0.json: ../dist/bin/hw4_multiply_001_0200_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0200_0
-
-data_001_0200_1.json: ../dist/bin/hw4_multiply_001_0200_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0200_1
-
-data_001_0200_2.json: ../dist/bin/hw4_multiply_001_0200_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0200_2
-
-data_001_0200_3.json: ../dist/bin/hw4_multiply_001_0200_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0200_3
-
-data_001_0300_0.json: ../dist/bin/hw4_multiply_001_0300_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0300_0
-
-data_001_0300_1.json: ../dist/bin/hw4_multiply_001_0300_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0300_1
-
-data_001_0300_2.json: ../dist/bin/hw4_multiply_001_0300_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0300_2
-
-data_001_0300_3.json: ../dist/bin/hw4_multiply_001_0300_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0300_3
-
-data_001_0400_0.json: ../dist/bin/hw4_multiply_001_0400_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0400_0
-
-data_001_0400_1.json: ../dist/bin/hw4_multiply_001_0400_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0400_1
-
-data_001_0400_2.json: ../dist/bin/hw4_multiply_001_0400_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0400_2
-
-data_001_0400_3.json: ../dist/bin/hw4_multiply_001_0400_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0400_3
-
-data_001_0600_0.json: ../dist/bin/hw4_multiply_001_0600_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0600_0
-
-data_001_0600_1.json: ../dist/bin/hw4_multiply_001_0600_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0600_1
-
-data_001_0600_2.json: ../dist/bin/hw4_multiply_001_0600_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0600_2
-
-data_001_0600_3.json: ../dist/bin/hw4_multiply_001_0600_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0600_3
-
-data_001_0800_0.json: ../dist/bin/hw4_multiply_001_0800_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0800_0
-
-data_001_0800_1.json: ../dist/bin/hw4_multiply_001_0800_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0800_1
-
-data_001_0800_2.json: ../dist/bin/hw4_multiply_001_0800_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0800_2
-
-data_001_0800_3.json: ../dist/bin/hw4_multiply_001_0800_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_0800_3
-
-data_001_1000_0.json: ../dist/bin/hw4_multiply_001_1000_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_1000_0
-
-data_001_1000_1.json: ../dist/bin/hw4_multiply_001_1000_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_1000_1
-
-data_001_1000_2.json: ../dist/bin/hw4_multiply_001_1000_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_1000_2
-
-data_001_1000_3.json: ../dist/bin/hw4_multiply_001_1000_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_001_1000_3
-
-data_128_0020_0.json: ../dist/bin/hw4_multiply_128_0020_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0020_0
-
-data_128_0020_1.json: ../dist/bin/hw4_multiply_128_0020_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0020_1
-
-data_128_0020_2.json: ../dist/bin/hw4_multiply_128_0020_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0020_2
-
-data_128_0020_3.json: ../dist/bin/hw4_multiply_128_0020_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0020_3
-
-data_128_0040_0.json: ../dist/bin/hw4_multiply_128_0040_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0040_0
-
-data_128_0040_1.json: ../dist/bin/hw4_multiply_128_0040_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0040_1
-
-data_128_0040_2.json: ../dist/bin/hw4_multiply_128_0040_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0040_2
-
-data_128_0040_3.json: ../dist/bin/hw4_multiply_128_0040_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0040_3
-
-data_128_0060_0.json: ../dist/bin/hw4_multiply_128_0060_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0060_0
-
-data_128_0060_1.json: ../dist/bin/hw4_multiply_128_0060_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0060_1
-
-data_128_0060_2.json: ../dist/bin/hw4_multiply_128_0060_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0060_2
-
-data_128_0060_3.json: ../dist/bin/hw4_multiply_128_0060_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0060_3
-
-data_128_0080_0.json: ../dist/bin/hw4_multiply_128_0080_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0080_0
-
-data_128_0080_1.json: ../dist/bin/hw4_multiply_128_0080_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0080_1
-
-data_128_0080_2.json: ../dist/bin/hw4_multiply_128_0080_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0080_2
-
-data_128_0080_3.json: ../dist/bin/hw4_multiply_128_0080_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0080_3
-
-data_128_0100_0.json: ../dist/bin/hw4_multiply_128_0100_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0100_0
-
-data_128_0100_1.json: ../dist/bin/hw4_multiply_128_0100_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0100_1
-
-data_128_0100_2.json: ../dist/bin/hw4_multiply_128_0100_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0100_2
-
-data_128_0100_3.json: ../dist/bin/hw4_multiply_128_0100_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0100_3
-
-data_128_0150_0.json: ../dist/bin/hw4_multiply_128_0150_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0150_0
-
-data_128_0150_1.json: ../dist/bin/hw4_multiply_128_0150_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0150_1
-
-data_128_0150_2.json: ../dist/bin/hw4_multiply_128_0150_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0150_2
-
-data_128_0150_3.json: ../dist/bin/hw4_multiply_128_0150_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0150_3
-
-data_128_0200_0.json: ../dist/bin/hw4_multiply_128_0200_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0200_0
-
-data_128_0200_1.json: ../dist/bin/hw4_multiply_128_0200_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0200_1
-
-data_128_0200_2.json: ../dist/bin/hw4_multiply_128_0200_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0200_2
-
-data_128_0200_3.json: ../dist/bin/hw4_multiply_128_0200_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0200_3
-
-data_128_0300_0.json: ../dist/bin/hw4_multiply_128_0300_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0300_0
-
-data_128_0300_1.json: ../dist/bin/hw4_multiply_128_0300_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0300_1
-
-data_128_0300_2.json: ../dist/bin/hw4_multiply_128_0300_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0300_2
-
-data_128_0300_3.json: ../dist/bin/hw4_multiply_128_0300_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0300_3
-
-data_128_0400_0.json: ../dist/bin/hw4_multiply_128_0400_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0400_0
-
-data_128_0400_1.json: ../dist/bin/hw4_multiply_128_0400_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0400_1
-
-data_128_0400_2.json: ../dist/bin/hw4_multiply_128_0400_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0400_2
-
-data_128_0400_3.json: ../dist/bin/hw4_multiply_128_0400_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0400_3
-
-data_128_0600_0.json: ../dist/bin/hw4_multiply_128_0600_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0600_0
-
-data_128_0600_1.json: ../dist/bin/hw4_multiply_128_0600_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0600_1
-
-data_128_0600_2.json: ../dist/bin/hw4_multiply_128_0600_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0600_2
-
-data_128_0600_3.json: ../dist/bin/hw4_multiply_128_0600_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0600_3
-
-data_128_0800_0.json: ../dist/bin/hw4_multiply_128_0800_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0800_0
-
-data_128_0800_1.json: ../dist/bin/hw4_multiply_128_0800_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0800_1
-
-data_128_0800_2.json: ../dist/bin/hw4_multiply_128_0800_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0800_2
-
-data_128_0800_3.json: ../dist/bin/hw4_multiply_128_0800_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_0800_3
-
-data_128_1000_0.json: ../dist/bin/hw4_multiply_128_1000_0
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_1000_0
-
-data_128_1000_1.json: ../dist/bin/hw4_multiply_128_1000_1
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_1000_1
-
-data_128_1000_2.json: ../dist/bin/hw4_multiply_128_1000_2
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_1000_2
-
-data_128_1000_3.json: ../dist/bin/hw4_multiply_128_1000_3
-	python main.py bench '$@' ../dist/bin/hw4_multiply_128_1000_3
-
-figs.json: data.json main.py
-	python main.py plot '$@' data.json
-
-index.html: data.json figs.json main.py template.html
-	python main.py report '$@' data.json figs.json template.html
-
-.PHONY: all clean
-
-.SECONDARY: ../dist/bin/hw4_multiply_001_0020_0 ../dist/bin/hw4_multiply_001_0020_1 ../dist/bin/hw4_multiply_001_0020_2 ../dist/bin/hw4_multiply_001_0020_3 ../dist/bin/hw4_multiply_001_0040_0 ../dist/bin/hw4_multiply_001_0040_1 ../dist/bin/hw4_multiply_001_0040_2 ../dist/bin/hw4_multiply_001_0040_3 ../dist/bin/hw4_multiply_001_0060_0 ../dist/bin/hw4_multiply_001_0060_1 ../dist/bin/hw4_multiply_001_0060_2 ../dist/bin/hw4_multiply_001_0060_3 ../dist/bin/hw4_multiply_001_0080_0 ../dist/bin/hw4_multiply_001_0080_1 ../dist/bin/hw4_multiply_001_0080_2 ../dist/bin/hw4_multiply_001_0080_3 ../dist/bin/hw4_multiply_001_0100_0 ../dist/bin/hw4_multiply_001_0100_1 ../dist/bin/hw4_multiply_001_0100_2 ../dist/bin/hw4_multiply_001_0100_3 ../dist/bin/hw4_multiply_001_0150_0 ../dist/bin/hw4_multiply_001_0150_1 ../dist/bin/hw4_multiply_001_0150_2 ../dist/bin/hw4_multiply_001_0150_3 ../dist/bin/hw4_multiply_001_0200_0 ../dist/bin/hw4_multiply_001_0200_1 ../dist/bin/hw4_multiply_001_0200_2 ../dist/bin/hw4_multiply_001_0200_3 ../dist/bin/hw4_multiply_001_0300_0 ../dist/bin/hw4_multiply_001_0300_1 ../dist/bin/hw4_multiply_001_0300_2 ../dist/bin/hw4_multiply_001_0300_3 ../dist/bin/hw4_multiply_001_0400_0 ../dist/bin/hw4_multiply_001_0400_1 ../dist/bin/hw4_multiply_001_0400_2 ../dist/bin/hw4_multiply_001_0400_3 ../dist/bin/hw4_multiply_001_0600_0 ../dist/bin/hw4_multiply_001_0600_1 ../dist/bin/hw4_multiply_001_0600_2 ../dist/bin/hw4_multiply_001_0600_3 ../dist/bin/hw4_multiply_001_0800_0 ../dist/bin/hw4_multiply_001_0800_1 ../dist/bin/hw4_multiply_001_0800_2 ../dist/bin/hw4_multiply_001_0800_3 ../dist/bin/hw4_multiply_001_1000_0 ../dist/bin/hw4_multiply_001_1000_1 ../dist/bin/hw4_multiply_001_1000_2 ../dist/bin/hw4_multiply_001_1000_3 ../dist/bin/hw4_multiply_128_0020_0 ../dist/bin/hw4_multiply_128_0020_1 ../dist/bin/hw4_multiply_128_0020_2 ../dist/bin/hw4_multiply_128_0020_3 ../dist/bin/hw4_multiply_128_0040_0 ../dist/bin/hw4_multiply_128_0040_1 ../dist/bin/hw4_multiply_128_0040_2 ../dist/bin/hw4_multiply_128_0040_3 ../dist/bin/hw4_multiply_128_0060_0 ../dist/bin/hw4_multiply_128_0060_1 ../dist/bin/hw4_multiply_128_0060_2 ../dist/bin/hw4_multiply_128_0060_3 ../dist/bin/hw4_multiply_128_0080_0 ../dist/bin/hw4_multiply_128_0080_1 ../dist/bin/hw4_multiply_128_0080_2 ../dist/bin/hw4_multiply_128_0080_3 ../dist/bin/hw4_multiply_128_0100_0 ../dist/bin/hw4_multiply_128_0100_1 ../dist/bin/hw4_multiply_128_0100_2 ../dist/bin/hw4_multiply_128_0100_3 ../dist/bin/hw4_multiply_128_0150_0 ../dist/bin/hw4_multiply_128_0150_1 ../dist/bin/hw4_multiply_128_0150_2 ../dist/bin/hw4_multiply_128_0150_3 ../dist/bin/hw4_multiply_128_0200_0 ../dist/bin/hw4_multiply_128_0200_1 ../dist/bin/hw4_multiply_128_0200_2 ../dist/bin/hw4_multiply_128_0200_3 ../dist/bin/hw4_multiply_128_0300_0 ../dist/bin/hw4_multiply_128_0300_1 ../dist/bin/hw4_multiply_128_0300_2 ../dist/bin/hw4_multiply_128_0300_3 ../dist/bin/hw4_multiply_128_0400_0 ../dist/bin/hw4_multiply_128_0400_1 ../dist/bin/hw4_multiply_128_0400_2 ../dist/bin/hw4_multiply_128_0400_3 ../dist/bin/hw4_multiply_128_0600_0 ../dist/bin/hw4_multiply_128_0600_1 ../dist/bin/hw4_multiply_128_0600_2 ../dist/bin/hw4_multiply_128_0600_3 ../dist/bin/hw4_multiply_128_0800_0 ../dist/bin/hw4_multiply_128_0800_1 ../dist/bin/hw4_multiply_128_0800_2 ../dist/bin/hw4_multiply_128_0800_3 ../dist/bin/hw4_multiply_128_1000_0 ../dist/bin/hw4_multiply_128_1000_1 ../dist/bin/hw4_multiply_128_1000_2 ../dist/bin/hw4_multiply_128_1000_3 ../dist/tmp/hw4/multiply_001_0020_0.o ../dist/tmp/hw4/multiply_001_0020_1.o ../dist/tmp/hw4/multiply_001_0020_2.o ../dist/tmp/hw4/multiply_001_0020_3.o ../dist/tmp/hw4/multiply_001_0040_0.o ../dist/tmp/hw4/multiply_001_0040_1.o ../dist/tmp/hw4/multiply_001_0040_2.o ../dist/tmp/hw4/multiply_001_0040_3.o ../dist/tmp/hw4/multiply_001_0060_0.o ../dist/tmp/hw4/multiply_001_0060_1.o ../dist/tmp/hw4/multiply_001_0060_2.o ../dist/tmp/hw4/multiply_001_0060_3.o ../dist/tmp/hw4/multiply_001_0080_0.o ../dist/tmp/hw4/multiply_001_0080_1.o ../dist/tmp/hw4/multiply_001_0080_2.o ../dist/tmp/hw4/multiply_001_0080_3.o ../dist/tmp/hw4/multiply_001_0100_0.o ../dist/tmp/hw4/multiply_001_0100_1.o ../dist/tmp/hw4/multiply_001_0100_2.o ../dist/tmp/hw4/multiply_001_0100_3.o ../dist/tmp/hw4/multiply_001_0150_0.o ../dist/tmp/hw4/multiply_001_0150_1.o ../dist/tmp/hw4/multiply_001_0150_2.o ../dist/tmp/hw4/multiply_001_0150_3.o ../dist/tmp/hw4/multiply_001_0200_0.o ../dist/tmp/hw4/multiply_001_0200_1.o ../dist/tmp/hw4/multiply_001_0200_2.o ../dist/tmp/hw4/multiply_001_0200_3.o ../dist/tmp/hw4/multiply_001_0300_0.o ../dist/tmp/hw4/multiply_001_0300_1.o ../dist/tmp/hw4/multiply_001_0300_2.o ../dist/tmp/hw4/multiply_001_0300_3.o ../dist/tmp/hw4/multiply_001_0400_0.o ../dist/tmp/hw4/multiply_001_0400_1.o ../dist/tmp/hw4/multiply_001_0400_2.o ../dist/tmp/hw4/multiply_001_0400_3.o ../dist/tmp/hw4/multiply_001_0600_0.o ../dist/tmp/hw4/multiply_001_0600_1.o ../dist/tmp/hw4/multiply_001_0600_2.o ../dist/tmp/hw4/multiply_001_0600_3.o ../dist/tmp/hw4/multiply_001_0800_0.o ../dist/tmp/hw4/multiply_001_0800_1.o ../dist/tmp/hw4/multiply_001_0800_2.o ../dist/tmp/hw4/multiply_001_0800_3.o ../dist/tmp/hw4/multiply_001_1000_0.o ../dist/tmp/hw4/multiply_001_1000_1.o ../dist/tmp/hw4/multiply_001_1000_2.o ../dist/tmp/hw4/multiply_001_1000_3.o ../dist/tmp/hw4/multiply_128_0020_0.o ../dist/tmp/hw4/multiply_128_0020_1.o ../dist/tmp/hw4/multiply_128_0020_2.o ../dist/tmp/hw4/multiply_128_0020_3.o ../dist/tmp/hw4/multiply_128_0040_0.o ../dist/tmp/hw4/multiply_128_0040_1.o ../dist/tmp/hw4/multiply_128_0040_2.o ../dist/tmp/hw4/multiply_128_0040_3.o ../dist/tmp/hw4/multiply_128_0060_0.o ../dist/tmp/hw4/multiply_128_0060_1.o ../dist/tmp/hw4/multiply_128_0060_2.o ../dist/tmp/hw4/multiply_128_0060_3.o ../dist/tmp/hw4/multiply_128_0080_0.o ../dist/tmp/hw4/multiply_128_0080_1.o ../dist/tmp/hw4/multiply_128_0080_2.o ../dist/tmp/hw4/multiply_128_0080_3.o ../dist/tmp/hw4/multiply_128_0100_0.o ../dist/tmp/hw4/multiply_128_0100_1.o ../dist/tmp/hw4/multiply_128_0100_2.o ../dist/tmp/hw4/multiply_128_0100_3.o ../dist/tmp/hw4/multiply_128_0150_0.o ../dist/tmp/hw4/multiply_128_0150_1.o ../dist/tmp/hw4/multiply_128_0150_2.o ../dist/tmp/hw4/multiply_128_0150_3.o ../dist/tmp/hw4/multiply_128_0200_0.o ../dist/tmp/hw4/multiply_128_0200_1.o ../dist/tmp/hw4/multiply_128_0200_2.o ../dist/tmp/hw4/multiply_128_0200_3.o ../dist/tmp/hw4/multiply_128_0300_0.o ../dist/tmp/hw4/multiply_128_0300_1.o ../dist/tmp/hw4/multiply_128_0300_2.o ../dist/tmp/hw4/multiply_128_0300_3.o ../dist/tmp/hw4/multiply_128_0400_0.o ../dist/tmp/hw4/multiply_128_0400_1.o ../dist/tmp/hw4/multiply_128_0400_2.o ../dist/tmp/hw4/multiply_128_0400_3.o ../dist/tmp/hw4/multiply_128_0600_0.o ../dist/tmp/hw4/multiply_128_0600_1.o ../dist/tmp/hw4/multiply_128_0600_2.o ../dist/tmp/hw4/multiply_128_0600_3.o ../dist/tmp/hw4/multiply_128_0800_0.o ../dist/tmp/hw4/multiply_128_0800_1.o ../dist/tmp/hw4/multiply_128_0800_2.o ../dist/tmp/hw4/multiply_128_0800_3.o ../dist/tmp/hw4/multiply_128_1000_0.o ../dist/tmp/hw4/multiply_128_1000_1.o ../dist/tmp/hw4/multiply_128_1000_2.o ../dist/tmp/hw4/multiply_128_1000_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o Makefile data.json data_001_0020_0.json data_001_0020_1.json data_001_0020_2.json data_001_0020_3.json data_001_0040_0.json data_001_0040_1.json data_001_0040_2.json data_001_0040_3.json data_001_0060_0.json data_001_0060_1.json data_001_0060_2.json data_001_0060_3.json data_001_0080_0.json data_001_0080_1.json data_001_0080_2.json data_001_0080_3.json data_001_0100_0.json data_001_0100_1.json data_001_0100_2.json data_001_0100_3.json data_001_0150_0.json data_001_0150_1.json data_001_0150_2.json data_001_0150_3.json data_001_0200_0.json data_001_0200_1.json data_001_0200_2.json data_001_0200_3.json data_001_0300_0.json data_001_0300_1.json data_001_0300_2.json data_001_0300_3.json data_001_0400_0.json data_001_0400_1.json data_001_0400_2.json data_001_0400_3.json data_001_0600_0.json data_001_0600_1.json data_001_0600_2.json data_001_0600_3.json data_001_0800_0.json data_001_0800_1.json data_001_0800_2.json data_001_0800_3.json data_001_1000_0.json data_001_1000_1.json data_001_1000_2.json data_001_1000_3.json data_128_0020_0.json data_128_0020_1.json data_128_0020_2.json data_128_0020_3.json data_128_0040_0.json data_128_0040_1.json data_128_0040_2.json data_128_0040_3.json data_128_0060_0.json data_128_0060_1.json data_128_0060_2.json data_128_0060_3.json data_128_0080_0.json data_128_0080_1.json data_128_0080_2.json data_128_0080_3.json data_128_0100_0.json data_128_0100_1.json data_128_0100_2.json data_128_0100_3.json data_128_0150_0.json data_128_0150_1.json data_128_0150_2.json data_128_0150_3.json data_128_0200_0.json data_128_0200_1.json data_128_0200_2.json data_128_0200_3.json data_128_0300_0.json data_128_0300_1.json data_128_0300_2.json data_128_0300_3.json data_128_0400_0.json data_128_0400_1.json data_128_0400_2.json data_128_0400_3.json data_128_0600_0.json data_128_0600_1.json data_128_0600_2.json data_128_0600_3.json data_128_0800_0.json data_128_0800_1.json data_128_0800_2.json data_128_0800_3.json data_128_1000_0.json data_128_1000_1.json data_128_1000_2.json data_128_1000_3.json figs.json index.html
+.SECONDARY: ../dist/bin/hw4_multiply_001_0020_0 ../dist/bin/hw4_multiply_001_0020_1 ../dist/bin/hw4_multiply_001_0020_2 ../dist/bin/hw4_multiply_001_0020_3 ../dist/bin/hw4_multiply_001_0040_0 ../dist/bin/hw4_multiply_001_0040_1 ../dist/bin/hw4_multiply_001_0040_2 ../dist/bin/hw4_multiply_001_0040_3 ../dist/bin/hw4_multiply_001_0060_0 ../dist/bin/hw4_multiply_001_0060_1 ../dist/bin/hw4_multiply_001_0060_2 ../dist/bin/hw4_multiply_001_0060_3 ../dist/bin/hw4_multiply_001_0080_0 ../dist/bin/hw4_multiply_001_0080_1 ../dist/bin/hw4_multiply_001_0080_2 ../dist/bin/hw4_multiply_001_0080_3 ../dist/bin/hw4_multiply_001_0100_0 ../dist/bin/hw4_multiply_001_0100_1 ../dist/bin/hw4_multiply_001_0100_2 ../dist/bin/hw4_multiply_001_0100_3 ../dist/bin/hw4_multiply_001_0150_0 ../dist/bin/hw4_multiply_001_0150_1 ../dist/bin/hw4_multiply_001_0150_2 ../dist/bin/hw4_multiply_001_0150_3 ../dist/bin/hw4_multiply_001_0200_0 ../dist/bin/hw4_multiply_001_0200_1 ../dist/bin/hw4_multiply_001_0200_2 ../dist/bin/hw4_multiply_001_0200_3 ../dist/bin/hw4_multiply_001_0300_0 ../dist/bin/hw4_multiply_001_0300_1 ../dist/bin/hw4_multiply_001_0300_2 ../dist/bin/hw4_multiply_001_0300_3 ../dist/bin/hw4_multiply_001_0400_0 ../dist/bin/hw4_multiply_001_0400_1 ../dist/bin/hw4_multiply_001_0400_2 ../dist/bin/hw4_multiply_001_0400_3 ../dist/bin/hw4_multiply_001_0600_0 ../dist/bin/hw4_multiply_001_0600_1 ../dist/bin/hw4_multiply_001_0600_2 ../dist/bin/hw4_multiply_001_0600_3 ../dist/bin/hw4_multiply_001_0800_0 ../dist/bin/hw4_multiply_001_0800_1 ../dist/bin/hw4_multiply_001_0800_2 ../dist/bin/hw4_multiply_001_0800_3 ../dist/bin/hw4_multiply_001_1000_0 ../dist/bin/hw4_multiply_001_1000_1 ../dist/bin/hw4_multiply_001_1000_2 ../dist/bin/hw4_multiply_001_1000_3 ../dist/bin/hw4_multiply_128_0020_0 ../dist/bin/hw4_multiply_128_0020_1 ../dist/bin/hw4_multiply_128_0020_2 ../dist/bin/hw4_multiply_128_0020_3 ../dist/bin/hw4_multiply_128_0040_0 ../dist/bin/hw4_multiply_128_0040_1 ../dist/bin/hw4_multiply_128_0040_2 ../dist/bin/hw4_multiply_128_0040_3 ../dist/bin/hw4_multiply_128_0060_0 ../dist/bin/hw4_multiply_128_0060_1 ../dist/bin/hw4_multiply_128_0060_2 ../dist/bin/hw4_multiply_128_0060_3 ../dist/bin/hw4_multiply_128_0080_0 ../dist/bin/hw4_multiply_128_0080_1 ../dist/bin/hw4_multiply_128_0080_2 ../dist/bin/hw4_multiply_128_0080_3 ../dist/bin/hw4_multiply_128_0100_0 ../dist/bin/hw4_multiply_128_0100_1 ../dist/bin/hw4_multiply_128_0100_2 ../dist/bin/hw4_multiply_128_0100_3 ../dist/bin/hw4_multiply_128_0150_0 ../dist/bin/hw4_multiply_128_0150_1 ../dist/bin/hw4_multiply_128_0150_2 ../dist/bin/hw4_multiply_128_0150_3 ../dist/bin/hw4_multiply_128_0200_0 ../dist/bin/hw4_multiply_128_0200_1 ../dist/bin/hw4_multiply_128_0200_2 ../dist/bin/hw4_multiply_128_0200_3 ../dist/bin/hw4_multiply_128_0300_0 ../dist/bin/hw4_multiply_128_0300_1 ../dist/bin/hw4_multiply_128_0300_2 ../dist/bin/hw4_multiply_128_0300_3 ../dist/bin/hw4_multiply_128_0400_0 ../dist/bin/hw4_multiply_128_0400_1 ../dist/bin/hw4_multiply_128_0400_2 ../dist/bin/hw4_multiply_128_0400_3 ../dist/bin/hw4_multiply_128_0600_0 ../dist/bin/hw4_multiply_128_0600_1 ../dist/bin/hw4_multiply_128_0600_2 ../dist/bin/hw4_multiply_128_0600_3 ../dist/bin/hw4_multiply_128_0800_0 ../dist/bin/hw4_multiply_128_0800_1 ../dist/bin/hw4_multiply_128_0800_2 ../dist/bin/hw4_multiply_128_0800_3 ../dist/bin/hw4_multiply_128_1000_0 ../dist/bin/hw4_multiply_128_1000_1 ../dist/bin/hw4_multiply_128_1000_2 ../dist/bin/hw4_multiply_128_1000_3 ../dist/tmp/hw4/multiply_001_0020_0.o ../dist/tmp/hw4/multiply_001_0020_1.o ../dist/tmp/hw4/multiply_001_0020_2.o ../dist/tmp/hw4/multiply_001_0020_3.o ../dist/tmp/hw4/multiply_001_0040_0.o ../dist/tmp/hw4/multiply_001_0040_1.o ../dist/tmp/hw4/multiply_001_0040_2.o ../dist/tmp/hw4/multiply_001_0040_3.o ../dist/tmp/hw4/multiply_001_0060_0.o ../dist/tmp/hw4/multiply_001_0060_1.o ../dist/tmp/hw4/multiply_001_0060_2.o ../dist/tmp/hw4/multiply_001_0060_3.o ../dist/tmp/hw4/multiply_001_0080_0.o ../dist/tmp/hw4/multiply_001_0080_1.o ../dist/tmp/hw4/multiply_001_0080_2.o ../dist/tmp/hw4/multiply_001_0080_3.o ../dist/tmp/hw4/multiply_001_0100_0.o ../dist/tmp/hw4/multiply_001_0100_1.o ../dist/tmp/hw4/multiply_001_0100_2.o ../dist/tmp/hw4/multiply_001_0100_3.o ../dist/tmp/hw4/multiply_001_0150_0.o ../dist/tmp/hw4/multiply_001_0150_1.o ../dist/tmp/hw4/multiply_001_0150_2.o ../dist/tmp/hw4/multiply_001_0150_3.o ../dist/tmp/hw4/multiply_001_0200_0.o ../dist/tmp/hw4/multiply_001_0200_1.o ../dist/tmp/hw4/multiply_001_0200_2.o ../dist/tmp/hw4/multiply_001_0200_3.o ../dist/tmp/hw4/multiply_001_0300_0.o ../dist/tmp/hw4/multiply_001_0300_1.o ../dist/tmp/hw4/multiply_001_0300_2.o ../dist/tmp/hw4/multiply_001_0300_3.o ../dist/tmp/hw4/multiply_001_0400_0.o ../dist/tmp/hw4/multiply_001_0400_1.o ../dist/tmp/hw4/multiply_001_0400_2.o ../dist/tmp/hw4/multiply_001_0400_3.o ../dist/tmp/hw4/multiply_001_0600_0.o ../dist/tmp/hw4/multiply_001_0600_1.o ../dist/tmp/hw4/multiply_001_0600_2.o ../dist/tmp/hw4/multiply_001_0600_3.o ../dist/tmp/hw4/multiply_001_0800_0.o ../dist/tmp/hw4/multiply_001_0800_1.o ../dist/tmp/hw4/multiply_001_0800_2.o ../dist/tmp/hw4/multiply_001_0800_3.o ../dist/tmp/hw4/multiply_001_1000_0.o ../dist/tmp/hw4/multiply_001_1000_1.o ../dist/tmp/hw4/multiply_001_1000_2.o ../dist/tmp/hw4/multiply_001_1000_3.o ../dist/tmp/hw4/multiply_128_0020_0.o ../dist/tmp/hw4/multiply_128_0020_1.o ../dist/tmp/hw4/multiply_128_0020_2.o ../dist/tmp/hw4/multiply_128_0020_3.o ../dist/tmp/hw4/multiply_128_0040_0.o ../dist/tmp/hw4/multiply_128_0040_1.o ../dist/tmp/hw4/multiply_128_0040_2.o ../dist/tmp/hw4/multiply_128_0040_3.o ../dist/tmp/hw4/multiply_128_0060_0.o ../dist/tmp/hw4/multiply_128_0060_1.o ../dist/tmp/hw4/multiply_128_0060_2.o ../dist/tmp/hw4/multiply_128_0060_3.o ../dist/tmp/hw4/multiply_128_0080_0.o ../dist/tmp/hw4/multiply_128_0080_1.o ../dist/tmp/hw4/multiply_128_0080_2.o ../dist/tmp/hw4/multiply_128_0080_3.o ../dist/tmp/hw4/multiply_128_0100_0.o ../dist/tmp/hw4/multiply_128_0100_1.o ../dist/tmp/hw4/multiply_128_0100_2.o ../dist/tmp/hw4/multiply_128_0100_3.o ../dist/tmp/hw4/multiply_128_0150_0.o ../dist/tmp/hw4/multiply_128_0150_1.o ../dist/tmp/hw4/multiply_128_0150_2.o ../dist/tmp/hw4/multiply_128_0150_3.o ../dist/tmp/hw4/multiply_128_0200_0.o ../dist/tmp/hw4/multiply_128_0200_1.o ../dist/tmp/hw4/multiply_128_0200_2.o ../dist/tmp/hw4/multiply_128_0200_3.o ../dist/tmp/hw4/multiply_128_0300_0.o ../dist/tmp/hw4/multiply_128_0300_1.o ../dist/tmp/hw4/multiply_128_0300_2.o ../dist/tmp/hw4/multiply_128_0300_3.o ../dist/tmp/hw4/multiply_128_0400_0.o ../dist/tmp/hw4/multiply_128_0400_1.o ../dist/tmp/hw4/multiply_128_0400_2.o ../dist/tmp/hw4/multiply_128_0400_3.o ../dist/tmp/hw4/multiply_128_0600_0.o ../dist/tmp/hw4/multiply_128_0600_1.o ../dist/tmp/hw4/multiply_128_0600_2.o ../dist/tmp/hw4/multiply_128_0600_3.o ../dist/tmp/hw4/multiply_128_0800_0.o ../dist/tmp/hw4/multiply_128_0800_1.o ../dist/tmp/hw4/multiply_128_0800_2.o ../dist/tmp/hw4/multiply_128_0800_3.o ../dist/tmp/hw4/multiply_128_1000_0.o ../dist/tmp/hw4/multiply_128_1000_1.o ../dist/tmp/hw4/multiply_128_1000_2.o ../dist/tmp/hw4/multiply_128_1000_3.o ../dist/tmp/hw4_multiply_001_0020_0.json ../dist/tmp/hw4_multiply_001_0020_1.json ../dist/tmp/hw4_multiply_001_0020_2.json ../dist/tmp/hw4_multiply_001_0020_3.json ../dist/tmp/hw4_multiply_001_0040_0.json ../dist/tmp/hw4_multiply_001_0040_1.json ../dist/tmp/hw4_multiply_001_0040_2.json ../dist/tmp/hw4_multiply_001_0040_3.json ../dist/tmp/hw4_multiply_001_0060_0.json ../dist/tmp/hw4_multiply_001_0060_1.json ../dist/tmp/hw4_multiply_001_0060_2.json ../dist/tmp/hw4_multiply_001_0060_3.json ../dist/tmp/hw4_multiply_001_0080_0.json ../dist/tmp/hw4_multiply_001_0080_1.json ../dist/tmp/hw4_multiply_001_0080_2.json ../dist/tmp/hw4_multiply_001_0080_3.json ../dist/tmp/hw4_multiply_001_0100_0.json ../dist/tmp/hw4_multiply_001_0100_1.json ../dist/tmp/hw4_multiply_001_0100_2.json ../dist/tmp/hw4_multiply_001_0100_3.json ../dist/tmp/hw4_multiply_001_0150_0.json ../dist/tmp/hw4_multiply_001_0150_1.json ../dist/tmp/hw4_multiply_001_0150_2.json ../dist/tmp/hw4_multiply_001_0150_3.json ../dist/tmp/hw4_multiply_001_0200_0.json ../dist/tmp/hw4_multiply_001_0200_1.json ../dist/tmp/hw4_multiply_001_0200_2.json ../dist/tmp/hw4_multiply_001_0200_3.json ../dist/tmp/hw4_multiply_001_0300_0.json ../dist/tmp/hw4_multiply_001_0300_1.json ../dist/tmp/hw4_multiply_001_0300_2.json ../dist/tmp/hw4_multiply_001_0300_3.json ../dist/tmp/hw4_multiply_001_0400_0.json ../dist/tmp/hw4_multiply_001_0400_1.json ../dist/tmp/hw4_multiply_001_0400_2.json ../dist/tmp/hw4_multiply_001_0400_3.json ../dist/tmp/hw4_multiply_001_0600_0.json ../dist/tmp/hw4_multiply_001_0600_1.json ../dist/tmp/hw4_multiply_001_0600_2.json ../dist/tmp/hw4_multiply_001_0600_3.json ../dist/tmp/hw4_multiply_001_0800_0.json ../dist/tmp/hw4_multiply_001_0800_1.json ../dist/tmp/hw4_multiply_001_0800_2.json ../dist/tmp/hw4_multiply_001_0800_3.json ../dist/tmp/hw4_multiply_001_1000_0.json ../dist/tmp/hw4_multiply_001_1000_1.json ../dist/tmp/hw4_multiply_001_1000_2.json ../dist/tmp/hw4_multiply_001_1000_3.json ../dist/tmp/hw4_multiply_128_0020_0.json ../dist/tmp/hw4_multiply_128_0020_1.json ../dist/tmp/hw4_multiply_128_0020_2.json ../dist/tmp/hw4_multiply_128_0020_3.json ../dist/tmp/hw4_multiply_128_0040_0.json ../dist/tmp/hw4_multiply_128_0040_1.json ../dist/tmp/hw4_multiply_128_0040_2.json ../dist/tmp/hw4_multiply_128_0040_3.json ../dist/tmp/hw4_multiply_128_0060_0.json ../dist/tmp/hw4_multiply_128_0060_1.json ../dist/tmp/hw4_multiply_128_0060_2.json ../dist/tmp/hw4_multiply_128_0060_3.json ../dist/tmp/hw4_multiply_128_0080_0.json ../dist/tmp/hw4_multiply_128_0080_1.json ../dist/tmp/hw4_multiply_128_0080_2.json ../dist/tmp/hw4_multiply_128_0080_3.json ../dist/tmp/hw4_multiply_128_0100_0.json ../dist/tmp/hw4_multiply_128_0100_1.json ../dist/tmp/hw4_multiply_128_0100_2.json ../dist/tmp/hw4_multiply_128_0100_3.json ../dist/tmp/hw4_multiply_128_0150_0.json ../dist/tmp/hw4_multiply_128_0150_1.json ../dist/tmp/hw4_multiply_128_0150_2.json ../dist/tmp/hw4_multiply_128_0150_3.json ../dist/tmp/hw4_multiply_128_0200_0.json ../dist/tmp/hw4_multiply_128_0200_1.json ../dist/tmp/hw4_multiply_128_0200_2.json ../dist/tmp/hw4_multiply_128_0200_3.json ../dist/tmp/hw4_multiply_128_0300_0.json ../dist/tmp/hw4_multiply_128_0300_1.json ../dist/tmp/hw4_multiply_128_0300_2.json ../dist/tmp/hw4_multiply_128_0300_3.json ../dist/tmp/hw4_multiply_128_0400_0.json ../dist/tmp/hw4_multiply_128_0400_1.json ../dist/tmp/hw4_multiply_128_0400_2.json ../dist/tmp/hw4_multiply_128_0400_3.json ../dist/tmp/hw4_multiply_128_0600_0.json ../dist/tmp/hw4_multiply_128_0600_1.json ../dist/tmp/hw4_multiply_128_0600_2.json ../dist/tmp/hw4_multiply_128_0600_3.json ../dist/tmp/hw4_multiply_128_0800_0.json ../dist/tmp/hw4_multiply_128_0800_1.json ../dist/tmp/hw4_multiply_128_0800_2.json ../dist/tmp/hw4_multiply_128_0800_3.json ../dist/tmp/hw4_multiply_128_1000_0.json ../dist/tmp/hw4_multiply_128_1000_1.json ../dist/tmp/hw4_multiply_128_1000_2.json ../dist/tmp/hw4_multiply_128_1000_3.json ../dist/tmp/hw4_multiply_build.ok ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o Makefile analysis.json data.json figs.json index.html
