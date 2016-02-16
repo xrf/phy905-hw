@@ -6,7 +6,7 @@ sys.path = ["../utils"] + list(sys.path)
 from utils import *
 commands = {}
 
-FIGSIZE = (6, 4)
+FIGSIZE = (5, 3.5)
 
 @register_command(commands)
 def bench(out_fn, exe):
@@ -31,16 +31,27 @@ def merge(out_fn, *fns):
     records = tuple(load_json_file(fn) for fn in fns)
     groups = group_records_by(records, ["optlevel", "bsize"])
     data = []
-    for (optlevel, bsize), group in groups.items():
+    for (optlevel, bsize), group in sorted(groups.items()):
         group.sort(key=lambda x: x["size"])
         group = records_to_dataframe(group)
         size = np.array(group["size"])
         time = np.array(group["time_mean"])
+        time_err = np.array(group["time_stdev"])
+        performance = 2 * size ** 3 / time
+        performance_err = performance * time_err / time
         data.append({
             "size": size.tolist(),
             "time": time.tolist(),
-            "performance": (2 * size ** 3 / time).tolist(),
-            "fmt": "x-",
+            "time_err": time_err.tolist(),
+            "performance": performance.tolist(),
+            "performance_err": performance_err.tolist(),
+            "color": {
+                0: "#e91e63",
+                1: "#f29312",
+                2: "#4caf50",
+                3: "#2196f3",
+            }[optlevel],
+            "linestyle": "--" if bsize > 1 else "-",
             "label": "-O{0}{1}".format(
                 optlevel,
                 " blocked" if bsize > 1 else "",
@@ -51,6 +62,11 @@ def merge(out_fn, *fns):
 @register_command(commands)
 def plot(out_fn, data_fn):
     data = load_json_file(data_fn)
+    plot_args = {
+        "alpha": .8,
+        "linewidth": 2,
+        "markeredgecolor": "none",
+    }
 
     fig_fns = {
         "fig_time_fn": "fig-time.svg",
@@ -58,26 +74,47 @@ def plot(out_fn, data_fn):
     }
 
     fig, ax = plt.subplots(figsize=FIGSIZE)
-    plot = ax.loglog
     for series in data:
-        plot(series["size"], series["time"],
-             series["fmt"], label=series["label"])
+        ax.errorbar(
+            series["size"],
+            series["time"],
+            label=series["label"],
+            color=series["color"],
+            linestyle=series["linestyle"],
+            **plot_args
+        )
     ax.set_xlabel("matrix size (n)")
     ax.set_ylabel("time taken /s")
-    ax.legend(loc="best")
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.grid("on")
+    legend = ax.legend(loc="center left", bbox_to_anchor=(1, 0.5))
     fig.tight_layout()
-    fig.savefig(fig_fns["fig_time_fn"], transparent=True)
+    fig.savefig(fig_fns["fig_time_fn"],
+                bbox_extra_artists=(legend,),
+                bbox_inches="tight",
+                transparent=True)
 
     fig, ax = plt.subplots(figsize=FIGSIZE)
-    plot = ax.semilogx
     for series in data:
-        plot(series["size"], np.array(series["performance"]) / 1e9,
-             series["fmt"], label=series["label"])
+        ax.errorbar(
+            series["size"],
+            np.array(series["performance"]) / 1e9,
+            label=series["label"],
+            color=series["color"],
+            linestyle=series["linestyle"],
+            **plot_args
+        )
     ax.set_xlabel("matrix size (n)")
     ax.set_ylabel("effective performance /GFLOPS")
-    ax.legend(loc="best")
+    ax.set_xscale("log")
+    ax.grid("on")
+    legend = ax.legend(loc="center left", bbox_to_anchor=(1, 0.5))
     fig.tight_layout()
-    fig.savefig(fig_fns["fig_compare_fn"], transparent=True)
+    fig.savefig(fig_fns["fig_compare_fn"],
+                bbox_extra_artists=(legend,),
+                bbox_inches="tight",
+                transparent=True)
 
     save_json_file(out_fn, fig_fns)
 
@@ -89,6 +126,7 @@ def report(out_fn, data_fn, figs_fn, template_fn):
              [["{0:.3g}".format(x) for x in series["time"]]
               for series in data])
     params = load_json_file(figs_fn)
+    params["code"] = cgi.escape(load_file("multiply_blocked.c"))
     params["data"] = table_to_html(transpose(table)).rstrip()
     html = main_template(substitute_template(template_fn, params))
     save_file(out_fn, html)

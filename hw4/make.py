@@ -6,9 +6,12 @@ BSIZES = [1, 128]
 OPTLEVELS = [0, 1, 2, 3]
 
 def make_all():
-    return alias("all", [report()]).merge(Ruleset(macros={
-        "CFLAGS": "-Wall -O3"
-    }))
+    return alias("all", [report()]).merge(
+        simple_command("makegen {0}", "Makefile", ["make.py"]),
+        Ruleset(macros={
+            "CFLAGS": "-Wall -O3",
+        }),
+    )
 
 def benchs():
     return [
@@ -27,23 +30,23 @@ def benchs():
 
 def data():
     return simple_command(
-        "./main.py merge {out} {all}",
+        "python {0} merge {out} {all1}",
         "data.json",
-        benchs(),
+        ["main.py"] + benchs(),
     )
 
 def plot():
     return simple_command(
-        "./main.py plot {out} {all}",
+        "python {0} plot {out} {all1}",
         "figs.json",
-        [data()],
+        ["main.py", data()],
     )
 
 def report():
     return simple_command(
-        "./main.py report {out} {all}",
+        "python {0} report {out} {all1}",
         "index.html",
-        [data(), plot(), "template.html"],
+        ["main.py", data(), plot(), "template.html"],
     )
 
 def bench_program(suffix=None, macros={}, extra_flags={}):
@@ -65,7 +68,7 @@ def bench_program(suffix=None, macros={}, extra_flags={}):
         libraries=[Library("m")],
     )
     bench = simple_command(
-        "./main.py bench {out} {0}",
+        "python main.py bench {out} {0}",
         "data{0}.json".format(suffix or ""),
         [build],
     )
