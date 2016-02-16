@@ -58,10 +58,10 @@ def analyze(out_fn, fn):
                 2: "#4caf50",
                 3: "#2196f3",
             }[optlevel],
-            "linestyle": "--" if bsize > 1 else "-",
+            "linestyle": "--" if (bsize or 1) > 1 else "-",
             "label": "-O{0}{1}".format(
                 optlevel,
-                " blocked" if bsize > 1 else "",
+                " blocked" if (bsize or 1) > 1 else "",
             ),
         })
     save_json_file(out_fn, data, json_args=JSON_ARGS)
@@ -85,6 +85,7 @@ def plot(out_fn, data_fn):
         ax.errorbar(
             series["size"],
             series["time"],
+            yerr=series["time_err"],
             label=series["label"],
             color=series["color"],
             linestyle=series["linestyle"],
@@ -107,6 +108,7 @@ def plot(out_fn, data_fn):
         ax.errorbar(
             series["size"],
             np.array(series["performance"]) / 1e9,
+            yerr=np.array(series["performance_err"]) / 1e9,
             label=series["label"],
             color=series["color"],
             linestyle=series["linestyle"],
@@ -137,6 +139,40 @@ def report(out_fn, data_fn, figs_fn, template_fn):
     params["data"] = table_to_html(transpose(table)).rstrip()
     html = main_template(substitute_template(template_fn, params))
     save_file(out_fn, html)
+
+@register_command(commands)
+def combine(out_fn, fn, num_repeats):
+    records = dataframe_to_records(load_json_file(fn))
+    groups = sorted(group_records_by(records, ["bsize"]).items())
+    _, group0 = groups[0]
+    group0.sort(key=lambda x: (x["optlevel"], x["size"]))
+    data = records_to_dataframe(group0)
+    num_repeats = np.full_like(data["time_mean"], num_repeats)
+    data["num_repeats"] = data.get("num_repeats", num_repeats)
+    data["bsize"] = [None] * len(data["num_repeats"])
+    del data["num_subrepeats"]
+    for (bsize,), group in groups[1:]:
+        group.sort(key=lambda x: (x["optlevel"], x["size"]))
+        group = records_to_dataframe(group)
+        assert data["size"] == group["size"]
+        assert data["optlevel"] == group["optlevel"]
+        data["time_min"] = np.minimum(np.array(data["time_min"]),
+                                      np.array(group["time_min"]))
+        (
+            data["num_repeats"],
+            data["time_mean"],
+            data["time_stdev"],
+        ) = merge_stdevs(
+            np.array(data["num_repeats"]),
+            np.array(data["time_mean"]),
+            np.array(data["time_stdev"]),
+            group.get("num_repeats", num_repeats),
+            np.array(group["time_mean"]),
+            np.array(group["time_stdev"]),
+        )
+    for k in ["num_repeats", "time_min", "time_mean", "time_stdev"]:
+        data[k] = data[k].tolist()
+    save_json_file(out_fn, data, json_args=JSON_ARGS)
 
 def main():
     init_logging(default_level=logging.INFO)

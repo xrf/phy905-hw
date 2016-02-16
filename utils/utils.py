@@ -290,3 +290,15 @@ def run_command(commands):
         )
         exit(2)
     func(*sys.argv[2:])
+
+def merge_means(n1, mean1, n2, mean2):
+    n = n1 + n2
+    return n, (n1 * mean1 + n2 * mean2) / n
+
+def merge_stdevs(n1, mean1, stdev1, n2, mean2, stdev2):
+    n, mean = merge_means(n1, mean1, n2, mean2)
+    return n, mean, np.sqrt((
+        (n1 - 1) * stdev1 ** 2 + n1 * mean1 ** 2 +
+        (n2 - 1) * stdev2 ** 2 + n2 * mean2 ** 2 -
+        n * mean ** 2
+    ) / (n - 1))
