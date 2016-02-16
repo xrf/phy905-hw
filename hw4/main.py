@@ -24,11 +24,16 @@ def bench(out_fn, exe):
         "time_mean": float(out["mean"]),
         "time_stdev": float(out["stdev"]),
         "num_subrepeats": int(out["num_subrepeats"]),
-    })
+    }, json_args=JSON_ARGS)
 
 @register_command(commands)
 def merge(out_fn, *fns):
-    records = tuple(load_json_file(fn) for fn in fns)
+    data = records_to_dataframe(load_json_file(fn) for fn in fns)
+    save_json_file(out_fn, data, json_args=JSON_ARGS)
+
+@register_command(commands)
+def analyze(out_fn, fn):
+    records = dataframe_to_records(load_json_file(fn))
     groups = group_records_by(records, ["optlevel", "bsize"])
     data = []
     for (optlevel, bsize), group in sorted(groups.items()):
@@ -57,7 +62,7 @@ def merge(out_fn, *fns):
                 " blocked" if bsize > 1 else "",
             ),
         })
-    save_json_file(out_fn, data)
+    save_json_file(out_fn, data, json_args=JSON_ARGS)
 
 @register_command(commands)
 def plot(out_fn, data_fn):
@@ -116,7 +121,7 @@ def plot(out_fn, data_fn):
                 bbox_inches="tight",
                 transparent=True)
 
-    save_json_file(out_fn, fig_fns)
+    save_json_file(out_fn, fig_fns, json_args=JSON_ARGS)
 
 @register_command(commands)
 def report(out_fn, data_fn, figs_fn, template_fn):

@@ -149,11 +149,11 @@ def save_file(filename, contents, binary=False, encoding=None,
 #@snip/save_json_file[
 #@requires: safe_open
 def save_json_file(filename, contents, encoding=None,
-                   errors=None, newline=None, safe=True):
+                   errors=None, newline=None, safe=True, json_args={}):
     import json
     with safe_open(filename, "wt", encoding=encoding,
                    errors=errors, newline=newline, safe=safe) as stream:
-        json.dump(contents, stream)
+        json.dump(contents, stream, **dict(json_args))
 #@]
 
 #@snip/load_json_file[
@@ -164,6 +164,12 @@ def load_json_file(filename, encoding=None, errors=None, newline=None):
               errors=errors, newline=newline) as stream:
         return json.load(stream)
 #@]
+
+JSON_ARGS = {
+    "indent": 4,
+    "separators": (",", ": "),
+    "sort_keys": True,
+}
 
 def transpose(table):
     return list(zip(*table))
@@ -183,7 +189,7 @@ def dataframe_to_records(dataframe):
     if not dataframe:
         return []
     records = []
-    keys = dataframe.keys()
+    keys = tuple(dataframe.keys())
     for i in range(len(dataframe[keys[0]])):
         records.append(dict((key, dataframe[key][i]) for key in keys))
     return records
