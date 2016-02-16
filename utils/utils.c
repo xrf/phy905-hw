@@ -4,6 +4,12 @@
 #include <time.h>
 #include "utils.h"
 #include "time.h"
+#ifndef PREFERRED_TIME
+#define PREFERRED_TIME 1.
+#endif
+#ifndef MIN_SUBREPEATS /* initial guess */
+#define MIN_SUBREPEATS 4
+#endif
 
 static struct rf_mclock myclock;
 static int myclock_initialized;
@@ -18,9 +24,20 @@ double min_d(double x, double y)
 void init_random_array_d(double *array, size_t count)
 {
     size_t i;
+    /* not high-quality RNG by any means but good enough for our purposes */
     for (i = 0; i < count; ++i) {
-        array[i] = rand();
+        array[i] = (double)rand() / RAND_MAX;
     }
+}
+
+void print_matrix(size_t n, double *a, const char *name)
+{
+    for (size_t i = 0; i < n; ++i) {
+        for (size_t j = 0; j < n; ++j) {
+            printf("%s[%zu, %zu]: = %g\n", name, i, j, a[i * n + j]);
+        }
+    }
+    fflush(stdout);
 }
 
 /* ------------------------------------------------------------------------ */
@@ -112,7 +129,7 @@ struct fullbenchmark fullbenchmark_begin(size_t num_repeats)
     mysecond_init();
     self.stats = statistics_initial;
     self.num_repeats = num_repeats;
-    self.num_subrepeats = 4; /* initial guess */
+    self.num_subrepeats = MIN_SUBREPEATS;
     self.repeat_index = 0;
     self.first = 1;
     return self;
@@ -126,14 +143,14 @@ int fullbenchmark(struct fullbenchmark *self)
     }
 inner:
     if (benchmark(&self->subrepeat_index, &self->time,
-                  &self->num_subrepeats, 1.)) {
+                  &self->num_subrepeats, PREFERRED_TIME)) {
         return 1;
     }
     statistics_update(&self->stats, self->time);
     ++self->repeat_index;
 first:
     if (self->repeat_index < self->num_repeats) {
-        self->subrepeat_index = 0;
+        self->subrepeat_index = (size_t)(-1);
         self->time = mysecond();
         goto inner;
     }

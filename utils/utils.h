@@ -8,8 +8,12 @@ extern "C" {
 /** Calculate the minimum of two numbers. */
 double min_d(double x, double y);
 
-/** Initialize an array of doubles using `rand`. */
+/** Initialize an array of doubles using `rand` (a very weak RNG). */
 void init_random_array_d(double *array, size_t count);
+
+/** Print a square matrix with the given name. */
+void print_matrix(size_t dim, double *matrix, const char *name);
+
 
 /* ------------------------------------------------------------------------ */
 
@@ -24,7 +28,8 @@ void mysecond_init(void);
 double mysecond(void);
 
 /** Helper function for repeating a calculation until the total time taken is
-    at least `preferred_time` seconds. */
+    at least `preferred_time` seconds.  Note: `i` should be initialized to
+    `(size_t)(-1)`. */
 int benchmark(size_t *i, double *time, size_t *count, double preferred_time);
 
 /* ------------------------------------------------------------------------ */

@@ -27,13 +27,15 @@ class TemporarySaveFile(object):
             raise ValueError("attempted to __enter__ twice")
         stream = wrapped_open(tempfile.NamedTemporaryFile, **self._kwargs)
         try:
-            shutil.copystat(self._fn, stream.name)
-        except:
-            try:
-                stream.close()
-            finally:
-                try_remove(stream.name)
-            raise
+            shutil.copymode(self._fn, stream.name)
+        except BaseException as e:
+            import errno
+            if not (isinstance(e, OSError) and e.errno == errno.ENOENT):
+                try:
+                    stream.close()
+                finally:
+                    try_remove(stream.name)
+                raise
         self._stream = stream
         return stream
 
@@ -166,6 +168,35 @@ def load_json_file(filename, encoding=None, errors=None, newline=None):
 def transpose(table):
     return list(zip(*table))
 
+def records_to_dataframe(records):
+    import itertools
+    records = tuple(records)
+    keys = set(itertools.chain(*(record.keys() for record in records)))
+    dataframe = dict((key, []) for key in keys)
+    for record in records:
+        for key in keys:
+            dataframe[key].append(record.get(key, None))
+    return dataframe
+
+def dataframe_to_records(dataframe):
+    dataframe = dict(dataframe)
+    if not dataframe:
+        return []
+    records = []
+    keys = dataframe.keys()
+    for i in range(len(dataframe[keys[0]])):
+        records.append(dict((key, dataframe[key][i]) for key in keys))
+    return records
+
+def group_records_by(records, keys):
+    groups = {}
+    for record in records:
+        group_key = tuple(record[k] for k in keys)
+        if group_key not in groups:
+            groups[group_key] = []
+        groups[group_key].append(record)
+    return groups
+
 def tablerows_to_tablecols(table):
     headers = table[0]
     rows = table[1:]
@@ -220,7 +251,7 @@ def parse_logging_level(level):
         return lvl
     logging.warn("Invalid logging level: " + level)
 
-def init_logging(level=None):
+def init_logging(level=None, default_level=None):
     import logging, os
     config = {
         "format": "[%(levelname)s] %(message)s",
@@ -228,6 +259,8 @@ def init_logging(level=None):
     level = parse_logging_level(level or os.environ.get("LOGLEVEL", None))
     if level is not None:
         config["level"] = level
+    elif default_level is not None:
+        config["level"] = default_level
     logging.basicConfig(**config)
 
 def register_command(commands):
