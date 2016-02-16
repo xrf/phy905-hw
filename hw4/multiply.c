@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef USE_BLAS
+#include <cblas.h>
+#endif
 #include "../utils/utils.h"
 #ifndef SIZE
 #define SIZE 20
@@ -15,7 +18,9 @@
 static void multiply(size_t n, double *restrict c,
                      const double *a, const double *b)
 {
-#if BSIZE < 2
+#if defined USE_BLAS
+    cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, n, n, n, 1., a, n, b, n, 0., c, n);
+#elif BSIZE < 2
     for (size_t i = 0; i != n; ++i) {
         for (size_t j = 0; j != n; ++j) {
             double sum = 0;
@@ -33,7 +38,7 @@ static void multiply(size_t n, double *restrict c,
 static void verify_multiply(size_t n, const double *restrict c,
                             const double *a, const double *b)
 {
-    static const double epsilon = 0;
+    static const double epsilon = 1e-12;
     for (size_t i = 0; i < n; ++i) {
         for (size_t j = 0; j < n; ++j) {
             double c_ij = 0;

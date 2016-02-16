@@ -2,397 +2,398 @@
 
 CC=cc
 CFLAGS=-Wall -O3
+LIBS=-lm
 
 all: index.html
 
 build: ../dist/tmp/hw4_multiply_build.ok
 
 clean:
-	rm -fr -- ../dist/bin/hw4_multiply_001_0020_0 ../dist/bin/hw4_multiply_001_0020_1 ../dist/bin/hw4_multiply_001_0020_2 ../dist/bin/hw4_multiply_001_0020_3 ../dist/bin/hw4_multiply_001_0040_0 ../dist/bin/hw4_multiply_001_0040_1 ../dist/bin/hw4_multiply_001_0040_2 ../dist/bin/hw4_multiply_001_0040_3 ../dist/bin/hw4_multiply_001_0060_0 ../dist/bin/hw4_multiply_001_0060_1 ../dist/bin/hw4_multiply_001_0060_2 ../dist/bin/hw4_multiply_001_0060_3 ../dist/bin/hw4_multiply_001_0080_0 ../dist/bin/hw4_multiply_001_0080_1 ../dist/bin/hw4_multiply_001_0080_2 ../dist/bin/hw4_multiply_001_0080_3 ../dist/bin/hw4_multiply_001_0100_0 ../dist/bin/hw4_multiply_001_0100_1 ../dist/bin/hw4_multiply_001_0100_2 ../dist/bin/hw4_multiply_001_0100_3 ../dist/bin/hw4_multiply_001_0150_0 ../dist/bin/hw4_multiply_001_0150_1 ../dist/bin/hw4_multiply_001_0150_2 ../dist/bin/hw4_multiply_001_0150_3 ../dist/bin/hw4_multiply_001_0200_0 ../dist/bin/hw4_multiply_001_0200_1 ../dist/bin/hw4_multiply_001_0200_2 ../dist/bin/hw4_multiply_001_0200_3 ../dist/bin/hw4_multiply_001_0300_0 ../dist/bin/hw4_multiply_001_0300_1 ../dist/bin/hw4_multiply_001_0300_2 ../dist/bin/hw4_multiply_001_0300_3 ../dist/bin/hw4_multiply_001_0400_0 ../dist/bin/hw4_multiply_001_0400_1 ../dist/bin/hw4_multiply_001_0400_2 ../dist/bin/hw4_multiply_001_0400_3 ../dist/bin/hw4_multiply_001_0600_0 ../dist/bin/hw4_multiply_001_0600_1 ../dist/bin/hw4_multiply_001_0600_2 ../dist/bin/hw4_multiply_001_0600_3 ../dist/bin/hw4_multiply_001_0800_0 ../dist/bin/hw4_multiply_001_0800_1 ../dist/bin/hw4_multiply_001_0800_2 ../dist/bin/hw4_multiply_001_0800_3 ../dist/bin/hw4_multiply_001_1000_0 ../dist/bin/hw4_multiply_001_1000_1 ../dist/bin/hw4_multiply_001_1000_2 ../dist/bin/hw4_multiply_001_1000_3 ../dist/bin/hw4_multiply_128_0020_0 ../dist/bin/hw4_multiply_128_0020_1 ../dist/bin/hw4_multiply_128_0020_2 ../dist/bin/hw4_multiply_128_0020_3 ../dist/bin/hw4_multiply_128_0040_0 ../dist/bin/hw4_multiply_128_0040_1 ../dist/bin/hw4_multiply_128_0040_2 ../dist/bin/hw4_multiply_128_0040_3 ../dist/bin/hw4_multiply_128_0060_0 ../dist/bin/hw4_multiply_128_0060_1 ../dist/bin/hw4_multiply_128_0060_2 ../dist/bin/hw4_multiply_128_0060_3 ../dist/bin/hw4_multiply_128_0080_0 ../dist/bin/hw4_multiply_128_0080_1 ../dist/bin/hw4_multiply_128_0080_2 ../dist/bin/hw4_multiply_128_0080_3 ../dist/bin/hw4_multiply_128_0100_0 ../dist/bin/hw4_multiply_128_0100_1 ../dist/bin/hw4_multiply_128_0100_2 ../dist/bin/hw4_multiply_128_0100_3 ../dist/bin/hw4_multiply_128_0150_0 ../dist/bin/hw4_multiply_128_0150_1 ../dist/bin/hw4_multiply_128_0150_2 ../dist/bin/hw4_multiply_128_0150_3 ../dist/bin/hw4_multiply_128_0200_0 ../dist/bin/hw4_multiply_128_0200_1 ../dist/bin/hw4_multiply_128_0200_2 ../dist/bin/hw4_multiply_128_0200_3 ../dist/bin/hw4_multiply_128_0300_0 ../dist/bin/hw4_multiply_128_0300_1 ../dist/bin/hw4_multiply_128_0300_2 ../dist/bin/hw4_multiply_128_0300_3 ../dist/bin/hw4_multiply_128_0400_0 ../dist/bin/hw4_multiply_128_0400_1 ../dist/bin/hw4_multiply_128_0400_2 ../dist/bin/hw4_multiply_128_0400_3 ../dist/bin/hw4_multiply_128_0600_0 ../dist/bin/hw4_multiply_128_0600_1 ../dist/bin/hw4_multiply_128_0600_2 ../dist/bin/hw4_multiply_128_0600_3 ../dist/bin/hw4_multiply_128_0800_0 ../dist/bin/hw4_multiply_128_0800_1 ../dist/bin/hw4_multiply_128_0800_2 ../dist/bin/hw4_multiply_128_0800_3 ../dist/bin/hw4_multiply_128_1000_0 ../dist/bin/hw4_multiply_128_1000_1 ../dist/bin/hw4_multiply_128_1000_2 ../dist/bin/hw4_multiply_128_1000_3 ../dist/tmp/hw4/multiply_001_0020_0.o ../dist/tmp/hw4/multiply_001_0020_1.o ../dist/tmp/hw4/multiply_001_0020_2.o ../dist/tmp/hw4/multiply_001_0020_3.o ../dist/tmp/hw4/multiply_001_0040_0.o ../dist/tmp/hw4/multiply_001_0040_1.o ../dist/tmp/hw4/multiply_001_0040_2.o ../dist/tmp/hw4/multiply_001_0040_3.o ../dist/tmp/hw4/multiply_001_0060_0.o ../dist/tmp/hw4/multiply_001_0060_1.o ../dist/tmp/hw4/multiply_001_0060_2.o ../dist/tmp/hw4/multiply_001_0060_3.o ../dist/tmp/hw4/multiply_001_0080_0.o ../dist/tmp/hw4/multiply_001_0080_1.o ../dist/tmp/hw4/multiply_001_0080_2.o ../dist/tmp/hw4/multiply_001_0080_3.o ../dist/tmp/hw4/multiply_001_0100_0.o ../dist/tmp/hw4/multiply_001_0100_1.o ../dist/tmp/hw4/multiply_001_0100_2.o ../dist/tmp/hw4/multiply_001_0100_3.o ../dist/tmp/hw4/multiply_001_0150_0.o ../dist/tmp/hw4/multiply_001_0150_1.o ../dist/tmp/hw4/multiply_001_0150_2.o ../dist/tmp/hw4/multiply_001_0150_3.o ../dist/tmp/hw4/multiply_001_0200_0.o ../dist/tmp/hw4/multiply_001_0200_1.o ../dist/tmp/hw4/multiply_001_0200_2.o ../dist/tmp/hw4/multiply_001_0200_3.o ../dist/tmp/hw4/multiply_001_0300_0.o ../dist/tmp/hw4/multiply_001_0300_1.o ../dist/tmp/hw4/multiply_001_0300_2.o ../dist/tmp/hw4/multiply_001_0300_3.o ../dist/tmp/hw4/multiply_001_0400_0.o ../dist/tmp/hw4/multiply_001_0400_1.o ../dist/tmp/hw4/multiply_001_0400_2.o ../dist/tmp/hw4/multiply_001_0400_3.o ../dist/tmp/hw4/multiply_001_0600_0.o ../dist/tmp/hw4/multiply_001_0600_1.o ../dist/tmp/hw4/multiply_001_0600_2.o ../dist/tmp/hw4/multiply_001_0600_3.o ../dist/tmp/hw4/multiply_001_0800_0.o ../dist/tmp/hw4/multiply_001_0800_1.o ../dist/tmp/hw4/multiply_001_0800_2.o ../dist/tmp/hw4/multiply_001_0800_3.o ../dist/tmp/hw4/multiply_001_1000_0.o ../dist/tmp/hw4/multiply_001_1000_1.o ../dist/tmp/hw4/multiply_001_1000_2.o ../dist/tmp/hw4/multiply_001_1000_3.o ../dist/tmp/hw4/multiply_128_0020_0.o ../dist/tmp/hw4/multiply_128_0020_1.o ../dist/tmp/hw4/multiply_128_0020_2.o ../dist/tmp/hw4/multiply_128_0020_3.o ../dist/tmp/hw4/multiply_128_0040_0.o ../dist/tmp/hw4/multiply_128_0040_1.o ../dist/tmp/hw4/multiply_128_0040_2.o ../dist/tmp/hw4/multiply_128_0040_3.o ../dist/tmp/hw4/multiply_128_0060_0.o ../dist/tmp/hw4/multiply_128_0060_1.o ../dist/tmp/hw4/multiply_128_0060_2.o ../dist/tmp/hw4/multiply_128_0060_3.o ../dist/tmp/hw4/multiply_128_0080_0.o ../dist/tmp/hw4/multiply_128_0080_1.o ../dist/tmp/hw4/multiply_128_0080_2.o ../dist/tmp/hw4/multiply_128_0080_3.o ../dist/tmp/hw4/multiply_128_0100_0.o ../dist/tmp/hw4/multiply_128_0100_1.o ../dist/tmp/hw4/multiply_128_0100_2.o ../dist/tmp/hw4/multiply_128_0100_3.o ../dist/tmp/hw4/multiply_128_0150_0.o ../dist/tmp/hw4/multiply_128_0150_1.o ../dist/tmp/hw4/multiply_128_0150_2.o ../dist/tmp/hw4/multiply_128_0150_3.o ../dist/tmp/hw4/multiply_128_0200_0.o ../dist/tmp/hw4/multiply_128_0200_1.o ../dist/tmp/hw4/multiply_128_0200_2.o ../dist/tmp/hw4/multiply_128_0200_3.o ../dist/tmp/hw4/multiply_128_0300_0.o ../dist/tmp/hw4/multiply_128_0300_1.o ../dist/tmp/hw4/multiply_128_0300_2.o ../dist/tmp/hw4/multiply_128_0300_3.o ../dist/tmp/hw4/multiply_128_0400_0.o ../dist/tmp/hw4/multiply_128_0400_1.o ../dist/tmp/hw4/multiply_128_0400_2.o ../dist/tmp/hw4/multiply_128_0400_3.o ../dist/tmp/hw4/multiply_128_0600_0.o ../dist/tmp/hw4/multiply_128_0600_1.o ../dist/tmp/hw4/multiply_128_0600_2.o ../dist/tmp/hw4/multiply_128_0600_3.o ../dist/tmp/hw4/multiply_128_0800_0.o ../dist/tmp/hw4/multiply_128_0800_1.o ../dist/tmp/hw4/multiply_128_0800_2.o ../dist/tmp/hw4/multiply_128_0800_3.o ../dist/tmp/hw4/multiply_128_1000_0.o ../dist/tmp/hw4/multiply_128_1000_1.o ../dist/tmp/hw4/multiply_128_1000_2.o ../dist/tmp/hw4/multiply_128_1000_3.o ../dist/tmp/hw4_multiply_001_0020_0.json ../dist/tmp/hw4_multiply_001_0020_1.json ../dist/tmp/hw4_multiply_001_0020_2.json ../dist/tmp/hw4_multiply_001_0020_3.json ../dist/tmp/hw4_multiply_001_0040_0.json ../dist/tmp/hw4_multiply_001_0040_1.json ../dist/tmp/hw4_multiply_001_0040_2.json ../dist/tmp/hw4_multiply_001_0040_3.json ../dist/tmp/hw4_multiply_001_0060_0.json ../dist/tmp/hw4_multiply_001_0060_1.json ../dist/tmp/hw4_multiply_001_0060_2.json ../dist/tmp/hw4_multiply_001_0060_3.json ../dist/tmp/hw4_multiply_001_0080_0.json ../dist/tmp/hw4_multiply_001_0080_1.json ../dist/tmp/hw4_multiply_001_0080_2.json ../dist/tmp/hw4_multiply_001_0080_3.json ../dist/tmp/hw4_multiply_001_0100_0.json ../dist/tmp/hw4_multiply_001_0100_1.json ../dist/tmp/hw4_multiply_001_0100_2.json ../dist/tmp/hw4_multiply_001_0100_3.json ../dist/tmp/hw4_multiply_001_0150_0.json ../dist/tmp/hw4_multiply_001_0150_1.json ../dist/tmp/hw4_multiply_001_0150_2.json ../dist/tmp/hw4_multiply_001_0150_3.json ../dist/tmp/hw4_multiply_001_0200_0.json ../dist/tmp/hw4_multiply_001_0200_1.json ../dist/tmp/hw4_multiply_001_0200_2.json ../dist/tmp/hw4_multiply_001_0200_3.json ../dist/tmp/hw4_multiply_001_0300_0.json ../dist/tmp/hw4_multiply_001_0300_1.json ../dist/tmp/hw4_multiply_001_0300_2.json ../dist/tmp/hw4_multiply_001_0300_3.json ../dist/tmp/hw4_multiply_001_0400_0.json ../dist/tmp/hw4_multiply_001_0400_1.json ../dist/tmp/hw4_multiply_001_0400_2.json ../dist/tmp/hw4_multiply_001_0400_3.json ../dist/tmp/hw4_multiply_001_0600_0.json ../dist/tmp/hw4_multiply_001_0600_1.json ../dist/tmp/hw4_multiply_001_0600_2.json ../dist/tmp/hw4_multiply_001_0600_3.json ../dist/tmp/hw4_multiply_001_0800_0.json ../dist/tmp/hw4_multiply_001_0800_1.json ../dist/tmp/hw4_multiply_001_0800_2.json ../dist/tmp/hw4_multiply_001_0800_3.json ../dist/tmp/hw4_multiply_001_1000_0.json ../dist/tmp/hw4_multiply_001_1000_1.json ../dist/tmp/hw4_multiply_001_1000_2.json ../dist/tmp/hw4_multiply_001_1000_3.json ../dist/tmp/hw4_multiply_128_0020_0.json ../dist/tmp/hw4_multiply_128_0020_1.json ../dist/tmp/hw4_multiply_128_0020_2.json ../dist/tmp/hw4_multiply_128_0020_3.json ../dist/tmp/hw4_multiply_128_0040_0.json ../dist/tmp/hw4_multiply_128_0040_1.json ../dist/tmp/hw4_multiply_128_0040_2.json ../dist/tmp/hw4_multiply_128_0040_3.json ../dist/tmp/hw4_multiply_128_0060_0.json ../dist/tmp/hw4_multiply_128_0060_1.json ../dist/tmp/hw4_multiply_128_0060_2.json ../dist/tmp/hw4_multiply_128_0060_3.json ../dist/tmp/hw4_multiply_128_0080_0.json ../dist/tmp/hw4_multiply_128_0080_1.json ../dist/tmp/hw4_multiply_128_0080_2.json ../dist/tmp/hw4_multiply_128_0080_3.json ../dist/tmp/hw4_multiply_128_0100_0.json ../dist/tmp/hw4_multiply_128_0100_1.json ../dist/tmp/hw4_multiply_128_0100_2.json ../dist/tmp/hw4_multiply_128_0100_3.json ../dist/tmp/hw4_multiply_128_0150_0.json ../dist/tmp/hw4_multiply_128_0150_1.json ../dist/tmp/hw4_multiply_128_0150_2.json ../dist/tmp/hw4_multiply_128_0150_3.json ../dist/tmp/hw4_multiply_128_0200_0.json ../dist/tmp/hw4_multiply_128_0200_1.json ../dist/tmp/hw4_multiply_128_0200_2.json ../dist/tmp/hw4_multiply_128_0200_3.json ../dist/tmp/hw4_multiply_128_0300_0.json ../dist/tmp/hw4_multiply_128_0300_1.json ../dist/tmp/hw4_multiply_128_0300_2.json ../dist/tmp/hw4_multiply_128_0300_3.json ../dist/tmp/hw4_multiply_128_0400_0.json ../dist/tmp/hw4_multiply_128_0400_1.json ../dist/tmp/hw4_multiply_128_0400_2.json ../dist/tmp/hw4_multiply_128_0400_3.json ../dist/tmp/hw4_multiply_128_0600_0.json ../dist/tmp/hw4_multiply_128_0600_1.json ../dist/tmp/hw4_multiply_128_0600_2.json ../dist/tmp/hw4_multiply_128_0600_3.json ../dist/tmp/hw4_multiply_128_0800_0.json ../dist/tmp/hw4_multiply_128_0800_1.json ../dist/tmp/hw4_multiply_128_0800_2.json ../dist/tmp/hw4_multiply_128_0800_3.json ../dist/tmp/hw4_multiply_128_1000_0.json ../dist/tmp/hw4_multiply_128_1000_1.json ../dist/tmp/hw4_multiply_128_1000_2.json ../dist/tmp/hw4_multiply_128_1000_3.json ../dist/tmp/hw4_multiply_build.ok ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o Makefile analysis.json data.json figs.json index.html
+	rm -fr -- ../dist/bin/hw4_multiply_001_0020_0 ../dist/bin/hw4_multiply_001_0020_1 ../dist/bin/hw4_multiply_001_0020_2 ../dist/bin/hw4_multiply_001_0020_3 ../dist/bin/hw4_multiply_001_0040_0 ../dist/bin/hw4_multiply_001_0040_1 ../dist/bin/hw4_multiply_001_0040_2 ../dist/bin/hw4_multiply_001_0040_3 ../dist/bin/hw4_multiply_001_0060_0 ../dist/bin/hw4_multiply_001_0060_1 ../dist/bin/hw4_multiply_001_0060_2 ../dist/bin/hw4_multiply_001_0060_3 ../dist/bin/hw4_multiply_001_0080_0 ../dist/bin/hw4_multiply_001_0080_1 ../dist/bin/hw4_multiply_001_0080_2 ../dist/bin/hw4_multiply_001_0080_3 ../dist/bin/hw4_multiply_001_0100_0 ../dist/bin/hw4_multiply_001_0100_1 ../dist/bin/hw4_multiply_001_0100_2 ../dist/bin/hw4_multiply_001_0100_3 ../dist/bin/hw4_multiply_001_0150_0 ../dist/bin/hw4_multiply_001_0150_1 ../dist/bin/hw4_multiply_001_0150_2 ../dist/bin/hw4_multiply_001_0150_3 ../dist/bin/hw4_multiply_001_0200_0 ../dist/bin/hw4_multiply_001_0200_1 ../dist/bin/hw4_multiply_001_0200_2 ../dist/bin/hw4_multiply_001_0200_3 ../dist/bin/hw4_multiply_001_0300_0 ../dist/bin/hw4_multiply_001_0300_1 ../dist/bin/hw4_multiply_001_0300_2 ../dist/bin/hw4_multiply_001_0300_3 ../dist/bin/hw4_multiply_001_0400_0 ../dist/bin/hw4_multiply_001_0400_1 ../dist/bin/hw4_multiply_001_0400_2 ../dist/bin/hw4_multiply_001_0400_3 ../dist/bin/hw4_multiply_001_0600_0 ../dist/bin/hw4_multiply_001_0600_1 ../dist/bin/hw4_multiply_001_0600_2 ../dist/bin/hw4_multiply_001_0600_3 ../dist/bin/hw4_multiply_001_0800_0 ../dist/bin/hw4_multiply_001_0800_1 ../dist/bin/hw4_multiply_001_0800_2 ../dist/bin/hw4_multiply_001_0800_3 ../dist/bin/hw4_multiply_001_1000_0 ../dist/bin/hw4_multiply_001_1000_1 ../dist/bin/hw4_multiply_001_1000_2 ../dist/bin/hw4_multiply_001_1000_3 ../dist/bin/hw4_multiply_128_0020_0 ../dist/bin/hw4_multiply_128_0020_1 ../dist/bin/hw4_multiply_128_0020_2 ../dist/bin/hw4_multiply_128_0020_3 ../dist/bin/hw4_multiply_128_0040_0 ../dist/bin/hw4_multiply_128_0040_1 ../dist/bin/hw4_multiply_128_0040_2 ../dist/bin/hw4_multiply_128_0040_3 ../dist/bin/hw4_multiply_128_0060_0 ../dist/bin/hw4_multiply_128_0060_1 ../dist/bin/hw4_multiply_128_0060_2 ../dist/bin/hw4_multiply_128_0060_3 ../dist/bin/hw4_multiply_128_0080_0 ../dist/bin/hw4_multiply_128_0080_1 ../dist/bin/hw4_multiply_128_0080_2 ../dist/bin/hw4_multiply_128_0080_3 ../dist/bin/hw4_multiply_128_0100_0 ../dist/bin/hw4_multiply_128_0100_1 ../dist/bin/hw4_multiply_128_0100_2 ../dist/bin/hw4_multiply_128_0100_3 ../dist/bin/hw4_multiply_128_0150_0 ../dist/bin/hw4_multiply_128_0150_1 ../dist/bin/hw4_multiply_128_0150_2 ../dist/bin/hw4_multiply_128_0150_3 ../dist/bin/hw4_multiply_128_0200_0 ../dist/bin/hw4_multiply_128_0200_1 ../dist/bin/hw4_multiply_128_0200_2 ../dist/bin/hw4_multiply_128_0200_3 ../dist/bin/hw4_multiply_128_0300_0 ../dist/bin/hw4_multiply_128_0300_1 ../dist/bin/hw4_multiply_128_0300_2 ../dist/bin/hw4_multiply_128_0300_3 ../dist/bin/hw4_multiply_128_0400_0 ../dist/bin/hw4_multiply_128_0400_1 ../dist/bin/hw4_multiply_128_0400_2 ../dist/bin/hw4_multiply_128_0400_3 ../dist/bin/hw4_multiply_128_0600_0 ../dist/bin/hw4_multiply_128_0600_1 ../dist/bin/hw4_multiply_128_0600_2 ../dist/bin/hw4_multiply_128_0600_3 ../dist/bin/hw4_multiply_128_0800_0 ../dist/bin/hw4_multiply_128_0800_1 ../dist/bin/hw4_multiply_128_0800_2 ../dist/bin/hw4_multiply_128_0800_3 ../dist/bin/hw4_multiply_128_1000_0 ../dist/bin/hw4_multiply_128_1000_1 ../dist/bin/hw4_multiply_128_1000_2 ../dist/bin/hw4_multiply_128_1000_3 ../dist/tmp/hw4/multiply_001_0020_0.o ../dist/tmp/hw4/multiply_001_0020_1.o ../dist/tmp/hw4/multiply_001_0020_2.o ../dist/tmp/hw4/multiply_001_0020_3.o ../dist/tmp/hw4/multiply_001_0040_0.o ../dist/tmp/hw4/multiply_001_0040_1.o ../dist/tmp/hw4/multiply_001_0040_2.o ../dist/tmp/hw4/multiply_001_0040_3.o ../dist/tmp/hw4/multiply_001_0060_0.o ../dist/tmp/hw4/multiply_001_0060_1.o ../dist/tmp/hw4/multiply_001_0060_2.o ../dist/tmp/hw4/multiply_001_0060_3.o ../dist/tmp/hw4/multiply_001_0080_0.o ../dist/tmp/hw4/multiply_001_0080_1.o ../dist/tmp/hw4/multiply_001_0080_2.o ../dist/tmp/hw4/multiply_001_0080_3.o ../dist/tmp/hw4/multiply_001_0100_0.o ../dist/tmp/hw4/multiply_001_0100_1.o ../dist/tmp/hw4/multiply_001_0100_2.o ../dist/tmp/hw4/multiply_001_0100_3.o ../dist/tmp/hw4/multiply_001_0150_0.o ../dist/tmp/hw4/multiply_001_0150_1.o ../dist/tmp/hw4/multiply_001_0150_2.o ../dist/tmp/hw4/multiply_001_0150_3.o ../dist/tmp/hw4/multiply_001_0200_0.o ../dist/tmp/hw4/multiply_001_0200_1.o ../dist/tmp/hw4/multiply_001_0200_2.o ../dist/tmp/hw4/multiply_001_0200_3.o ../dist/tmp/hw4/multiply_001_0300_0.o ../dist/tmp/hw4/multiply_001_0300_1.o ../dist/tmp/hw4/multiply_001_0300_2.o ../dist/tmp/hw4/multiply_001_0300_3.o ../dist/tmp/hw4/multiply_001_0400_0.o ../dist/tmp/hw4/multiply_001_0400_1.o ../dist/tmp/hw4/multiply_001_0400_2.o ../dist/tmp/hw4/multiply_001_0400_3.o ../dist/tmp/hw4/multiply_001_0600_0.o ../dist/tmp/hw4/multiply_001_0600_1.o ../dist/tmp/hw4/multiply_001_0600_2.o ../dist/tmp/hw4/multiply_001_0600_3.o ../dist/tmp/hw4/multiply_001_0800_0.o ../dist/tmp/hw4/multiply_001_0800_1.o ../dist/tmp/hw4/multiply_001_0800_2.o ../dist/tmp/hw4/multiply_001_0800_3.o ../dist/tmp/hw4/multiply_001_1000_0.o ../dist/tmp/hw4/multiply_001_1000_1.o ../dist/tmp/hw4/multiply_001_1000_2.o ../dist/tmp/hw4/multiply_001_1000_3.o ../dist/tmp/hw4/multiply_128_0020_0.o ../dist/tmp/hw4/multiply_128_0020_1.o ../dist/tmp/hw4/multiply_128_0020_2.o ../dist/tmp/hw4/multiply_128_0020_3.o ../dist/tmp/hw4/multiply_128_0040_0.o ../dist/tmp/hw4/multiply_128_0040_1.o ../dist/tmp/hw4/multiply_128_0040_2.o ../dist/tmp/hw4/multiply_128_0040_3.o ../dist/tmp/hw4/multiply_128_0060_0.o ../dist/tmp/hw4/multiply_128_0060_1.o ../dist/tmp/hw4/multiply_128_0060_2.o ../dist/tmp/hw4/multiply_128_0060_3.o ../dist/tmp/hw4/multiply_128_0080_0.o ../dist/tmp/hw4/multiply_128_0080_1.o ../dist/tmp/hw4/multiply_128_0080_2.o ../dist/tmp/hw4/multiply_128_0080_3.o ../dist/tmp/hw4/multiply_128_0100_0.o ../dist/tmp/hw4/multiply_128_0100_1.o ../dist/tmp/hw4/multiply_128_0100_2.o ../dist/tmp/hw4/multiply_128_0100_3.o ../dist/tmp/hw4/multiply_128_0150_0.o ../dist/tmp/hw4/multiply_128_0150_1.o ../dist/tmp/hw4/multiply_128_0150_2.o ../dist/tmp/hw4/multiply_128_0150_3.o ../dist/tmp/hw4/multiply_128_0200_0.o ../dist/tmp/hw4/multiply_128_0200_1.o ../dist/tmp/hw4/multiply_128_0200_2.o ../dist/tmp/hw4/multiply_128_0200_3.o ../dist/tmp/hw4/multiply_128_0300_0.o ../dist/tmp/hw4/multiply_128_0300_1.o ../dist/tmp/hw4/multiply_128_0300_2.o ../dist/tmp/hw4/multiply_128_0300_3.o ../dist/tmp/hw4/multiply_128_0400_0.o ../dist/tmp/hw4/multiply_128_0400_1.o ../dist/tmp/hw4/multiply_128_0400_2.o ../dist/tmp/hw4/multiply_128_0400_3.o ../dist/tmp/hw4/multiply_128_0600_0.o ../dist/tmp/hw4/multiply_128_0600_1.o ../dist/tmp/hw4/multiply_128_0600_2.o ../dist/tmp/hw4/multiply_128_0600_3.o ../dist/tmp/hw4/multiply_128_0800_0.o ../dist/tmp/hw4/multiply_128_0800_1.o ../dist/tmp/hw4/multiply_128_0800_2.o ../dist/tmp/hw4/multiply_128_0800_3.o ../dist/tmp/hw4/multiply_128_1000_0.o ../dist/tmp/hw4/multiply_128_1000_1.o ../dist/tmp/hw4/multiply_128_1000_2.o ../dist/tmp/hw4/multiply_128_1000_3.o ../dist/tmp/hw4_multiply_001_0020_0.json ../dist/tmp/hw4_multiply_001_0020_1.json ../dist/tmp/hw4_multiply_001_0020_2.json ../dist/tmp/hw4_multiply_001_0020_3.json ../dist/tmp/hw4_multiply_001_0040_0.json ../dist/tmp/hw4_multiply_001_0040_1.json ../dist/tmp/hw4_multiply_001_0040_2.json ../dist/tmp/hw4_multiply_001_0040_3.json ../dist/tmp/hw4_multiply_001_0060_0.json ../dist/tmp/hw4_multiply_001_0060_1.json ../dist/tmp/hw4_multiply_001_0060_2.json ../dist/tmp/hw4_multiply_001_0060_3.json ../dist/tmp/hw4_multiply_001_0080_0.json ../dist/tmp/hw4_multiply_001_0080_1.json ../dist/tmp/hw4_multiply_001_0080_2.json ../dist/tmp/hw4_multiply_001_0080_3.json ../dist/tmp/hw4_multiply_001_0100_0.json ../dist/tmp/hw4_multiply_001_0100_1.json ../dist/tmp/hw4_multiply_001_0100_2.json ../dist/tmp/hw4_multiply_001_0100_3.json ../dist/tmp/hw4_multiply_001_0150_0.json ../dist/tmp/hw4_multiply_001_0150_1.json ../dist/tmp/hw4_multiply_001_0150_2.json ../dist/tmp/hw4_multiply_001_0150_3.json ../dist/tmp/hw4_multiply_001_0200_0.json ../dist/tmp/hw4_multiply_001_0200_1.json ../dist/tmp/hw4_multiply_001_0200_2.json ../dist/tmp/hw4_multiply_001_0200_3.json ../dist/tmp/hw4_multiply_001_0300_0.json ../dist/tmp/hw4_multiply_001_0300_1.json ../dist/tmp/hw4_multiply_001_0300_2.json ../dist/tmp/hw4_multiply_001_0300_3.json ../dist/tmp/hw4_multiply_001_0400_0.json ../dist/tmp/hw4_multiply_001_0400_1.json ../dist/tmp/hw4_multiply_001_0400_2.json ../dist/tmp/hw4_multiply_001_0400_3.json ../dist/tmp/hw4_multiply_001_0600_0.json ../dist/tmp/hw4_multiply_001_0600_1.json ../dist/tmp/hw4_multiply_001_0600_2.json ../dist/tmp/hw4_multiply_001_0600_3.json ../dist/tmp/hw4_multiply_001_0800_0.json ../dist/tmp/hw4_multiply_001_0800_1.json ../dist/tmp/hw4_multiply_001_0800_2.json ../dist/tmp/hw4_multiply_001_0800_3.json ../dist/tmp/hw4_multiply_001_1000_0.json ../dist/tmp/hw4_multiply_001_1000_1.json ../dist/tmp/hw4_multiply_001_1000_2.json ../dist/tmp/hw4_multiply_001_1000_3.json ../dist/tmp/hw4_multiply_128_0020_0.json ../dist/tmp/hw4_multiply_128_0020_1.json ../dist/tmp/hw4_multiply_128_0020_2.json ../dist/tmp/hw4_multiply_128_0020_3.json ../dist/tmp/hw4_multiply_128_0040_0.json ../dist/tmp/hw4_multiply_128_0040_1.json ../dist/tmp/hw4_multiply_128_0040_2.json ../dist/tmp/hw4_multiply_128_0040_3.json ../dist/tmp/hw4_multiply_128_0060_0.json ../dist/tmp/hw4_multiply_128_0060_1.json ../dist/tmp/hw4_multiply_128_0060_2.json ../dist/tmp/hw4_multiply_128_0060_3.json ../dist/tmp/hw4_multiply_128_0080_0.json ../dist/tmp/hw4_multiply_128_0080_1.json ../dist/tmp/hw4_multiply_128_0080_2.json ../dist/tmp/hw4_multiply_128_0080_3.json ../dist/tmp/hw4_multiply_128_0100_0.json ../dist/tmp/hw4_multiply_128_0100_1.json ../dist/tmp/hw4_multiply_128_0100_2.json ../dist/tmp/hw4_multiply_128_0100_3.json ../dist/tmp/hw4_multiply_128_0150_0.json ../dist/tmp/hw4_multiply_128_0150_1.json ../dist/tmp/hw4_multiply_128_0150_2.json ../dist/tmp/hw4_multiply_128_0150_3.json ../dist/tmp/hw4_multiply_128_0200_0.json ../dist/tmp/hw4_multiply_128_0200_1.json ../dist/tmp/hw4_multiply_128_0200_2.json ../dist/tmp/hw4_multiply_128_0200_3.json ../dist/tmp/hw4_multiply_128_0300_0.json ../dist/tmp/hw4_multiply_128_0300_1.json ../dist/tmp/hw4_multiply_128_0300_2.json ../dist/tmp/hw4_multiply_128_0300_3.json ../dist/tmp/hw4_multiply_128_0400_0.json ../dist/tmp/hw4_multiply_128_0400_1.json ../dist/tmp/hw4_multiply_128_0400_2.json ../dist/tmp/hw4_multiply_128_0400_3.json ../dist/tmp/hw4_multiply_128_0600_0.json ../dist/tmp/hw4_multiply_128_0600_1.json ../dist/tmp/hw4_multiply_128_0600_2.json ../dist/tmp/hw4_multiply_128_0600_3.json ../dist/tmp/hw4_multiply_128_0800_0.json ../dist/tmp/hw4_multiply_128_0800_1.json ../dist/tmp/hw4_multiply_128_0800_2.json ../dist/tmp/hw4_multiply_128_0800_3.json ../dist/tmp/hw4_multiply_128_1000_0.json ../dist/tmp/hw4_multiply_128_1000_1.json ../dist/tmp/hw4_multiply_128_1000_2.json ../dist/tmp/hw4_multiply_128_1000_3.json ../dist/tmp/hw4_multiply_build.ok ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o analysis.json data.json figs.json index.html
 
 ../dist/bin/hw4_multiply_001_0020_0: ../dist/tmp/hw4/multiply_001_0020_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0020_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0020_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0020_1: ../dist/tmp/hw4/multiply_001_0020_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0020_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0020_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0020_2: ../dist/tmp/hw4/multiply_001_0020_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0020_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0020_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0020_3: ../dist/tmp/hw4/multiply_001_0020_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0020_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0020_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0040_0: ../dist/tmp/hw4/multiply_001_0040_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0040_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0040_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0040_1: ../dist/tmp/hw4/multiply_001_0040_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0040_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0040_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0040_2: ../dist/tmp/hw4/multiply_001_0040_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0040_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0040_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0040_3: ../dist/tmp/hw4/multiply_001_0040_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0040_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0040_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0060_0: ../dist/tmp/hw4/multiply_001_0060_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0060_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0060_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0060_1: ../dist/tmp/hw4/multiply_001_0060_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0060_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0060_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0060_2: ../dist/tmp/hw4/multiply_001_0060_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0060_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0060_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0060_3: ../dist/tmp/hw4/multiply_001_0060_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0060_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0060_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0080_0: ../dist/tmp/hw4/multiply_001_0080_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0080_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0080_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0080_1: ../dist/tmp/hw4/multiply_001_0080_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0080_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0080_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0080_2: ../dist/tmp/hw4/multiply_001_0080_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0080_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0080_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0080_3: ../dist/tmp/hw4/multiply_001_0080_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0080_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0080_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0100_0: ../dist/tmp/hw4/multiply_001_0100_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0100_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0100_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0100_1: ../dist/tmp/hw4/multiply_001_0100_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0100_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0100_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0100_2: ../dist/tmp/hw4/multiply_001_0100_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0100_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0100_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0100_3: ../dist/tmp/hw4/multiply_001_0100_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0100_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0100_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0150_0: ../dist/tmp/hw4/multiply_001_0150_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0150_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0150_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0150_1: ../dist/tmp/hw4/multiply_001_0150_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0150_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0150_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0150_2: ../dist/tmp/hw4/multiply_001_0150_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0150_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0150_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0150_3: ../dist/tmp/hw4/multiply_001_0150_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0150_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0150_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0200_0: ../dist/tmp/hw4/multiply_001_0200_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0200_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0200_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0200_1: ../dist/tmp/hw4/multiply_001_0200_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0200_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0200_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0200_2: ../dist/tmp/hw4/multiply_001_0200_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0200_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0200_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0200_3: ../dist/tmp/hw4/multiply_001_0200_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0200_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0200_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0300_0: ../dist/tmp/hw4/multiply_001_0300_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0300_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0300_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0300_1: ../dist/tmp/hw4/multiply_001_0300_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0300_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0300_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0300_2: ../dist/tmp/hw4/multiply_001_0300_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0300_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0300_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0300_3: ../dist/tmp/hw4/multiply_001_0300_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0300_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0300_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0400_0: ../dist/tmp/hw4/multiply_001_0400_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0400_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0400_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0400_1: ../dist/tmp/hw4/multiply_001_0400_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0400_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0400_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0400_2: ../dist/tmp/hw4/multiply_001_0400_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0400_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0400_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0400_3: ../dist/tmp/hw4/multiply_001_0400_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0400_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0400_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0600_0: ../dist/tmp/hw4/multiply_001_0600_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0600_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0600_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0600_1: ../dist/tmp/hw4/multiply_001_0600_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0600_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0600_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0600_2: ../dist/tmp/hw4/multiply_001_0600_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0600_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0600_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0600_3: ../dist/tmp/hw4/multiply_001_0600_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0600_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0600_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0800_0: ../dist/tmp/hw4/multiply_001_0800_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0800_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0800_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0800_1: ../dist/tmp/hw4/multiply_001_0800_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0800_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0800_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0800_2: ../dist/tmp/hw4/multiply_001_0800_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0800_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0800_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_0800_3: ../dist/tmp/hw4/multiply_001_0800_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0800_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_0800_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_1000_0: ../dist/tmp/hw4/multiply_001_1000_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_1000_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_1000_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_1000_1: ../dist/tmp/hw4/multiply_001_1000_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_1000_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_1000_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_1000_2: ../dist/tmp/hw4/multiply_001_1000_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_1000_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_1000_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_001_1000_3: ../dist/tmp/hw4/multiply_001_1000_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_1000_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_001_1000_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0020_0: ../dist/tmp/hw4/multiply_128_0020_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0020_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0020_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0020_1: ../dist/tmp/hw4/multiply_128_0020_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0020_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0020_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0020_2: ../dist/tmp/hw4/multiply_128_0020_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0020_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0020_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0020_3: ../dist/tmp/hw4/multiply_128_0020_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0020_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0020_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0040_0: ../dist/tmp/hw4/multiply_128_0040_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0040_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0040_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0040_1: ../dist/tmp/hw4/multiply_128_0040_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0040_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0040_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0040_2: ../dist/tmp/hw4/multiply_128_0040_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0040_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0040_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0040_3: ../dist/tmp/hw4/multiply_128_0040_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0040_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0040_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0060_0: ../dist/tmp/hw4/multiply_128_0060_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0060_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0060_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0060_1: ../dist/tmp/hw4/multiply_128_0060_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0060_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0060_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0060_2: ../dist/tmp/hw4/multiply_128_0060_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0060_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0060_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0060_3: ../dist/tmp/hw4/multiply_128_0060_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0060_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0060_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0080_0: ../dist/tmp/hw4/multiply_128_0080_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0080_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0080_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0080_1: ../dist/tmp/hw4/multiply_128_0080_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0080_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0080_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0080_2: ../dist/tmp/hw4/multiply_128_0080_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0080_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0080_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0080_3: ../dist/tmp/hw4/multiply_128_0080_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0080_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0080_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0100_0: ../dist/tmp/hw4/multiply_128_0100_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0100_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0100_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0100_1: ../dist/tmp/hw4/multiply_128_0100_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0100_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0100_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0100_2: ../dist/tmp/hw4/multiply_128_0100_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0100_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0100_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0100_3: ../dist/tmp/hw4/multiply_128_0100_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0100_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0100_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0150_0: ../dist/tmp/hw4/multiply_128_0150_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0150_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0150_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0150_1: ../dist/tmp/hw4/multiply_128_0150_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0150_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0150_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0150_2: ../dist/tmp/hw4/multiply_128_0150_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0150_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0150_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0150_3: ../dist/tmp/hw4/multiply_128_0150_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0150_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0150_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0200_0: ../dist/tmp/hw4/multiply_128_0200_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0200_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0200_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0200_1: ../dist/tmp/hw4/multiply_128_0200_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0200_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0200_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0200_2: ../dist/tmp/hw4/multiply_128_0200_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0200_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0200_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0200_3: ../dist/tmp/hw4/multiply_128_0200_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0200_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0200_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0300_0: ../dist/tmp/hw4/multiply_128_0300_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0300_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0300_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0300_1: ../dist/tmp/hw4/multiply_128_0300_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0300_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0300_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0300_2: ../dist/tmp/hw4/multiply_128_0300_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0300_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0300_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0300_3: ../dist/tmp/hw4/multiply_128_0300_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0300_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0300_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0400_0: ../dist/tmp/hw4/multiply_128_0400_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0400_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0400_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0400_1: ../dist/tmp/hw4/multiply_128_0400_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0400_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0400_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0400_2: ../dist/tmp/hw4/multiply_128_0400_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0400_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0400_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0400_3: ../dist/tmp/hw4/multiply_128_0400_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0400_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0400_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0600_0: ../dist/tmp/hw4/multiply_128_0600_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0600_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0600_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0600_1: ../dist/tmp/hw4/multiply_128_0600_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0600_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0600_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0600_2: ../dist/tmp/hw4/multiply_128_0600_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0600_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0600_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0600_3: ../dist/tmp/hw4/multiply_128_0600_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0600_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0600_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0800_0: ../dist/tmp/hw4/multiply_128_0800_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0800_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0800_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0800_1: ../dist/tmp/hw4/multiply_128_0800_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0800_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0800_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0800_2: ../dist/tmp/hw4/multiply_128_0800_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0800_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0800_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_0800_3: ../dist/tmp/hw4/multiply_128_0800_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0800_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_0800_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_1000_0: ../dist/tmp/hw4/multiply_128_1000_0.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_1000_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_1000_0.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_1000_1: ../dist/tmp/hw4/multiply_128_1000_1.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_1000_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_1000_1.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_1000_2: ../dist/tmp/hw4/multiply_128_1000_2.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_1000_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_1000_2.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/bin/hw4_multiply_128_1000_3: ../dist/tmp/hw4/multiply_128_1000_3.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@d=`dirname '$@'` && mkdir -p "$$d"
-	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_1000_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o -lm
+	$(CC) $(CFLAGS) -o '$@' ../dist/tmp/hw4/multiply_128_1000_3.o ../dist/tmp/utils/utils.o ../dist/tmp/utils/time.o $(LIBS)
 
 ../dist/tmp/hw4/multiply_001_0020_0.o: ../utils/utils.h multiply.c
 	@d=`dirname '$@'` && mkdir -p "$$d"
@@ -1191,4 +1192,4 @@ index.html: analysis.json figs.json main.py template.html
 
 .PHONY: all build clean
 
-.SECONDARY: ../dist/bin/hw4_multiply_001_0020_0 ../dist/bin/hw4_multiply_001_0020_1 ../dist/bin/hw4_multiply_001_0020_2 ../dist/bin/hw4_multiply_001_0020_3 ../dist/bin/hw4_multiply_001_0040_0 ../dist/bin/hw4_multiply_001_0040_1 ../dist/bin/hw4_multiply_001_0040_2 ../dist/bin/hw4_multiply_001_0040_3 ../dist/bin/hw4_multiply_001_0060_0 ../dist/bin/hw4_multiply_001_0060_1 ../dist/bin/hw4_multiply_001_0060_2 ../dist/bin/hw4_multiply_001_0060_3 ../dist/bin/hw4_multiply_001_0080_0 ../dist/bin/hw4_multiply_001_0080_1 ../dist/bin/hw4_multiply_001_0080_2 ../dist/bin/hw4_multiply_001_0080_3 ../dist/bin/hw4_multiply_001_0100_0 ../dist/bin/hw4_multiply_001_0100_1 ../dist/bin/hw4_multiply_001_0100_2 ../dist/bin/hw4_multiply_001_0100_3 ../dist/bin/hw4_multiply_001_0150_0 ../dist/bin/hw4_multiply_001_0150_1 ../dist/bin/hw4_multiply_001_0150_2 ../dist/bin/hw4_multiply_001_0150_3 ../dist/bin/hw4_multiply_001_0200_0 ../dist/bin/hw4_multiply_001_0200_1 ../dist/bin/hw4_multiply_001_0200_2 ../dist/bin/hw4_multiply_001_0200_3 ../dist/bin/hw4_multiply_001_0300_0 ../dist/bin/hw4_multiply_001_0300_1 ../dist/bin/hw4_multiply_001_0300_2 ../dist/bin/hw4_multiply_001_0300_3 ../dist/bin/hw4_multiply_001_0400_0 ../dist/bin/hw4_multiply_001_0400_1 ../dist/bin/hw4_multiply_001_0400_2 ../dist/bin/hw4_multiply_001_0400_3 ../dist/bin/hw4_multiply_001_0600_0 ../dist/bin/hw4_multiply_001_0600_1 ../dist/bin/hw4_multiply_001_0600_2 ../dist/bin/hw4_multiply_001_0600_3 ../dist/bin/hw4_multiply_001_0800_0 ../dist/bin/hw4_multiply_001_0800_1 ../dist/bin/hw4_multiply_001_0800_2 ../dist/bin/hw4_multiply_001_0800_3 ../dist/bin/hw4_multiply_001_1000_0 ../dist/bin/hw4_multiply_001_1000_1 ../dist/bin/hw4_multiply_001_1000_2 ../dist/bin/hw4_multiply_001_1000_3 ../dist/bin/hw4_multiply_128_0020_0 ../dist/bin/hw4_multiply_128_0020_1 ../dist/bin/hw4_multiply_128_0020_2 ../dist/bin/hw4_multiply_128_0020_3 ../dist/bin/hw4_multiply_128_0040_0 ../dist/bin/hw4_multiply_128_0040_1 ../dist/bin/hw4_multiply_128_0040_2 ../dist/bin/hw4_multiply_128_0040_3 ../dist/bin/hw4_multiply_128_0060_0 ../dist/bin/hw4_multiply_128_0060_1 ../dist/bin/hw4_multiply_128_0060_2 ../dist/bin/hw4_multiply_128_0060_3 ../dist/bin/hw4_multiply_128_0080_0 ../dist/bin/hw4_multiply_128_0080_1 ../dist/bin/hw4_multiply_128_0080_2 ../dist/bin/hw4_multiply_128_0080_3 ../dist/bin/hw4_multiply_128_0100_0 ../dist/bin/hw4_multiply_128_0100_1 ../dist/bin/hw4_multiply_128_0100_2 ../dist/bin/hw4_multiply_128_0100_3 ../dist/bin/hw4_multiply_128_0150_0 ../dist/bin/hw4_multiply_128_0150_1 ../dist/bin/hw4_multiply_128_0150_2 ../dist/bin/hw4_multiply_128_0150_3 ../dist/bin/hw4_multiply_128_0200_0 ../dist/bin/hw4_multiply_128_0200_1 ../dist/bin/hw4_multiply_128_0200_2 ../dist/bin/hw4_multiply_128_0200_3 ../dist/bin/hw4_multiply_128_0300_0 ../dist/bin/hw4_multiply_128_0300_1 ../dist/bin/hw4_multiply_128_0300_2 ../dist/bin/hw4_multiply_128_0300_3 ../dist/bin/hw4_multiply_128_0400_0 ../dist/bin/hw4_multiply_128_0400_1 ../dist/bin/hw4_multiply_128_0400_2 ../dist/bin/hw4_multiply_128_0400_3 ../dist/bin/hw4_multiply_128_0600_0 ../dist/bin/hw4_multiply_128_0600_1 ../dist/bin/hw4_multiply_128_0600_2 ../dist/bin/hw4_multiply_128_0600_3 ../dist/bin/hw4_multiply_128_0800_0 ../dist/bin/hw4_multiply_128_0800_1 ../dist/bin/hw4_multiply_128_0800_2 ../dist/bin/hw4_multiply_128_0800_3 ../dist/bin/hw4_multiply_128_1000_0 ../dist/bin/hw4_multiply_128_1000_1 ../dist/bin/hw4_multiply_128_1000_2 ../dist/bin/hw4_multiply_128_1000_3 ../dist/tmp/hw4/multiply_001_0020_0.o ../dist/tmp/hw4/multiply_001_0020_1.o ../dist/tmp/hw4/multiply_001_0020_2.o ../dist/tmp/hw4/multiply_001_0020_3.o ../dist/tmp/hw4/multiply_001_0040_0.o ../dist/tmp/hw4/multiply_001_0040_1.o ../dist/tmp/hw4/multiply_001_0040_2.o ../dist/tmp/hw4/multiply_001_0040_3.o ../dist/tmp/hw4/multiply_001_0060_0.o ../dist/tmp/hw4/multiply_001_0060_1.o ../dist/tmp/hw4/multiply_001_0060_2.o ../dist/tmp/hw4/multiply_001_0060_3.o ../dist/tmp/hw4/multiply_001_0080_0.o ../dist/tmp/hw4/multiply_001_0080_1.o ../dist/tmp/hw4/multiply_001_0080_2.o ../dist/tmp/hw4/multiply_001_0080_3.o ../dist/tmp/hw4/multiply_001_0100_0.o ../dist/tmp/hw4/multiply_001_0100_1.o ../dist/tmp/hw4/multiply_001_0100_2.o ../dist/tmp/hw4/multiply_001_0100_3.o ../dist/tmp/hw4/multiply_001_0150_0.o ../dist/tmp/hw4/multiply_001_0150_1.o ../dist/tmp/hw4/multiply_001_0150_2.o ../dist/tmp/hw4/multiply_001_0150_3.o ../dist/tmp/hw4/multiply_001_0200_0.o ../dist/tmp/hw4/multiply_001_0200_1.o ../dist/tmp/hw4/multiply_001_0200_2.o ../dist/tmp/hw4/multiply_001_0200_3.o ../dist/tmp/hw4/multiply_001_0300_0.o ../dist/tmp/hw4/multiply_001_0300_1.o ../dist/tmp/hw4/multiply_001_0300_2.o ../dist/tmp/hw4/multiply_001_0300_3.o ../dist/tmp/hw4/multiply_001_0400_0.o ../dist/tmp/hw4/multiply_001_0400_1.o ../dist/tmp/hw4/multiply_001_0400_2.o ../dist/tmp/hw4/multiply_001_0400_3.o ../dist/tmp/hw4/multiply_001_0600_0.o ../dist/tmp/hw4/multiply_001_0600_1.o ../dist/tmp/hw4/multiply_001_0600_2.o ../dist/tmp/hw4/multiply_001_0600_3.o ../dist/tmp/hw4/multiply_001_0800_0.o ../dist/tmp/hw4/multiply_001_0800_1.o ../dist/tmp/hw4/multiply_001_0800_2.o ../dist/tmp/hw4/multiply_001_0800_3.o ../dist/tmp/hw4/multiply_001_1000_0.o ../dist/tmp/hw4/multiply_001_1000_1.o ../dist/tmp/hw4/multiply_001_1000_2.o ../dist/tmp/hw4/multiply_001_1000_3.o ../dist/tmp/hw4/multiply_128_0020_0.o ../dist/tmp/hw4/multiply_128_0020_1.o ../dist/tmp/hw4/multiply_128_0020_2.o ../dist/tmp/hw4/multiply_128_0020_3.o ../dist/tmp/hw4/multiply_128_0040_0.o ../dist/tmp/hw4/multiply_128_0040_1.o ../dist/tmp/hw4/multiply_128_0040_2.o ../dist/tmp/hw4/multiply_128_0040_3.o ../dist/tmp/hw4/multiply_128_0060_0.o ../dist/tmp/hw4/multiply_128_0060_1.o ../dist/tmp/hw4/multiply_128_0060_2.o ../dist/tmp/hw4/multiply_128_0060_3.o ../dist/tmp/hw4/multiply_128_0080_0.o ../dist/tmp/hw4/multiply_128_0080_1.o ../dist/tmp/hw4/multiply_128_0080_2.o ../dist/tmp/hw4/multiply_128_0080_3.o ../dist/tmp/hw4/multiply_128_0100_0.o ../dist/tmp/hw4/multiply_128_0100_1.o ../dist/tmp/hw4/multiply_128_0100_2.o ../dist/tmp/hw4/multiply_128_0100_3.o ../dist/tmp/hw4/multiply_128_0150_0.o ../dist/tmp/hw4/multiply_128_0150_1.o ../dist/tmp/hw4/multiply_128_0150_2.o ../dist/tmp/hw4/multiply_128_0150_3.o ../dist/tmp/hw4/multiply_128_0200_0.o ../dist/tmp/hw4/multiply_128_0200_1.o ../dist/tmp/hw4/multiply_128_0200_2.o ../dist/tmp/hw4/multiply_128_0200_3.o ../dist/tmp/hw4/multiply_128_0300_0.o ../dist/tmp/hw4/multiply_128_0300_1.o ../dist/tmp/hw4/multiply_128_0300_2.o ../dist/tmp/hw4/multiply_128_0300_3.o ../dist/tmp/hw4/multiply_128_0400_0.o ../dist/tmp/hw4/multiply_128_0400_1.o ../dist/tmp/hw4/multiply_128_0400_2.o ../dist/tmp/hw4/multiply_128_0400_3.o ../dist/tmp/hw4/multiply_128_0600_0.o ../dist/tmp/hw4/multiply_128_0600_1.o ../dist/tmp/hw4/multiply_128_0600_2.o ../dist/tmp/hw4/multiply_128_0600_3.o ../dist/tmp/hw4/multiply_128_0800_0.o ../dist/tmp/hw4/multiply_128_0800_1.o ../dist/tmp/hw4/multiply_128_0800_2.o ../dist/tmp/hw4/multiply_128_0800_3.o ../dist/tmp/hw4/multiply_128_1000_0.o ../dist/tmp/hw4/multiply_128_1000_1.o ../dist/tmp/hw4/multiply_128_1000_2.o ../dist/tmp/hw4/multiply_128_1000_3.o ../dist/tmp/hw4_multiply_001_0020_0.json ../dist/tmp/hw4_multiply_001_0020_1.json ../dist/tmp/hw4_multiply_001_0020_2.json ../dist/tmp/hw4_multiply_001_0020_3.json ../dist/tmp/hw4_multiply_001_0040_0.json ../dist/tmp/hw4_multiply_001_0040_1.json ../dist/tmp/hw4_multiply_001_0040_2.json ../dist/tmp/hw4_multiply_001_0040_3.json ../dist/tmp/hw4_multiply_001_0060_0.json ../dist/tmp/hw4_multiply_001_0060_1.json ../dist/tmp/hw4_multiply_001_0060_2.json ../dist/tmp/hw4_multiply_001_0060_3.json ../dist/tmp/hw4_multiply_001_0080_0.json ../dist/tmp/hw4_multiply_001_0080_1.json ../dist/tmp/hw4_multiply_001_0080_2.json ../dist/tmp/hw4_multiply_001_0080_3.json ../dist/tmp/hw4_multiply_001_0100_0.json ../dist/tmp/hw4_multiply_001_0100_1.json ../dist/tmp/hw4_multiply_001_0100_2.json ../dist/tmp/hw4_multiply_001_0100_3.json ../dist/tmp/hw4_multiply_001_0150_0.json ../dist/tmp/hw4_multiply_001_0150_1.json ../dist/tmp/hw4_multiply_001_0150_2.json ../dist/tmp/hw4_multiply_001_0150_3.json ../dist/tmp/hw4_multiply_001_0200_0.json ../dist/tmp/hw4_multiply_001_0200_1.json ../dist/tmp/hw4_multiply_001_0200_2.json ../dist/tmp/hw4_multiply_001_0200_3.json ../dist/tmp/hw4_multiply_001_0300_0.json ../dist/tmp/hw4_multiply_001_0300_1.json ../dist/tmp/hw4_multiply_001_0300_2.json ../dist/tmp/hw4_multiply_001_0300_3.json ../dist/tmp/hw4_multiply_001_0400_0.json ../dist/tmp/hw4_multiply_001_0400_1.json ../dist/tmp/hw4_multiply_001_0400_2.json ../dist/tmp/hw4_multiply_001_0400_3.json ../dist/tmp/hw4_multiply_001_0600_0.json ../dist/tmp/hw4_multiply_001_0600_1.json ../dist/tmp/hw4_multiply_001_0600_2.json ../dist/tmp/hw4_multiply_001_0600_3.json ../dist/tmp/hw4_multiply_001_0800_0.json ../dist/tmp/hw4_multiply_001_0800_1.json ../dist/tmp/hw4_multiply_001_0800_2.json ../dist/tmp/hw4_multiply_001_0800_3.json ../dist/tmp/hw4_multiply_001_1000_0.json ../dist/tmp/hw4_multiply_001_1000_1.json ../dist/tmp/hw4_multiply_001_1000_2.json ../dist/tmp/hw4_multiply_001_1000_3.json ../dist/tmp/hw4_multiply_128_0020_0.json ../dist/tmp/hw4_multiply_128_0020_1.json ../dist/tmp/hw4_multiply_128_0020_2.json ../dist/tmp/hw4_multiply_128_0020_3.json ../dist/tmp/hw4_multiply_128_0040_0.json ../dist/tmp/hw4_multiply_128_0040_1.json ../dist/tmp/hw4_multiply_128_0040_2.json ../dist/tmp/hw4_multiply_128_0040_3.json ../dist/tmp/hw4_multiply_128_0060_0.json ../dist/tmp/hw4_multiply_128_0060_1.json ../dist/tmp/hw4_multiply_128_0060_2.json ../dist/tmp/hw4_multiply_128_0060_3.json ../dist/tmp/hw4_multiply_128_0080_0.json ../dist/tmp/hw4_multiply_128_0080_1.json ../dist/tmp/hw4_multiply_128_0080_2.json ../dist/tmp/hw4_multiply_128_0080_3.json ../dist/tmp/hw4_multiply_128_0100_0.json ../dist/tmp/hw4_multiply_128_0100_1.json ../dist/tmp/hw4_multiply_128_0100_2.json ../dist/tmp/hw4_multiply_128_0100_3.json ../dist/tmp/hw4_multiply_128_0150_0.json ../dist/tmp/hw4_multiply_128_0150_1.json ../dist/tmp/hw4_multiply_128_0150_2.json ../dist/tmp/hw4_multiply_128_0150_3.json ../dist/tmp/hw4_multiply_128_0200_0.json ../dist/tmp/hw4_multiply_128_0200_1.json ../dist/tmp/hw4_multiply_128_0200_2.json ../dist/tmp/hw4_multiply_128_0200_3.json ../dist/tmp/hw4_multiply_128_0300_0.json ../dist/tmp/hw4_multiply_128_0300_1.json ../dist/tmp/hw4_multiply_128_0300_2.json ../dist/tmp/hw4_multiply_128_0300_3.json ../dist/tmp/hw4_multiply_128_0400_0.json ../dist/tmp/hw4_multiply_128_0400_1.json ../dist/tmp/hw4_multiply_128_0400_2.json ../dist/tmp/hw4_multiply_128_0400_3.json ../dist/tmp/hw4_multiply_128_0600_0.json ../dist/tmp/hw4_multiply_128_0600_1.json ../dist/tmp/hw4_multiply_128_0600_2.json ../dist/tmp/hw4_multiply_128_0600_3.json ../dist/tmp/hw4_multiply_128_0800_0.json ../dist/tmp/hw4_multiply_128_0800_1.json ../dist/tmp/hw4_multiply_128_0800_2.json ../dist/tmp/hw4_multiply_128_0800_3.json ../dist/tmp/hw4_multiply_128_1000_0.json ../dist/tmp/hw4_multiply_128_1000_1.json ../dist/tmp/hw4_multiply_128_1000_2.json ../dist/tmp/hw4_multiply_128_1000_3.json ../dist/tmp/hw4_multiply_build.ok ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o Makefile analysis.json data.json figs.json index.html
+.SECONDARY: ../dist/bin/hw4_multiply_001_0020_0 ../dist/bin/hw4_multiply_001_0020_1 ../dist/bin/hw4_multiply_001_0020_2 ../dist/bin/hw4_multiply_001_0020_3 ../dist/bin/hw4_multiply_001_0040_0 ../dist/bin/hw4_multiply_001_0040_1 ../dist/bin/hw4_multiply_001_0040_2 ../dist/bin/hw4_multiply_001_0040_3 ../dist/bin/hw4_multiply_001_0060_0 ../dist/bin/hw4_multiply_001_0060_1 ../dist/bin/hw4_multiply_001_0060_2 ../dist/bin/hw4_multiply_001_0060_3 ../dist/bin/hw4_multiply_001_0080_0 ../dist/bin/hw4_multiply_001_0080_1 ../dist/bin/hw4_multiply_001_0080_2 ../dist/bin/hw4_multiply_001_0080_3 ../dist/bin/hw4_multiply_001_0100_0 ../dist/bin/hw4_multiply_001_0100_1 ../dist/bin/hw4_multiply_001_0100_2 ../dist/bin/hw4_multiply_001_0100_3 ../dist/bin/hw4_multiply_001_0150_0 ../dist/bin/hw4_multiply_001_0150_1 ../dist/bin/hw4_multiply_001_0150_2 ../dist/bin/hw4_multiply_001_0150_3 ../dist/bin/hw4_multiply_001_0200_0 ../dist/bin/hw4_multiply_001_0200_1 ../dist/bin/hw4_multiply_001_0200_2 ../dist/bin/hw4_multiply_001_0200_3 ../dist/bin/hw4_multiply_001_0300_0 ../dist/bin/hw4_multiply_001_0300_1 ../dist/bin/hw4_multiply_001_0300_2 ../dist/bin/hw4_multiply_001_0300_3 ../dist/bin/hw4_multiply_001_0400_0 ../dist/bin/hw4_multiply_001_0400_1 ../dist/bin/hw4_multiply_001_0400_2 ../dist/bin/hw4_multiply_001_0400_3 ../dist/bin/hw4_multiply_001_0600_0 ../dist/bin/hw4_multiply_001_0600_1 ../dist/bin/hw4_multiply_001_0600_2 ../dist/bin/hw4_multiply_001_0600_3 ../dist/bin/hw4_multiply_001_0800_0 ../dist/bin/hw4_multiply_001_0800_1 ../dist/bin/hw4_multiply_001_0800_2 ../dist/bin/hw4_multiply_001_0800_3 ../dist/bin/hw4_multiply_001_1000_0 ../dist/bin/hw4_multiply_001_1000_1 ../dist/bin/hw4_multiply_001_1000_2 ../dist/bin/hw4_multiply_001_1000_3 ../dist/bin/hw4_multiply_128_0020_0 ../dist/bin/hw4_multiply_128_0020_1 ../dist/bin/hw4_multiply_128_0020_2 ../dist/bin/hw4_multiply_128_0020_3 ../dist/bin/hw4_multiply_128_0040_0 ../dist/bin/hw4_multiply_128_0040_1 ../dist/bin/hw4_multiply_128_0040_2 ../dist/bin/hw4_multiply_128_0040_3 ../dist/bin/hw4_multiply_128_0060_0 ../dist/bin/hw4_multiply_128_0060_1 ../dist/bin/hw4_multiply_128_0060_2 ../dist/bin/hw4_multiply_128_0060_3 ../dist/bin/hw4_multiply_128_0080_0 ../dist/bin/hw4_multiply_128_0080_1 ../dist/bin/hw4_multiply_128_0080_2 ../dist/bin/hw4_multiply_128_0080_3 ../dist/bin/hw4_multiply_128_0100_0 ../dist/bin/hw4_multiply_128_0100_1 ../dist/bin/hw4_multiply_128_0100_2 ../dist/bin/hw4_multiply_128_0100_3 ../dist/bin/hw4_multiply_128_0150_0 ../dist/bin/hw4_multiply_128_0150_1 ../dist/bin/hw4_multiply_128_0150_2 ../dist/bin/hw4_multiply_128_0150_3 ../dist/bin/hw4_multiply_128_0200_0 ../dist/bin/hw4_multiply_128_0200_1 ../dist/bin/hw4_multiply_128_0200_2 ../dist/bin/hw4_multiply_128_0200_3 ../dist/bin/hw4_multiply_128_0300_0 ../dist/bin/hw4_multiply_128_0300_1 ../dist/bin/hw4_multiply_128_0300_2 ../dist/bin/hw4_multiply_128_0300_3 ../dist/bin/hw4_multiply_128_0400_0 ../dist/bin/hw4_multiply_128_0400_1 ../dist/bin/hw4_multiply_128_0400_2 ../dist/bin/hw4_multiply_128_0400_3 ../dist/bin/hw4_multiply_128_0600_0 ../dist/bin/hw4_multiply_128_0600_1 ../dist/bin/hw4_multiply_128_0600_2 ../dist/bin/hw4_multiply_128_0600_3 ../dist/bin/hw4_multiply_128_0800_0 ../dist/bin/hw4_multiply_128_0800_1 ../dist/bin/hw4_multiply_128_0800_2 ../dist/bin/hw4_multiply_128_0800_3 ../dist/bin/hw4_multiply_128_1000_0 ../dist/bin/hw4_multiply_128_1000_1 ../dist/bin/hw4_multiply_128_1000_2 ../dist/bin/hw4_multiply_128_1000_3 ../dist/tmp/hw4/multiply_001_0020_0.o ../dist/tmp/hw4/multiply_001_0020_1.o ../dist/tmp/hw4/multiply_001_0020_2.o ../dist/tmp/hw4/multiply_001_0020_3.o ../dist/tmp/hw4/multiply_001_0040_0.o ../dist/tmp/hw4/multiply_001_0040_1.o ../dist/tmp/hw4/multiply_001_0040_2.o ../dist/tmp/hw4/multiply_001_0040_3.o ../dist/tmp/hw4/multiply_001_0060_0.o ../dist/tmp/hw4/multiply_001_0060_1.o ../dist/tmp/hw4/multiply_001_0060_2.o ../dist/tmp/hw4/multiply_001_0060_3.o ../dist/tmp/hw4/multiply_001_0080_0.o ../dist/tmp/hw4/multiply_001_0080_1.o ../dist/tmp/hw4/multiply_001_0080_2.o ../dist/tmp/hw4/multiply_001_0080_3.o ../dist/tmp/hw4/multiply_001_0100_0.o ../dist/tmp/hw4/multiply_001_0100_1.o ../dist/tmp/hw4/multiply_001_0100_2.o ../dist/tmp/hw4/multiply_001_0100_3.o ../dist/tmp/hw4/multiply_001_0150_0.o ../dist/tmp/hw4/multiply_001_0150_1.o ../dist/tmp/hw4/multiply_001_0150_2.o ../dist/tmp/hw4/multiply_001_0150_3.o ../dist/tmp/hw4/multiply_001_0200_0.o ../dist/tmp/hw4/multiply_001_0200_1.o ../dist/tmp/hw4/multiply_001_0200_2.o ../dist/tmp/hw4/multiply_001_0200_3.o ../dist/tmp/hw4/multiply_001_0300_0.o ../dist/tmp/hw4/multiply_001_0300_1.o ../dist/tmp/hw4/multiply_001_0300_2.o ../dist/tmp/hw4/multiply_001_0300_3.o ../dist/tmp/hw4/multiply_001_0400_0.o ../dist/tmp/hw4/multiply_001_0400_1.o ../dist/tmp/hw4/multiply_001_0400_2.o ../dist/tmp/hw4/multiply_001_0400_3.o ../dist/tmp/hw4/multiply_001_0600_0.o ../dist/tmp/hw4/multiply_001_0600_1.o ../dist/tmp/hw4/multiply_001_0600_2.o ../dist/tmp/hw4/multiply_001_0600_3.o ../dist/tmp/hw4/multiply_001_0800_0.o ../dist/tmp/hw4/multiply_001_0800_1.o ../dist/tmp/hw4/multiply_001_0800_2.o ../dist/tmp/hw4/multiply_001_0800_3.o ../dist/tmp/hw4/multiply_001_1000_0.o ../dist/tmp/hw4/multiply_001_1000_1.o ../dist/tmp/hw4/multiply_001_1000_2.o ../dist/tmp/hw4/multiply_001_1000_3.o ../dist/tmp/hw4/multiply_128_0020_0.o ../dist/tmp/hw4/multiply_128_0020_1.o ../dist/tmp/hw4/multiply_128_0020_2.o ../dist/tmp/hw4/multiply_128_0020_3.o ../dist/tmp/hw4/multiply_128_0040_0.o ../dist/tmp/hw4/multiply_128_0040_1.o ../dist/tmp/hw4/multiply_128_0040_2.o ../dist/tmp/hw4/multiply_128_0040_3.o ../dist/tmp/hw4/multiply_128_0060_0.o ../dist/tmp/hw4/multiply_128_0060_1.o ../dist/tmp/hw4/multiply_128_0060_2.o ../dist/tmp/hw4/multiply_128_0060_3.o ../dist/tmp/hw4/multiply_128_0080_0.o ../dist/tmp/hw4/multiply_128_0080_1.o ../dist/tmp/hw4/multiply_128_0080_2.o ../dist/tmp/hw4/multiply_128_0080_3.o ../dist/tmp/hw4/multiply_128_0100_0.o ../dist/tmp/hw4/multiply_128_0100_1.o ../dist/tmp/hw4/multiply_128_0100_2.o ../dist/tmp/hw4/multiply_128_0100_3.o ../dist/tmp/hw4/multiply_128_0150_0.o ../dist/tmp/hw4/multiply_128_0150_1.o ../dist/tmp/hw4/multiply_128_0150_2.o ../dist/tmp/hw4/multiply_128_0150_3.o ../dist/tmp/hw4/multiply_128_0200_0.o ../dist/tmp/hw4/multiply_128_0200_1.o ../dist/tmp/hw4/multiply_128_0200_2.o ../dist/tmp/hw4/multiply_128_0200_3.o ../dist/tmp/hw4/multiply_128_0300_0.o ../dist/tmp/hw4/multiply_128_0300_1.o ../dist/tmp/hw4/multiply_128_0300_2.o ../dist/tmp/hw4/multiply_128_0300_3.o ../dist/tmp/hw4/multiply_128_0400_0.o ../dist/tmp/hw4/multiply_128_0400_1.o ../dist/tmp/hw4/multiply_128_0400_2.o ../dist/tmp/hw4/multiply_128_0400_3.o ../dist/tmp/hw4/multiply_128_0600_0.o ../dist/tmp/hw4/multiply_128_0600_1.o ../dist/tmp/hw4/multiply_128_0600_2.o ../dist/tmp/hw4/multiply_128_0600_3.o ../dist/tmp/hw4/multiply_128_0800_0.o ../dist/tmp/hw4/multiply_128_0800_1.o ../dist/tmp/hw4/multiply_128_0800_2.o ../dist/tmp/hw4/multiply_128_0800_3.o ../dist/tmp/hw4/multiply_128_1000_0.o ../dist/tmp/hw4/multiply_128_1000_1.o ../dist/tmp/hw4/multiply_128_1000_2.o ../dist/tmp/hw4/multiply_128_1000_3.o ../dist/tmp/hw4_multiply_001_0020_0.json ../dist/tmp/hw4_multiply_001_0020_1.json ../dist/tmp/hw4_multiply_001_0020_2.json ../dist/tmp/hw4_multiply_001_0020_3.json ../dist/tmp/hw4_multiply_001_0040_0.json ../dist/tmp/hw4_multiply_001_0040_1.json ../dist/tmp/hw4_multiply_001_0040_2.json ../dist/tmp/hw4_multiply_001_0040_3.json ../dist/tmp/hw4_multiply_001_0060_0.json ../dist/tmp/hw4_multiply_001_0060_1.json ../dist/tmp/hw4_multiply_001_0060_2.json ../dist/tmp/hw4_multiply_001_0060_3.json ../dist/tmp/hw4_multiply_001_0080_0.json ../dist/tmp/hw4_multiply_001_0080_1.json ../dist/tmp/hw4_multiply_001_0080_2.json ../dist/tmp/hw4_multiply_001_0080_3.json ../dist/tmp/hw4_multiply_001_0100_0.json ../dist/tmp/hw4_multiply_001_0100_1.json ../dist/tmp/hw4_multiply_001_0100_2.json ../dist/tmp/hw4_multiply_001_0100_3.json ../dist/tmp/hw4_multiply_001_0150_0.json ../dist/tmp/hw4_multiply_001_0150_1.json ../dist/tmp/hw4_multiply_001_0150_2.json ../dist/tmp/hw4_multiply_001_0150_3.json ../dist/tmp/hw4_multiply_001_0200_0.json ../dist/tmp/hw4_multiply_001_0200_1.json ../dist/tmp/hw4_multiply_001_0200_2.json ../dist/tmp/hw4_multiply_001_0200_3.json ../dist/tmp/hw4_multiply_001_0300_0.json ../dist/tmp/hw4_multiply_001_0300_1.json ../dist/tmp/hw4_multiply_001_0300_2.json ../dist/tmp/hw4_multiply_001_0300_3.json ../dist/tmp/hw4_multiply_001_0400_0.json ../dist/tmp/hw4_multiply_001_0400_1.json ../dist/tmp/hw4_multiply_001_0400_2.json ../dist/tmp/hw4_multiply_001_0400_3.json ../dist/tmp/hw4_multiply_001_0600_0.json ../dist/tmp/hw4_multiply_001_0600_1.json ../dist/tmp/hw4_multiply_001_0600_2.json ../dist/tmp/hw4_multiply_001_0600_3.json ../dist/tmp/hw4_multiply_001_0800_0.json ../dist/tmp/hw4_multiply_001_0800_1.json ../dist/tmp/hw4_multiply_001_0800_2.json ../dist/tmp/hw4_multiply_001_0800_3.json ../dist/tmp/hw4_multiply_001_1000_0.json ../dist/tmp/hw4_multiply_001_1000_1.json ../dist/tmp/hw4_multiply_001_1000_2.json ../dist/tmp/hw4_multiply_001_1000_3.json ../dist/tmp/hw4_multiply_128_0020_0.json ../dist/tmp/hw4_multiply_128_0020_1.json ../dist/tmp/hw4_multiply_128_0020_2.json ../dist/tmp/hw4_multiply_128_0020_3.json ../dist/tmp/hw4_multiply_128_0040_0.json ../dist/tmp/hw4_multiply_128_0040_1.json ../dist/tmp/hw4_multiply_128_0040_2.json ../dist/tmp/hw4_multiply_128_0040_3.json ../dist/tmp/hw4_multiply_128_0060_0.json ../dist/tmp/hw4_multiply_128_0060_1.json ../dist/tmp/hw4_multiply_128_0060_2.json ../dist/tmp/hw4_multiply_128_0060_3.json ../dist/tmp/hw4_multiply_128_0080_0.json ../dist/tmp/hw4_multiply_128_0080_1.json ../dist/tmp/hw4_multiply_128_0080_2.json ../dist/tmp/hw4_multiply_128_0080_3.json ../dist/tmp/hw4_multiply_128_0100_0.json ../dist/tmp/hw4_multiply_128_0100_1.json ../dist/tmp/hw4_multiply_128_0100_2.json ../dist/tmp/hw4_multiply_128_0100_3.json ../dist/tmp/hw4_multiply_128_0150_0.json ../dist/tmp/hw4_multiply_128_0150_1.json ../dist/tmp/hw4_multiply_128_0150_2.json ../dist/tmp/hw4_multiply_128_0150_3.json ../dist/tmp/hw4_multiply_128_0200_0.json ../dist/tmp/hw4_multiply_128_0200_1.json ../dist/tmp/hw4_multiply_128_0200_2.json ../dist/tmp/hw4_multiply_128_0200_3.json ../dist/tmp/hw4_multiply_128_0300_0.json ../dist/tmp/hw4_multiply_128_0300_1.json ../dist/tmp/hw4_multiply_128_0300_2.json ../dist/tmp/hw4_multiply_128_0300_3.json ../dist/tmp/hw4_multiply_128_0400_0.json ../dist/tmp/hw4_multiply_128_0400_1.json ../dist/tmp/hw4_multiply_128_0400_2.json ../dist/tmp/hw4_multiply_128_0400_3.json ../dist/tmp/hw4_multiply_128_0600_0.json ../dist/tmp/hw4_multiply_128_0600_1.json ../dist/tmp/hw4_multiply_128_0600_2.json ../dist/tmp/hw4_multiply_128_0600_3.json ../dist/tmp/hw4_multiply_128_0800_0.json ../dist/tmp/hw4_multiply_128_0800_1.json ../dist/tmp/hw4_multiply_128_0800_2.json ../dist/tmp/hw4_multiply_128_0800_3.json ../dist/tmp/hw4_multiply_128_1000_0.json ../dist/tmp/hw4_multiply_128_1000_1.json ../dist/tmp/hw4_multiply_128_1000_2.json ../dist/tmp/hw4_multiply_128_1000_3.json ../dist/tmp/hw4_multiply_build.ok ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o analysis.json data.json figs.json index.html

@@ -7,9 +7,10 @@ OPTLEVELS = [0, 1, 2, 3]
 
 def make_all():
     return alias("all", [report()]).merge(
-        simple_command("makegen {0}", "Makefile", ["make.py"]),
+        simple_command("makegen {0}", "Makefile", ["make.py"], no_clean=True),
         Ruleset(macros={
             "CFLAGS": "-Wall -O3",
+            "LIBS": "-lm",
         }),
     )
 
@@ -77,7 +78,7 @@ def bench_program(suffix=None, macros={}, extra_flags={}):
             b.compile_source("../utils/utils.c"),
             b.compile_source("../utils/time.c"),
         ],
-        libraries=[Library("m")],
+        libraries="$(LIBS)",
     )
     def bench(buildall):
         return simple_command(
