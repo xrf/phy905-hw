@@ -91,12 +91,6 @@ int benchmark(size_t *i, double *time, size_t *count, double preferred_time)
 
 /* ------------------------------------------------------------------------ */
 
-struct statistics_state statistics_init()
-{
-    struct statistics_state self;
-    return self;
-}
-
 const struct statistics_state statistics_initial = {0, 0, 0, INFINITY};
 
 void statistics_update(struct statistics_state *self, double x)

@@ -14,6 +14,9 @@
 #ifndef REPEATS
 #define REPEATS 8
 #endif
+#ifndef VERIFY_THRESHOLD
+#define VERIFY_THRESHOLD 1e-12
+#endif
 
 static void multiply(size_t n, double *restrict c,
                      const double *a, const double *b)
@@ -38,14 +41,13 @@ static void multiply(size_t n, double *restrict c,
 static void verify_multiply(size_t n, const double *restrict c,
                             const double *a, const double *b)
 {
-    static const double epsilon = 1e-12;
     for (size_t i = 0; i < n; ++i) {
         for (size_t j = 0; j < n; ++j) {
             double c_ij = 0;
             for (size_t k = 0; k < n; ++k) {
                 c_ij += a[i * n + k] * b[k * n + j];
             }
-            if (!(fabs(c_ij - c[i * n + j]) <= epsilon)) {
+            if (!(fabs(c_ij - c[i * n + j]) <= VERIFY_THRESHOLD)) {
                 fprintf(stderr, "**INVALID MULTIPLY**\n  (%zu, %zu) = %g vs %g\n",
                         i, j, c_ij, c[i * n + j]);
                 fflush(stderr);
