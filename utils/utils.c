@@ -4,12 +4,6 @@
 #include <time.h>
 #include "utils.h"
 #include "time.h"
-#ifndef PREFERRED_TIME
-#define PREFERRED_TIME 1.
-#endif
-#ifndef MIN_SUBREPEATS /* initial guess */
-#define MIN_SUBREPEATS 4
-#endif
 
 static struct rf_mclock myclock;
 static int myclock_initialized;
@@ -19,6 +13,15 @@ double min_d(double x, double y)
     return
         isnan(x) || isnan(y) ? NAN :
         x < y ? x : y;
+}
+
+void *xmalloc(size_t size)
+{
+    void *p = malloc(size);
+    if (!p) {
+        abort();
+    }
+    return p;
 }
 
 void init_random_array_d(double *array, size_t count)
@@ -38,6 +41,15 @@ void print_matrix(size_t n, double *a, const char *name)
         }
     }
     fflush(stdout);
+}
+
+int getenv_or_i(const char *name, int value)
+{
+    const char *s = getenv(name);
+    if (!s) {
+        return value;
+    }
+    return atoi(s);
 }
 
 /* ------------------------------------------------------------------------ */
@@ -119,30 +131,36 @@ struct statistics statistics_get(const struct statistics_state *self)
 
 struct fullbenchmark fullbenchmark_begin(size_t num_repeats)
 {
+    return fullbenchmark_begin_custom(num_repeats, 4, 1.);
+}
+
+struct fullbenchmark fullbenchmark_begin_custom(size_t num_repeats,
+                                                size_t initial_num_subrepeats,
+                                                double preferred_time)
+{
     struct fullbenchmark self;
-    mysecond_init();
     self.stats = statistics_initial;
     self.num_repeats = num_repeats;
-    self.num_subrepeats = MIN_SUBREPEATS;
-    self.repeat_index = 0;
-    self.first = 1;
+    self.num_subrepeats = initial_num_subrepeats;
+    self.preferred_time = preferred_time;
+    self.repeat_index = (size_t)(-1);
+    mysecond_init();
     return self;
 }
 
 int fullbenchmark(struct fullbenchmark *self)
 {
-    if (self->first) {
-        self->first = 0;
-        goto first;
+    if (self->repeat_index == (size_t)(-1)) {
+        goto start;
     }
 inner:
     if (benchmark(&self->subrepeat_index, &self->time,
-                  &self->num_subrepeats, PREFERRED_TIME)) {
+                  &self->num_subrepeats, self->preferred_time)) {
         return 1;
     }
     statistics_update(&self->stats, self->time);
+start:
     ++self->repeat_index;
-first:
     if (self->repeat_index < self->num_repeats) {
         self->subrepeat_index = (size_t)(-1);
         self->time = mysecond();

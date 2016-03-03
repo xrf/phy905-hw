@@ -217,9 +217,9 @@ def parse_keyvalues(string, sep):
     lines = string.split("\n")
     return dict(parse_keyvalue_entry(line, sep) for line in lines if line)
 
-def run_and_get_keyvalues(args):
+def run_and_get_keyvalues(args, env=None):
     import subprocess
-    out = subprocess.check_output(args, universal_newlines=True)
+    out = subprocess.check_output(args, universal_newlines=True, env=env)
     return parse_keyvalues(out, sep="=")
 
 def substitute_template(filename, params):

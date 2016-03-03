@@ -8,12 +8,15 @@ extern "C" {
 /** Calculate the minimum of two numbers. */
 double min_d(double x, double y);
 
+void *xmalloc(size_t size);
+
 /** Initialize an array of doubles using `rand` (a very weak RNG). */
 void init_random_array_d(double *array, size_t count);
 
 /** Print a square matrix with the given name. */
 void print_matrix(size_t dim, double *matrix, const char *name);
 
+int getenv_or_i(const char *name, int value);
 
 /* ------------------------------------------------------------------------ */
 
@@ -59,11 +62,14 @@ struct statistics statistics_get(const struct statistics_state *self);
 struct fullbenchmark {
     struct statistics_state stats;
     size_t num_repeats, num_subrepeats, repeat_index, subrepeat_index;
-    double time;
-    int first;
+    double time, preferred_time;
 };
 
 struct fullbenchmark fullbenchmark_begin(size_t num_repeats);
+
+struct fullbenchmark fullbenchmark_begin_custom(size_t num_repeats,
+                                                size_t initial_num_subrepeats,
+                                                double preferred_time);
 
 int fullbenchmark(struct fullbenchmark *self);
 

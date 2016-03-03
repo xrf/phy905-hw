@@ -1,0 +1,53 @@
+<h1>PHY 905 004 HW #6</h1>
+<address rel="author">Fei Yuan</address>
+<h2>Part 1</h2>
+<figure>
+  <table>
+    <tr>
+      <td><code>Nt</code></td>
+      <td>Time for loop /s</td>
+      <td>Rate /(MB/s)</td>
+    </tr>
+    ${data}
+  </table>
+  <figcaption>Table 1: Time and rate vs number of threads.</figcaption>
+</figure>
+<figure>
+  <a href="${fig_time_fn}"><img src="${fig_time_fn}"/></a>
+  <figcaption>Figure 1: Time vs number of threads.</figcaption>
+</figure>
+<figure>
+  <a href="${fig_rate_fn}"><img src="${fig_rate_fn}"/></a>
+  <figcaption>Figure 2: Rate vs number of threads.</figcaption>
+</figure>
+
+
+
+
+
+
+
+
+<p>In the first case, all data is read once, so all the memory costs is quadratic with respect to the matrix size.</p>
+<p class="equation"><code><var>T1</var>(<var>c</var>, <var>r</var>, <var>w</var>, <var>n</var>) = <var>n</var><sup>2</sup> (2 <var>r</var> + <var>w</var>) + 2 <var>c</var> <var>n</var><sup>3</sup></code></p>
+<p>The second case is similar except that the data of matrix B must be read from memory on every use.  Since matrix B is in the innermost loop, this means the cost is cubic with respect to the matrix size.</p>
+<p class="equation"><code><var>T2</var>(<var>c</var>, <var>r</var>, <var>w</var>, <var>n</var>) = <var>n</var><sup>2</sup> (<var>r</var> + <var>w</var>) + <var>n</var><sup>3</sup> <var>r</var> + 2 <var>c</var> <var>n</var><sup>3</sup></code></p>
+<p>From a processor performance of 5 Gflops and a memory bandwidth of 8 GB/s, the following parameters can be deduced:</p>
+<p class="equation"><code><var>c</var> = 0.2e-9 s (per FLOP)</code></p>
+<p class="equation"><code><var>r</var> = <var>w</var> = 1e-9 s (per double)</code></p>
+<p class="equation"><code><var>n</var> = 1e3</code></p>
+<p>In this case, the time taken in each model are:</p>
+<p class="equation"><code><var>T1</var> ≈ 0.4 s</code></p>
+<p class="equation"><code><var>T2</var> ≈ 1.4 s</code></p>
+<h2>Part 2</h2>
+<p>The cache size (L3) on the test system is 6 MiB.  Therefore, a matrix size of</p>
+<p class="equation"><code>√(6 MiB / 8 MiB) ≈ 900</code></p>
+<p>would not fit in the cache.</p>
+<p>The blocked algorithm is shown in Listing 1.  The results are checked by comparing to those of the naive algorithm.  In all the benchmarks, the matrices A and B are initialized with random values.</p>
+<p>Testing shows that a block size of 128 yields the best results on this system.  The results are shown in Table 1 and Figure 1.</p>
+<p>The graph is not very easy to read.  Therefore, we also plot the effective performance in Figure 2, defined as:</p>
+<p class="equation"><code>2 <var>n</var><sup>3</sup> / <var>time</var></code></p>
+<p>This way, the differences between the various benchmarks become a lot easier to see.</p>
+<p>The tests were performed using GCC 5.3.0 at all 4 optimization levels.  From the graphs, it is clear optimizations contribute a substantial difference in the performance of the algorithm, although <code>-O1</code> and <code>-O2</code> appear to be largely equivalent for this particular code.  Blocked versions are also noticeably faster than the corresponding non-blocked versions, except at <code>-O0</code>, where the blocked version actually worsened the performance.</p>
+<p>There is a sharp drop when the matrix size reaches 1000.  By this point, the matrix has become too large to fit in the L3 cache, thus incurring a severe penalty in performance.  The blocked algorithms remain unaffected by this and continue to offer good performance, as expected.</p>
+<p>The most unexpected part of the results was how little the difference was between <code>-O1</code> and <code>-O2</code>, as well as how much of a gap there was between <code>-O2</code> and <code>-O3</code>.  Normally, one would expect <code>-O3</code> to only provide a marginal benefit, and it is not uncommon to hear of complaints where <code>-O3</code> was actually <em>slower</em> than <code>-O2</code>.  In this case, however, the benefit of <code>-O3</code> quite significant.</p>
