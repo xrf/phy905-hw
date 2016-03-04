@@ -1,0 +1,22 @@
+time for naive algorithm (per vector):
+
+    n (4 c + 5 m)
+
+time for naive algorithm (for all vectors):
+
+    k n (4 c + 5 m)
+
+time for unrolled algorithm (for all vectors):
+
+      (k / 4) n (16 c + 11 m)
+    = k n (4 c + 11/4 m)
+
+ratio:
+
+      (4 c + 5 m) / (4 c + 11/4 m)
+    = (4 c + 5 m) / (11/4 m (16 c / 11 m + 1))
+    = (16/11 c/m + 20/11) (1 - 16/11 c/m)
+    ≈ 20/11
+
+n	sep op  	in file 	sep file	w+1     	restrict
+10000	1.53e-09	6.59e-10	7.13e-10	7.14e-10	7.13e-10
