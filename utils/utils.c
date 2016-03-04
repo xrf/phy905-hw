@@ -35,8 +35,9 @@ void init_random_array_d(double *array, size_t count)
 
 void print_matrix(size_t n, double *a, const char *name)
 {
-    for (size_t i = 0; i < n; ++i) {
-        for (size_t j = 0; j < n; ++j) {
+    size_t i, j;
+    for (i = 0; i < n; ++i) {
+        for (j = 0; j < n; ++j) {
             printf("%s[%zu, %zu]: = %g\n", name, i, j, a[i * n + j]);
         }
     }
