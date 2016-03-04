@@ -151,9 +151,12 @@ def save_file(filename, contents, binary=False, encoding=None,
 def save_json_file(filename, contents, encoding=None,
                    errors=None, newline=None, safe=True, json_args={}):
     import json
+    json_args = dict(json_args)
     with safe_open(filename, "wt", encoding=encoding,
                    errors=errors, newline=newline, safe=safe) as stream:
-        json.dump(contents, stream, **dict(json_args))
+        json.dump(contents, stream, **json_args)
+        if json_args.get("indent", None) is not None:
+            stream.write("\n")
 #@]
 
 #@snip/load_json_file[
@@ -262,6 +265,7 @@ def init_logging(level=None, default_level=None):
     config = {
         "format": "[%(levelname)s] %(message)s",
     }
+    default_level = parse_logging_level(default_level)
     level = parse_logging_level(level or os.environ.get("LOGLEVEL", None))
     if level is not None:
         config["level"] = level

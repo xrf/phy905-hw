@@ -9,7 +9,7 @@ from utils import *
 commands = {}
 
 FIGSIZE = (5, 3.5)
-NTS = [1, 2, 4] #, 6, 8, 10, 12, 14, 16]
+NTS = [1, 2, 4, 6, 8, 10, 12, 14, 16]
 SIZE = 65536 * 128
 
 @register_command(commands)
