@@ -6,4 +6,4 @@
 set -eu
 module add GNU/5.2 Python3/3.3.2
 cd "$HOME/stuff/phy905-hw/hw6"
-make
+make CC=gcc
