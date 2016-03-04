@@ -1,6 +1,5 @@
 .POSIX:
 
-CC=cc
 CFLAGS=-Wall -O3 -fopenmp
 LIBS=-lm
 
@@ -26,7 +25,7 @@ clean:
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o '$@' ../utils/utils.c
 
 Makefile: make.py
-	makegen make.py
+	@if command -v makegen >/dev/null 2>&1; then printf 'Updating makefile ...\n'; makegen make.py; else touch make.py; fi
 
 analysis.json: bench.json main.py
 	python main.py analyze '$@' bench.json

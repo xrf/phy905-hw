@@ -4,7 +4,11 @@ NAME = "pcopy"
 
 def make_all():
     return alias("all", [report()]).merge(
-        simple_command("makegen {0}", "Makefile", ["make.py"], no_clean=True),
+        simple_command(
+            "@if command -v makegen >/dev/null 2>&1; then "
+            "printf 'Updating makefile ...\\n'; makegen {0}; else "
+            "touch {0}; fi",
+            "Makefile", ["make.py"], no_clean=True),
         Ruleset(macros={
             "CFLAGS": "-Wall -O3 -fopenmp",
             "LIBS": "-lm",

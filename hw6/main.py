@@ -10,7 +10,7 @@ commands = {}
 
 FIGSIZE = (5, 3.5)
 NTS = [1, 2, 4, 6, 8, 10, 12, 14, 16]
-SIZE = 65536 * 128
+SIZE = 65536 * 1024
 
 @register_command(commands)
 def bench(out_fn, exe):
@@ -58,7 +58,7 @@ def plot(out_fn, data_fn):
     ax.errorbar(
         data["nt"],
         np.array(data["time"]) * 1e3,
-        yerr=np.array(data["time_err"]) * 1e3,
+        #yerr=np.array(data["time_err"]) * 1e3,
         color="#e91e63",
         **plot_args
     )
@@ -73,7 +73,7 @@ def plot(out_fn, data_fn):
     ax.errorbar(
         data["nt"],
         np.array(data["rate"]) / 1e6,
-        yerr=np.array(data["rate_err"]) / 1e6,
+        #yerr=np.array(data["rate_err"]) / 1e6,
         color="#4caf50",
         **plot_args
     )
