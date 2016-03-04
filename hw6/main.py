@@ -11,6 +11,8 @@ commands = {}
 FIGSIZE = (5, 3.5)
 NTS = [1, 2, 4, 6, 8, 10, 12, 14, 16]
 SIZE = 65536 * 1024
+R1 = 5322574252.872704
+RMAX = 12000e6
 
 @register_command(commands)
 def bench(out_fn, exe):
@@ -54,29 +56,37 @@ def plot(out_fn, data_fn):
         "fig_rate_fn": "fig-rate.svg",
     }
 
+    nt = np.array(data["nt"])
+    nt_full = np.linspace(np.min(nt), np.max(nt), 100)
+    time = np.array(data["time"])
+    time_err = np.array(data["time_err"])
+    rate = np.array(data["rate"]) / 1e6
+    rate_err = np.array(data["rate_err"]) / 1e6
+    r_1 = rate[np.argmin(nt)]
+    r_max = max(rate)
+
     fig, ax = plt.subplots(figsize=FIGSIZE)
-    ax.errorbar(
-        data["nt"],
-        np.array(data["time"]) * 1e3,
-        #yerr=np.array(data["time_err"]) * 1e3,
-        color="#e91e63",
-        **plot_args
-    )
+    ax.errorbar(nt, time,
+                #yerr=time_err,
+                color="#e91e63",
+                **plot_args)
     ax.get_xaxis().set_major_locator(plt.MaxNLocator(integer=True))
     ax.set_xlabel("number of threads")
-    ax.set_ylabel("time taken /ms")
+    ax.set_ylabel("time taken /s")
     ax.grid("on")
     fig.tight_layout()
     fig.savefig(fig_fns["fig_time_fn"], transparent=True)
 
     fig, ax = plt.subplots(figsize=FIGSIZE)
-    ax.errorbar(
-        data["nt"],
-        np.array(data["rate"]) / 1e6,
-        #yerr=np.array(data["rate_err"]) / 1e6,
-        color="#4caf50",
-        **plot_args
-    )
+    ax.errorbar(nt, rate,
+                #yerr=rate_err,
+                color="#4caf50",
+                **plot_args)
+    ax.plot(nt_full, np.minimum(r_1 * nt_full, r_max),
+            color="#4caf50",
+            linestyle="--",
+            **plot_args)
+
     ax.get_xaxis().set_major_locator(plt.MaxNLocator(integer=True))
     ax.set_xlabel("number of threads")
     ax.set_ylabel("rate /(MB/s)")
@@ -96,6 +106,7 @@ def report(out_fn, data_fn, figs_fn, template_fn):
         ["{0:.3g}".format(x / 1e6) for x in data["rate"]],
     ]
     params = load_json_file(figs_fn)
+    params["code"] = cgi.escape(load_file("pcopy.c"))
     params["data"] = table_to_html(transpose(table)).rstrip()
     html = main_template(substitute_template(template_fn, params))
     save_file(out_fn, html)
