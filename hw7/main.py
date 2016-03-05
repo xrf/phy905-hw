@@ -8,8 +8,8 @@ sys.path = ["../utils"] + list(sys.path)
 from utils import *
 commands = {}
 
+ERR = True
 SIZES = [20, 40, 60, 80, 100, 150, 200, 300, 400, 600, 800, 1000]
-SIZES = [20, 100, 1000]
 
 @register_command(commands)
 def bench(out_fn, exe, exe_omp):
@@ -80,38 +80,34 @@ def analyze(out_fn, fn):
         "grouped_data": grouped_data,
     }, json_args=JSON_ARGS)
 
-@register_command(commands)
-def plot(out_fn, data_fn):
-    data = load_json_file(data_fn)["grouped_data"]
-    figsize = (5, 3.5)
-    plot_args = {
+def plot_args(yerr=None):
+    kwargs = {
         "alpha": .8,
         "linewidth": 2,
         "markeredgecolor": "none",
     }
+    if ERR and yerr is not None:
+        kwargs["yerr"] = yerr
+    return kwargs
+
+@register_command(commands)
+def plot(out_fn, data_fn):
+    data = load_json_file(data_fn)["grouped_data"]
+    figsize = (5, 3.5)
     fig_fns = {
         "fig_time_fn": "fig-time.svg",
         "fig_rate_fn": "fig-rate.svg",
     }
-
-    # nt = np.array(data["nt"])
-    # nt_full = np.linspace(np.min(nt), np.max(nt), 100)
-    # time = np.array(data["time"])
-    # time_err = np.array(data["time_err"])
-    # rate = np.array(data["rate"]) / 1e6
-    # rate_err = np.array(data["rate_err"]) / 1e6
-    # r_1 = rate[np.argmin(nt)]
 
     fig, ax = plt.subplots(figsize=figsize)
     for series in data:
         ax.errorbar(
             series["size"],
             series["time"],
-            #yerr=series["time_err"],
             label=series["label"],
             color=series["color"],
             linestyle=series["linestyle"],
-            **plot_args)
+            **plot_args(yerr=series["time_err"]))
     ax.get_xaxis().set_major_locator(plt.MaxNLocator(integer=True))
     ax.set_xlabel("matrix size")
     ax.set_ylabel("time taken /s")
@@ -132,11 +128,10 @@ def plot(out_fn, data_fn):
         ax.errorbar(
             series["size"],
             np.array(series["rate"]) / 1e9,
-            #yerr=np.array(series["rate_err"]) / 1e9,
             label=series["label"],
             color=series["color"],
             linestyle=series["linestyle"],
-            **plot_args)
+            **plot_args(yerr=np.array(series["rate_err"]) / 1e9))
     ax.get_xaxis().set_major_locator(plt.MaxNLocator(integer=True))
     ax.set_xlabel("matrix size")
     ax.set_ylabel("performance /GFLOPS")
