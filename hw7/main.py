@@ -8,7 +8,7 @@ sys.path = ["../utils"] + list(sys.path)
 from utils import *
 commands = {}
 
-ERR = True
+ERR = False
 SIZES = [20, 40, 60, 80, 100, 150, 200, 300, 400, 600, 800, 1000]
 
 @register_command(commands)

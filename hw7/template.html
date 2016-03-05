@@ -1,5 +1,11 @@
-<h1>PHY 905 004 HW #6</h1>
+<h1>PHY 905 004 HW #7</h1>
 <address rel="author">Fei Yuan</address>
+<p>We use a CPU with an L3 cache size of 6MiB, so a matrix size of 1000 is big enough to not fit in the cache, as shown in HW#4.</p>
+<p>We use the following simple performance model, where we assume the floating-point operations dominate:</p>
+<p class="equation"><code><var>time</var> = 2 <var>c</var> <var>n</var><sup>3</sup></code></p>
+<p>where <code><var>n</var></code> is the matrix size.</p>
+<p>In this model, we compute the effective performance as:</p>
+<p class="equation"><code><var>perf</var> = 2 <var>n</var><sup>3</sup> / <var>time</var></code></p>
 <figure>
   <table>
     <tr>
@@ -20,3 +26,5 @@
   <a href="${fig_rate_fn}"><img src="${fig_rate_fn}"/></a>
   <figcaption>Figure 2: Performance vs matrix size and number of threads.</figcaption>
 </figure>
+<p>In Figure 2, we find the effective performance increases approximately linearly with each additional thread.  This means that the memory bandwidth is not a bottleneck for the majority of matrix sizes.  However, at a size of 1000, there is a sudden drop in performance, indicating that the performance will become memory-limited as the size increases further.</p>
+<p>The performance for the smallest matrix is also unusual: it increases with each thread but peaks at 3 threads, and then rapidly drops afterwards.  The single-threaded OpenMP implementation is also noticeably slower than the single-threaded non-OpenMP implementation for smaller matrix sizes.  This is likely due to the overhead of OpenMP's thread management becoming more and more significant as the computational work gets smaller and smaller.</p>
