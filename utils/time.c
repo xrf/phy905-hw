@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 199309L
 #include <math.h>
 #include <stdint.h>
 #if defined _WIN32
