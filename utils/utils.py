@@ -220,10 +220,10 @@ def parse_keyvalues(string, sep):
     lines = string.split("\n")
     return dict(parse_keyvalue_entry(line, sep) for line in lines if line)
 
-def run_and_get_keyvalues(args, env=None):
+def run_and_get_keyvalues(args, env=None, sep="="):
     import subprocess
     out = subprocess.check_output(args, universal_newlines=True, env=env)
-    return parse_keyvalues(out, sep="=")
+    return parse_keyvalues(out, sep=sep)
 
 def substitute_template(filename, params):
     import string
@@ -306,3 +306,17 @@ def merge_stdevs(n1, mean1, stdev1, n2, mean2, stdev2):
         (n2 - 1) * stdev2 ** 2 + n2 * mean2 ** 2 -
         n * mean ** 2
     ) / (n - 1))
+
+def get_num_cores():
+    '''Get the number of physical CPU cores.'''
+    import logging, subprocess
+    out = subprocess.check_output(["lscpu", "-p"], universal_newlines=True)
+    cores = set()
+    for line in out.split("\n"):
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        cores.add(int(line.split(",")[1]))
+    num_cores = len(cores)
+    logging.info("Number of CPU cores = {0}".format(num_cores))
+    return num_cores

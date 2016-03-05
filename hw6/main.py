@@ -11,8 +11,6 @@ commands = {}
 FIGSIZE = (5, 3.5)
 NTS = [1, 2, 4, 6, 8, 10, 12, 14, 16]
 SIZE = 65536 * 1024
-R1 = 5322574252.872704
-RMAX = 12000e6
 
 @register_command(commands)
 def bench(out_fn, exe):
