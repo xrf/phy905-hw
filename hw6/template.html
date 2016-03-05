@@ -17,15 +17,16 @@
   <a href="${fig_time_fn}"><img src="${fig_time_fn}"/></a>
   <figcaption>Figure 1: Time vs number of threads.</figcaption>
 </figure>
-<figure class="page-break-before">
-  <pre><code class="c">${code}</code></pre>
-  <figcaption>Listing 1: OpenMP-parallelized array copy.</figcaption>
-</figure>
-<h2>Part 2</h2>
 <figure>
   <a href="${fig_rate_fn}"><img src="${fig_rate_fn}"/></a>
   <figcaption>Figure 2: Rate vs number of threads, as well as the fit.</figcaption>
 </figure>
+<figure class="page-break-before">
+  <pre><code class="c">${code}</code></pre>
+  <figcaption>Listing 1: OpenMP-parallelized array copy.</figcaption>
+</figure>
+<h2 class="page-break-before">Part 2</h2>
 <p>We fit the results to the following model:</p>
 <p class="equation"><code><var>rate</var> = min(<var>Nt</var> × <var>r</var><sub>1</sub>, <var>r</var><sub>max</sub>)</code></p>
+<p>The single-threaded rate <code><var>r</var><sub>1</sub></code> is ${r_1} MB/s.  The maximum rate <code><var>r</var><sub>max</sub></code> is ${r_max} MB/s.</p>
 <p>The fit captures the general trend, but is very crude.  The value of <code><var>r</var><sub>1</sub></code>, which is derived from the single-threaded rate, seems overly optimistic.  There is likely a significant amount of contention in multi-threaded programs, so in reality the performance improvement with each additional thread suffers from diminishing returns.  Moreover, as the number of threads increase further, the performance actually becomes worse, possibly from the overhead of managing multiple threads as well as the competition between threads for the limited memory bandwidth.  The crossover point where the memory bandwidth becomes the bottleneck is around 2 to 3 in the model, but the actual data seems to indicate around 5.</p>

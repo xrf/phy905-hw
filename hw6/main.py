@@ -64,6 +64,8 @@ def plot(out_fn, data_fn):
     rate_err = np.array(data["rate_err"]) / 1e6
     r_1 = rate[np.argmin(nt)]
     r_max = max(rate)
+    fig_fns["r_1"] = "{0:.3g}".format(r_1)
+    fig_fns["r_max"] = "{0:.3g}".format(r_max)
 
     fig, ax = plt.subplots(figsize=FIGSIZE)
     ax.errorbar(nt, time,
