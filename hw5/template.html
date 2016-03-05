@@ -1,0 +1,40 @@
+<h1>PHY 905 004 HW #5</h1>
+<address rel="author">Fei Yuan</address>
+<h2>Part 1</h2>
+<p>Time for naive algorithm where a single vector is processed at a time (per vector):</p>
+<p class="equation"><code><var>n</var> (4 <var>c</var> + 5 <var>m</var>)</code></p>
+<p>Time for naive algorithm (for all vectors):</p>
+<p class="equation"><code><var>k</var> <var>n</var> (4 <var>c</var> + 5 <var>m</var>)</code></p>
+<p>Time for unrolled algorithm where 4 vectors are processed at a time (for all vectors):</p>
+<p class="equation"><code>(<var>k</var> / 4) <var>n</var> (16 <var>c</var> + 11 <var>m</var>) = <var>k</var> <var>n</var> (4 <var>c</var> + 11/4 <var>m</var>)</code>
+<p>The ratio is given by:</p>
+<p class="equation"><code>(4 <var>c</var> + 5 <var>m</var>) / (4 <var>c</var> + 11/4 <var>m</var>)<br/>
+= (16/11 <var>c</var>/<var>m</var> + 20/11) / (1 + 16/11 <var>c</var>/<var>m</var>)</code></p>
+<p>In the limit where <code><var>c</var>/<var>m</var> → 0</code>, the ratio becomes 20/11.  This is the largest ratio that this model can predict.</p>
+<h2>Part 2</h2>
+<p>The output from the benchmark program is shown in Listing 1.</p>
+<figure>
+  <pre><output class="nohighlight">${output}</output></pre>
+  <figcaption>Listing 1: Output.</figcaption>
+</figure>
+<ul>
+  <li><code>sep op</code> uses the naive algorithm.</li>
+  <li><code>in file</code> uses the unrolled algorithm, defined in the same file as the <code>main</code> program (<code>morth1.c</code>).</li>
+  <li><code>sep file</code> uses the unrolled algorithm, defined in a different file from the <code>main</code> program.</li>
+  <li><code>w+1</code> is similar to <code>sep file</code>, but acts on a vector shifted by one element (effectively using one-based indices).</li>
+  <li><code>restrict</code> is similar to <code>sep file</code>, but additionally marks the vectors with the <code>restrict</code> keyword, indicating that they cannot alias.</li>
+</ul>
+<p>The results show that <code>in file</code> is the fastest and <code>sep op</code> is the slowest.  The other three are in the middle, but all three have nearly equal performance.</p>
+<p>In the case of <code>in file</code>, the compiler may have been able to use additional information (such as alignment) about the arrays in <code>morth1.c</code> – the arrays are all statically declared with known sizes – to further optimize the code.</p>
+<p>The actual ratio between the naive and unrolled version is (using <code>sep file</code>):</p>
+<p class="equation"><code>6.62e-10 / 1.34e-9 ≈ 2.02</code></p>
+<p>This is not too far from 20/11 ≈ 1.82, although it is higher than the upper bound of what can be predicted from this simple model, so there might be other factors involved.</p>
+<p>The ratio between <code>in file</code> and <code>sep file</code> is about 1.06, so the additional optimizations* provided a roughly 6% benefit.</p>
+<p>The ratio between the remaining two and <code>sep file</code> are both roughly one, so performance-wise there was essentially no difference.  For <code>w+1</code> this is expected since the adding one to the pointers can be easily floated out of the <code>for</code> as they are loop-invariant.  For <code>restrict</code>, the results indicate that <code>restrict</code> provided no noticeable benefit.</p>
+<p>*It was found that adding explicit alignment annotations via <code>__builtin_assume_aligned(…, 16)</code> allows both <code>sep file</code> and <code>restrict</code> to perform as well as <code>in file</code>.</p>
+<p>A summary of the vectorization report produced by the compiler is shown in Listing 2:</p>
+<figure>
+  <pre><output class="nohighlight">${vectorization}</output></pre>
+  <figcaption>Listing 2: Vectorization report (abridged).</figcaption>
+</figure>
+<p>GCC 5.3.0 was able to vectorize all the relevant loops.</p>

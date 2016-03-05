@@ -59,6 +59,7 @@ code {
 
 .equation {
     margin: 0 2em;
+    line-height: 1;
 }
 
 table.small {

@@ -1,0 +1,20 @@
+$ make CC=gcc COMPILER_FAMILY=gcc LIBS=-lm \
+       vecflags=-fopt-info-vec-all 2>&1 | grep VECTORIZED
+morth1.c:126:5: note: LOOP VECTORIZED
+morth1.c:120:5: note: LOOP VECTORIZED
+morth1.c:138:5: note: LOOP VECTORIZED
+morth1.c:135:5: note: LOOP VECTORIZED
+morth1.c:138:5: note: LOOP VECTORIZED
+morth1.c:135:5: note: LOOP VECTORIZED
+morth1.c:138:5: note: LOOP VECTORIZED
+morth1.c:135:5: note: LOOP VECTORIZED
+morth1.c:138:5: note: LOOP VECTORIZED
+morth1.c:135:5: note: LOOP VECTORIZED
+morth1.c:126:5: note: LOOP VECTORIZED
+morth1.c:120:5: note: LOOP VECTORIZED
+morth1.c:138:5: note: LOOP VECTORIZED
+morth1.c:135:5: note: LOOP VECTORIZED
+morthr.c:14:5: note: LOOP VECTORIZED
+morthr.c:8:5: note: LOOP VECTORIZED
+morthr.c:38:5: note: LOOP VECTORIZED
+morthr.c:32:5: note: LOOP VECTORIZED

@@ -1,0 +1,2 @@
+n	sep op  	in file 	sep file	w+1     	restrict
+10000	1.34e-09	6.22e-10	6.62e-10	6.63e-10	6.61e-10
