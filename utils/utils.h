@@ -1,9 +1,74 @@
 #ifndef G_AY37CQFF92BMUBCPAX8B8SRSN92PI
 #define G_AY37CQFF92BMUBCPAX8B8SRSN92PI
 #include <math.h>
+#include <stdarg.h>
+#include <stddef.h>
+#include <stdnoreturn.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#define rf_stringify_(x) #x
+#define rf_stringify(x) rf_stringify_(x)
+
+/** Abort with an error if the expression returns a nonzero value. */
+#define rf_xtry(expr)                                                         \
+    rf_xtry_(                                                                 \
+        (expr),                                                               \
+        __FILE__ ":" rf_stringify(__LINE__),                                  \
+        __func__,                                                             \
+        #expr)
+
+#define rf_xensure(expr)                                                      \
+    rf_xensure_(                                                              \
+        !!(expr),                                                             \
+        __FILE__ ":" rf_stringify(__LINE__),                                  \
+        __func__,                                                             \
+        #expr)
+
+noreturn
+void rf_detailed_abort(const char *prefix,
+                       const char *func,
+                       int err,
+                       const char *msg,
+                       const char *expr);
+
+static inline
+void rf_xtry_(int err,
+              const char *prefix,
+              const char *func,
+              const char *expr)
+{
+    if (!err)
+        return;
+    rf_detailed_abort(prefix, func, err, NULL, expr);
+}
+
+static inline
+void rf_xensure_(int val,
+                 const char *prefix,
+                 const char *func,
+                 const char *expr)
+{
+    if (val)
+        return;
+    rf_detailed_abort(prefix, func, 0, "condition not satisfied:", expr);
+}
+
+/** Call `snprintf` on the given buffer, shift the pointer by the length of
+    the string written (without the terminating null character), and decrease
+    the size by the same amount.  On success, zero is returned.  If the buffer
+    is not long enough, the amount of additional buffer space required is
+    returned (including the terminating null character).  As with `snprintf`,
+    the result is always null-terminated unless the size is zero.  If an error
+    occurs, a negative value is returned. */
+int rf_snappendf(char **ptr, size_t *size, const char *format, ...);
+
+/** See docs of `snappendf`. */
+int rf_vsnappendf(char **ptr, size_t *size,
+                  const char *format, va_list vlist);
+
+/* ------------------------------------------------------------------------ */
 
 /** Calculate the minimum of two numbers. */
 double min_d(double x, double y);

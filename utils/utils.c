@@ -1,9 +1,84 @@
+#include <limits.h>
 #include <math.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "utils.h"
 #include "time.h"
+
+void rf_detailed_abort(const char *prefix,
+                       const char *func,
+                       int err,
+                       const char *msg,
+                       const char *expr)
+{
+    char buf[512];
+    char *p = buf;
+    size_t n = sizeof(buf) / sizeof(*buf);
+
+    if (!prefix) {
+        prefix = "<??" "?>";            /* avoid trigraphs */
+    }
+    if (!func) {
+        func = "<??" "?>";              /* avoid trigraphs */
+    }
+
+    /* store it into a buffer before printing to reduce the risk of printing a
+       partial message (e.g. when multiple threads are interleaved) */
+    rf_snappendf(&p, &n, "%s:%s: [error", prefix, func);
+    if (err) {
+        rf_snappendf(&p, &n, " %i", err);
+    }
+    rf_snappendf(&p, &n, "]");
+    if (msg) {
+        rf_snappendf(&p, &n, " %s", msg);
+    }
+    if (expr) {
+        rf_snappendf(&p, &n, " %s", expr);
+    }
+
+    fprintf(stderr, "%s\n", buf);
+    fflush(stderr);
+    abort();
+}
+
+int rf_vsnappendf(char **ptr, size_t *size, const char *format, va_list vlist)
+{
+    char *const dptr = *ptr;
+    const size_t dsize = *size;
+    int ret = vsnprintf(dptr, dsize, format, vlist);
+    if (ret < 0) {
+        /* failed for unknown reasons */
+        return ret;
+    }
+    if ((INT_MAX > (size_t)(-1) && (int)(size_t)ret != ret)
+        || (size_t)ret >= dsize) {
+        /* output was truncated; return the amount of extra space needed */
+        if (dsize) {
+            ret -= (int)dsize;
+            *ptr = dptr + (dsize - 1);
+            *size = 1;
+        } else if (ret == INT_MAX) {
+            /* avoid overflow (note: reachable only when dsize == 0) */
+            return INT_MIN;
+        }
+        return ret + 1;
+    }
+    *ptr = dptr + (size_t)ret;
+    *size = dsize - (size_t)ret;
+    return 0;
+}
+
+int rf_snappendf(char **ptr, size_t *size, const char *format, ...)
+{
+    int ret;
+    va_list vlist;
+    va_start(vlist, format);
+    ret = rf_vsnappendf(ptr, size, format, vlist);
+    va_end(vlist);
+    return ret;
+}
 
 static struct rf_mclock myclock;
 static int myclock_initialized;
