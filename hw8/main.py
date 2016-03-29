@@ -28,9 +28,10 @@ def analyze(out_fn, *data_fns):
             float(entries["time_1b /s"]),
             float(entries["time_2a /s"]),
         ])
+
     records = dataframe_to_records(data)
     groups = group_records_by(records, ["test", "case"])
-    grouped_data = []
+    grouped_data = {}
     for (test, case), group in sorted(groups.items()):
         series = {
             "color": {
@@ -43,13 +44,29 @@ def analyze(out_fn, *data_fns):
                 "1b": "--",
                 "2a": ":",
             }[test],
-            "label": "test={1},case={0}".format(test, case),
+            "label": "case={1},test={0}".format(test, case),
         }
         series.update(records_to_dataframe(group))
-        grouped_data.append(series)
+        grouped_data[(test, case)] = series
+
+    fitted_data_test_case = ("1a", 1)
+    series = grouped_data[fitted_data_test_case]
+    cutoffs = [1, 100, 10000, max(series["size"])]
+    series = pd.DataFrame.from_dict(series)
+    subseriess = [
+        series[(series["size"] >= cutoffs[0]) & (series["size"] < cutoffs[1])],
+        series[(series["size"] >= cutoffs[1]) & (series["size"] < cutoffs[2])],
+        series[series["size"] >= cutoffs[2]],
+    ]
+    fits = [np.polyfit(subseries["size"], subseries["time"], 1)
+            for subseries in subseriess]
+
     save_json_file(out_fn, {
         "data": data,
-        "grouped_data": grouped_data,
+        "grouped_data": tuple(grouped_data.items()),
+        "fitted_data_test_case": fitted_data_test_case,
+        "cutoffs": cutoffs,
+        "fits": [fit.tolist() for fit in fits],
     }, json_args=JSON_ARGS)
 
 @register_command(commands)
@@ -59,22 +76,26 @@ def plot(out_fn, data_fn):
         "linewidth": 2,
         "markeredgecolor": "none",
     }
-    data = load_json_file(data_fn)["grouped_data"]
+    data = load_json_file(data_fn)
+    grouped_data = dict((tuple(k), v) for k, v in data["grouped_data"])
     figsize = (5, 3.5)
     fig_fns = {
         "fig_time_fn": "fig-time.svg",
         "fig_time_zoomed_fn": "fig-time-zoomed.svg",
+        "fig_fit_0_fn": "fig-fit-0.svg",
+        "fig_fit_1_fn": "fig-fit-1.svg",
+        "fig_fit_2_fn": "fig-fit-2.svg",
     }
     ZOOMED_SIZE_MAX = 32
 
     for zoomed in ["", "_zoomed"]:
         fig, ax = plt.subplots(figsize=figsize)
-        for series in data:
+        for _, series in sorted(grouped_data.items()):
             series = pd.DataFrame.from_dict(series)
             if zoomed:
                 series = series[series["size"] <= ZOOMED_SIZE_MAX]
-                series["time"] *= 1e6
-            ax.errorbar(
+                series["time"] = series["time"] * 1e6
+            ax.plot(
                 series["size"],
                 series["time"],
                 label=series["label"][0],
@@ -90,10 +111,58 @@ def plot(out_fn, data_fn):
             ax.set_xscale("log")
             ax.set_yscale("log")
         ax.grid("on")
-        fig.tight_layout()
         legend = ax.legend(loc="center left", bbox_to_anchor=(1, 0.5))
         fig.tight_layout()
         fig.savefig(fig_fns["fig_time{0}_fn".format(zoomed)],
+                    bbox_extra_artists=(legend,),
+                    bbox_inches="tight",
+                    transparent=True)
+
+    series = pd.DataFrame.from_dict(grouped_data[("1a", 1)])
+    cutoffs = [min(series["size"]), 100, 10000, max(series["size"])]
+    subseriess = [
+        series[series["size"] <= cutoffs[1]],
+        series[(series["size"] > cutoffs[1]) & (series["size"] < cutoffs[2])],
+        series[series["size"] > cutoffs[2]],
+    ]
+    fits = [np.polyfit(subseries["size"], subseries["time"], 1)
+            for subseries in subseriess]
+
+    series = grouped_data[tuple(data["fitted_data_test_case"])]
+    series = pd.DataFrame.from_dict(series)
+    zooms = [(260, 9e-6, "B", 1), (35000, 8e-5, "KiB", 1024), (None, None, "KiB", 1024)]
+    time_factor = 1e-6
+    for j, (max_size, max_time, size_unit, size_factor) in enumerate(zooms):
+        fig, ax = plt.subplots(figsize=figsize)
+        ax.plot(
+            series["size"] / size_factor,
+            series["time"] / time_factor,
+            "o",
+            label=series["label"][0],
+            color=series["color"][0],
+            **plot_args)
+        for i, fit in enumerate(data["fits"]):
+            size = np.linspace(data["cutoffs"][i], data["cutoffs"][i + 1], 200)
+            ax.plot(
+                size / size_factor,
+                np.poly1d(fit)(size) / time_factor,
+                label="fit {0}".format(i + 1),
+                color=[
+                    "#f29312",
+                    "#4caf50",
+                    "#2196f3",
+                ][i],
+                **plot_args)
+        ax.set_xlabel("array size /" + size_unit)
+        ax.set_ylabel("time taken /us")
+        if max_size is not None:
+            ax.set_xlim(0, max_size / size_factor)
+        if max_time is not None:
+            ax.set_ylim(0, max_time / time_factor)
+        ax.grid("on")
+        legend = ax.legend(loc="center left", bbox_to_anchor=(1, 0.5))
+        fig.tight_layout()
+        fig.savefig(fig_fns["fig_fit_{0}_fn".format(j)],
                     bbox_extra_artists=(legend,),
                     bbox_inches="tight",
                     transparent=True)
@@ -103,6 +172,7 @@ def plot(out_fn, data_fn):
 @register_command(commands)
 def report(out_fn, data_fn, figs_fn, template_fn):
     import cgi
+    datafile = load_json_file(data_fn)
     data = load_json_file(data_fn)["data"]
     table = [
         [str(x) for x in data["case"]],
@@ -113,6 +183,11 @@ def report(out_fn, data_fn, figs_fn, template_fn):
     params = load_json_file(figs_fn)
     params["code"] = cgi.escape(load_file("mpicomm.c"))
     params["data"] = table_to_html(transpose(table)).rstrip()
+    for i, cutoff in enumerate(datafile["cutoffs"]):
+        params["cutoff_{0}".format(i)] = cutoff
+    for i, fit in enumerate(datafile["fits"]):
+        for j, p in enumerate(fit):
+            params["fit_{0}_{1}".format(i, j)] = "{0:.3g}".format(p)
     html = main_template(substitute_template(template_fn, params))
     save_file(out_fn, html)
 

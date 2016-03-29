@@ -70,6 +70,9 @@ int rf_vsnappendf(char **ptr, size_t *size,
 
 /* ------------------------------------------------------------------------ */
 
+#define xtry(x) rf_xtry(x)
+#define xensure(x) rf_xensure(x)
+
 /** Calculate the minimum of two numbers. */
 double min_d(double x, double y);
 

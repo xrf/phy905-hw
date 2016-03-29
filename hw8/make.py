@@ -40,7 +40,7 @@ report = simple_command(
     ["main.py", analysis, plot, "template.html"],
 )
 
-makefile = alias("all", [plot]).merge(
+makefile = alias("all", [report]).merge(
     alias("bench", benchs),
     Ruleset(macros={
         "CC": "mpicc",

@@ -1,0 +1,47 @@
+<h1>PHY 905 004 HW #8</h1>
+<address rel="author">Fei Yuan</address>
+<p>Case 1 and case 2 are nearly the same.  In fact, case 3 is almost the same too, except for one data point that appears to be an outlier.  This indicates that the communication channel between the tested nodes were quite similar in nature.</p>
+<p>To fit the data, it was necessary to break the data into three parts, separated at ${cutoff_0} and ${cutoff_1}.  These two discontinuities are noticeable in Figure 1 (a).  The fit parameters for the three fits (obtained via least squares) are:</p>
+<ol>
+  <li><p class="equation"><code><var>s</var> = ${fit_0_1} s, <var>r</var> = ${fit_0_0} s / B</code></p></li>
+  <li><p class="equation"><code><var>s</var> = ${fit_1_1} s, <var>r</var> = ${fit_1_0} s / B</code></p></li>
+  <li><p class="equation"><code><var>s</var> = ${fit_2_1} s, <var>r</var> = ${fit_2_0} s / B</code></p></li>
+</ol>
+<p>Overall, fit 1 is quite good, but fits 2 and 3 are not as good.  The data seems to be a bit nonlinear in those regimes, which is rather unexpected.</p>
+<p>On this particular implementation, it seems that blocking (1a) vs nonblocking (1b) pingpong seems to equally fast.  However, head-to-head pingpong (2a) is noticeably faster by about a factor of two.</p>
+<figure>
+  <a href="${fig_time_fn}"><img src="${fig_time_fn}"/></a>
+  <figcaption>Figure 1 (a): Time vs array size.</figcaption>
+</figure>
+<figure>
+  <a href="${fig_time_zoomed_fn}"><img src="${fig_time_zoomed_fn}"/></a>
+  <figcaption>Figure 1 (b): Time vs array size (zoomed).</figcaption>
+</figure>
+<figure>
+  <a href="${fig_fit_0_fn}"><img src="${fig_fit_0_fn}"/></a>
+  <figcaption>Figure 2 (a): Time vs array size fit.</figcaption>
+</figure>
+<figure>
+  <a href="${fig_fit_1_fn}"><img src="${fig_fit_1_fn}"/></a>
+  <figcaption>Figure 2 (b): Time vs array size fit.</figcaption>
+</figure>
+<figure>
+  <a href="${fig_fit_2_fn}"><img src="${fig_fit_2_fn}"/></a>
+  <figcaption>Figure 2 (c): Time vs array size fit.</figcaption>
+</figure>
+<figure>
+  <table>
+    <tr>
+      <td>Case</td>
+      <td>Test</td>
+      <td>Size /B</td>
+      <td>Time /s</td>
+    </tr>
+    ${data}
+  </table>
+  <figcaption>Table 1: Time and rate vs number of threads.</figcaption>
+</figure>
+<figure>
+  <pre><code class="c">${code}</code></pre>
+  <figcaption>Listing 1: MPI pingpong tests.</figcaption>
+</figure>

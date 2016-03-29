@@ -3,12 +3,12 @@ CFLAGS=-Wall -Wextra -O3 -g
 LIBS=-lm
 WSIZE=4
 
-all: figs.json
+all: index.html
 
 bench: bench_1_000000.txt bench_1_000004.txt bench_1_000008.txt bench_1_000016.txt bench_1_000032.txt bench_1_000064.txt bench_1_000128.txt bench_1_000256.txt bench_1_000512.txt bench_1_001024.txt bench_1_002048.txt bench_1_004096.txt bench_1_008192.txt bench_1_016384.txt bench_1_032768.txt bench_1_065536.txt bench_1_131072.txt bench_1_262144.txt bench_2_000000.txt bench_2_000004.txt bench_2_000008.txt bench_2_000016.txt bench_2_000032.txt bench_2_000064.txt bench_2_000128.txt bench_2_000256.txt bench_2_000512.txt bench_2_001024.txt bench_2_002048.txt bench_2_004096.txt bench_2_008192.txt bench_2_016384.txt bench_2_032768.txt bench_2_065536.txt bench_2_131072.txt bench_2_262144.txt bench_3_000000.txt bench_3_000004.txt bench_3_000008.txt bench_3_000016.txt bench_3_000032.txt bench_3_000064.txt bench_3_000128.txt bench_3_000256.txt bench_3_000512.txt bench_3_001024.txt bench_3_002048.txt bench_3_004096.txt bench_3_008192.txt bench_3_016384.txt bench_3_032768.txt bench_3_065536.txt bench_3_131072.txt bench_3_262144.txt
 
 clean:
-	rm -fr -- ../dist/bin/mpicomm ../dist/tmp/hw8/mpicomm.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o analysis.json bench_1_000000.txt bench_1_000004.txt bench_1_000008.txt bench_1_000016.txt bench_1_000032.txt bench_1_000064.txt bench_1_000128.txt bench_1_000256.txt bench_1_000512.txt bench_1_001024.txt bench_1_002048.txt bench_1_004096.txt bench_1_008192.txt bench_1_016384.txt bench_1_032768.txt bench_1_065536.txt bench_1_131072.txt bench_1_262144.txt bench_2_000000.txt bench_2_000004.txt bench_2_000008.txt bench_2_000016.txt bench_2_000032.txt bench_2_000064.txt bench_2_000128.txt bench_2_000256.txt bench_2_000512.txt bench_2_001024.txt bench_2_002048.txt bench_2_004096.txt bench_2_008192.txt bench_2_016384.txt bench_2_032768.txt bench_2_065536.txt bench_2_131072.txt bench_2_262144.txt bench_3_000000.txt bench_3_000004.txt bench_3_000008.txt bench_3_000016.txt bench_3_000032.txt bench_3_000064.txt bench_3_000128.txt bench_3_000256.txt bench_3_000512.txt bench_3_001024.txt bench_3_002048.txt bench_3_004096.txt bench_3_008192.txt bench_3_016384.txt bench_3_032768.txt bench_3_065536.txt bench_3_131072.txt bench_3_262144.txt figs.json
+	rm -fr -- ../dist/bin/mpicomm ../dist/tmp/hw8/mpicomm.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o analysis.json bench_1_000000.txt bench_1_000004.txt bench_1_000008.txt bench_1_000016.txt bench_1_000032.txt bench_1_000064.txt bench_1_000128.txt bench_1_000256.txt bench_1_000512.txt bench_1_001024.txt bench_1_002048.txt bench_1_004096.txt bench_1_008192.txt bench_1_016384.txt bench_1_032768.txt bench_1_065536.txt bench_1_131072.txt bench_1_262144.txt bench_2_000000.txt bench_2_000004.txt bench_2_000008.txt bench_2_000016.txt bench_2_000032.txt bench_2_000064.txt bench_2_000128.txt bench_2_000256.txt bench_2_000512.txt bench_2_001024.txt bench_2_002048.txt bench_2_004096.txt bench_2_008192.txt bench_2_016384.txt bench_2_032768.txt bench_2_065536.txt bench_2_131072.txt bench_2_262144.txt bench_3_000000.txt bench_3_000004.txt bench_3_000008.txt bench_3_000016.txt bench_3_000032.txt bench_3_000064.txt bench_3_000128.txt bench_3_000256.txt bench_3_000512.txt bench_3_001024.txt bench_3_002048.txt bench_3_004096.txt bench_3_008192.txt bench_3_016384.txt bench_3_032768.txt bench_3_065536.txt bench_3_131072.txt bench_3_262144.txt figs.json index.html
 
 ../dist/bin/mpicomm: ../dist/tmp/hw8/mpicomm.o ../dist/tmp/utils/time.o ../dist/tmp/utils/utils.o
 	@mkdir -p "`dirname $@`"
@@ -193,5 +193,8 @@ bench_3_262144.txt: ../dist/bin/mpicomm
 
 figs.json: analysis.json main.py
 	python main.py plot '$@' analysis.json
+
+index.html: analysis.json figs.json main.py template.html
+	python main.py report '$@' analysis.json figs.json template.html
 
 .PHONY: all bench clean

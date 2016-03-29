@@ -6,8 +6,6 @@
 #include <string.h>
 #include <mpi.h>
 #include "../utils/utils.h"
-#define xtry(x) rf_xtry(x)
-#define xensure(x) rf_xensure(x)
 
 #define WARMUP_REPEATS 1
 #define NUM_REPEATS 10
@@ -112,16 +110,16 @@ static void hhpingpong(int is_master,
 
 /** Repeat the pingpong benchmark the given number of times. */
 static double subbench_pingpong(int is_master,
-                             const unsigned char *sendbuf,
-                             unsigned char *recvbuf,
-                             size_t m,
-                             int other,
-                             void (*pingpong)(int,
-                                              const void *,
-                                              void *,
-                                              size_t,
-                                              int),
-                             uint64_t numrepeats)
+                                const unsigned char *sendbuf,
+                                unsigned char *recvbuf,
+                                size_t m,
+                                int other,
+                                void (*pingpong)(int,
+                                                 const void *,
+                                                 void *,
+                                                 size_t,
+                                                 int),
+                                uint64_t numrepeats)
 {
     const double t0 = MPI_Wtime();
     for (uint64_t i = 0; i < numrepeats; ++i) {
