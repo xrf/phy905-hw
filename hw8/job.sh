@@ -5,6 +5,5 @@
 #PBS -l mem=256mb
 set -eu
 module add GNU/5.2 Python3/3.3.2
-lscpu
 cd "$HOME/stuff/phy905-hw/hw8"
 make WSIZE="$PBS_NUM_NODES" bench
