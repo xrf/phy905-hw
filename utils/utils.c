@@ -104,7 +104,7 @@ void init_random_array_d(double *array, size_t count)
     size_t i;
     /* not high-quality RNG by any means but good enough for our purposes */
     for (i = 0; i < count; ++i) {
-        array[i] = (double)rand() / RAND_MAX;
+        array[i] = (double)rand() / RAND_MAX - .5;
     }
 }
 
