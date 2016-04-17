@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <limits.h>
 #include <math.h>
 #include <stdarg.h>
@@ -150,30 +151,57 @@ void mysecond_init(void)
 double mysecond(void)
 {
     if (!myclock_initialized) {
-        fprintf(stderr, "mysecond: clock has not yet been initialized\n");
-        fflush(stderr);
-        abort();
+        mysecond_init();
     }
     return rf_mclock_getf(&myclock);
 }
 
 int benchmark(size_t *i, double *time, size_t *count, double preferred_time)
 {
+    return benchmark_with(i,
+                          time,
+                          count,
+                          preferred_time,
+                          &mysecond,
+                          NULL,
+                          NULL);
+}
+
+int benchmark_with(size_t *i,
+                   double *time,
+                   size_t *count,
+                   double preferred_time,
+                   double (*get_time)(void),
+                   void (*broadcast)(void *ctx, int *),
+                   void *broadcast_ctx)
+{
+    int keep_going;
     double timediff, now;
     ++*i;
     if (*i < *count) {
         return 1;
     }
-    now = mysecond();
-    timediff = now - *time;
-    if (timediff < preferred_time) {
+    assert(get_time || broadcast);
+    if (get_time) {
+        now = (*get_time)();
+        timediff = now - *time;
+        keep_going = timediff < preferred_time;
+    }
+    if (broadcast) {
+        (*broadcast)(broadcast_ctx, &keep_going);
+    }
+    if (keep_going) {
         /* if it's too short, double the number of repeats */
         *i = 0;
-        *time = now;
         *count *= 2;
+        if (get_time) {
+            *time = now;
+        }
         return 1;
     }
-    *time = timediff / *count;
+    if (get_time) {
+        *time = timediff / *count;
+    }
     return 0;
 }
 
@@ -207,54 +235,128 @@ struct statistics statistics_get(const struct statistics_state *self)
 
 struct fullbenchmark fullbenchmark_begin(size_t num_repeats)
 {
-    return fullbenchmark_begin_custom(num_repeats, 4, 1.);
+    return make_bm(num_repeats);
 }
 
 struct fullbenchmark fullbenchmark_begin_custom(size_t num_repeats,
                                                 size_t initial_num_subrepeats,
                                                 double preferred_time)
 {
-    struct fullbenchmark self;
-    self.stats = statistics_initial;
-    self.num_repeats = num_repeats;
-    self.num_subrepeats = initial_num_subrepeats;
-    self.preferred_time = preferred_time;
-    self.repeat_index = (size_t)(-1);
-    mysecond_init();
+    struct fullbenchmark self = make_bm(num_repeats);
+    set_bm_num_subrepeats(&self, initial_num_subrepeats);
+    set_bm_preferred_time(&self, preferred_time);
     return self;
 }
 
 int fullbenchmark(struct fullbenchmark *self)
 {
+    return with_bm(self);
+}
+
+void fullbenchmark_end(const struct fullbenchmark *self)
+{
+    print_bm_stats(self, "");
+}
+
+/* ------------------------------------------------------------------------ */
+
+bm make_bm(size_t num_repeats)
+{
+    bm self;
+    self.stats = statistics_initial;
+    self.num_repeats = num_repeats;
+    self.num_subrepeats = 4;
+    self.preferred_time = 1.;
+    self.repeat_index = (size_t)(-1);
+    self._num_skipped = 0;
+    self._get_time = &mysecond;
+    self._broadcast = NULL;
+    self._broadcast_ctx = NULL;
+    mysecond_init();
+    return self;
+}
+
+void set_bm_time_func(bm *self, double (*get_time)(void))
+{
+    self->_get_time = get_time;
+}
+
+void set_bm_broadcast_func(bm *self,
+                           void (*broadcast)(void *ctx, int *),
+                           void *broadcast_ctx)
+{
+    self->_broadcast = broadcast;
+    self->_broadcast_ctx = broadcast_ctx;
+}
+
+void set_bm_preferred_time(bm *self, double preferred_time)
+{
+    self->preferred_time = preferred_time;
+}
+
+void set_bm_num_warmups(bm *self, size_t num_warmups)
+{
+    self->num_repeats -= self->_num_skipped;
+    self->_num_skipped = num_warmups;
+    self->num_repeats += self->_num_skipped;
+}
+
+void set_bm_num_subrepeats(bm *self, size_t num_subrepeats)
+{
+    self->num_subrepeats = num_subrepeats;
+}
+
+size_t get_bm_num_subrepeats(const bm *self)
+{
+    return self->num_subrepeats;
+}
+
+int with_bm(bm *self)
+{
     if (self->repeat_index == (size_t)(-1)) {
         goto start;
     }
 inner:
-    if (benchmark(&self->subrepeat_index, &self->time,
-                  &self->num_subrepeats, self->preferred_time)) {
+    if (benchmark_with(&self->subrepeat_index,
+                       &self->time,
+                       &self->num_subrepeats,
+                       self->preferred_time,
+                       self->_get_time,
+                       self->_broadcast,
+                       self->_broadcast_ctx)) {
         return 1;
     }
-    statistics_update(&self->stats, self->time);
+    if (self->_get_time && self->repeat_index >= self->_num_skipped) {
+        statistics_update(&self->stats, self->time);
+    }
 start:
     ++self->repeat_index;
     if (self->repeat_index < self->num_repeats) {
         self->subrepeat_index = (size_t)(-1);
-        self->time = mysecond();
+        if (self->_get_time) {
+            self->time = (*self->_get_time)();
+        }
         goto inner;
     }
     return 0;
 }
 
-void fullbenchmark_end(const struct fullbenchmark *self)
+void print_bm_stats(const bm *self, const char *prefix)
 {
-    struct statistics st = statistics_get(&self->stats);
-    printf("min = %.17g\n"
-           "mean = %.17g\n"
-           "stdev = %.17g\n"
-           "num_subrepeats = %zu\n",
-           st.min,
-           st.mean,
-           st.stdev,
-           self->num_subrepeats);
-    fflush(stdout);
+    if (self->_get_time) {
+        struct statistics st = statistics_get(&self->stats);
+        printf(("%smin = %.17g\n"
+                "%smean = %.17g\n"
+                "%sstdev = %.17g\n"
+                "%snum_subrepeats = %zu\n"),
+               prefix,
+               st.min,
+               prefix,
+               st.mean,
+               prefix,
+               st.stdev,
+               prefix,
+               get_bm_num_subrepeats(self));
+        fflush(stdout);
+    }
 }

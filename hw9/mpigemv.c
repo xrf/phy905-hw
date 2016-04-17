@@ -5,28 +5,15 @@
 #include <cblas.h>
 #include <mpi.h>
 #include "../utils/utils.h"
+#include "../utils/mpi.h"
 
-#define WARMUP_REPEATS 1
+#define NUM_WARMUPS 1
 #define NUM_REPEATS 10
 #define TICK_FACTOR 10000
+#define ROOT_RANK 0
 
-struct mpi {
-    int rank, size;
-};
-
-/** Initialize MPI and return the rank and world size. */
-static struct mpi init_mpi(int *argc, char ***argv)
-{
-    struct mpi r;
-    int provided, required = MPI_THREAD_FUNNELED;
-    xtry(MPI_Init_thread(argc, argv, required, &provided));
-    xensure(provided >= required);
-    xtry(MPI_Comm_rank(MPI_COMM_WORLD, &r.rank));
-    xtry(MPI_Comm_size(MPI_COMM_WORLD, &r.size));
-    return r;
-}
-
-static void verify_gemv(int rank,
+#ifndef NDEBUG
+static void verify_gemv(int is_root,
                         const double *a,
                         const double *x,
                         const double *y,
@@ -34,7 +21,7 @@ static void verify_gemv(int rank,
                         int m)
 {
     double *aa, *xx, *yy, *yy0;
-    if (rank == 0) {
+    if (is_root) {
         aa = malloc(m * m * sizeof(*aa));
         xx = malloc(m * sizeof(*xx));
         yy = malloc(m * sizeof(*yy));
@@ -49,7 +36,7 @@ static void verify_gemv(int rank,
     xtry(MPI_Gather(y, k, MPI_DOUBLE,
                     yy, k, MPI_DOUBLE,
                     0, MPI_COMM_WORLD));
-    if (rank == 0) {
+    if (is_root) {
         cblas_dgemv(CblasRowMajor, CblasNoTrans,
                     m, m, 1., aa, m, xx, 1, 0., yy0, 1);
         for (int i = 0; i < m; ++i) {
@@ -61,6 +48,7 @@ static void verify_gemv(int rank,
         free(yy0);
     }
 }
+#endif
 
 enum method {
     allgather = 1,
@@ -69,7 +57,6 @@ enum method {
 
 int main(int argc, char **argv)
 {
-    double min_time, t;
     const struct mpi mpi = init_mpi(&argc, &argv);
 
     /* parse args (unsafe) */
@@ -87,25 +74,30 @@ int main(int argc, char **argv)
     init_random_array_d(a, k * m);
     init_random_array_d(x, k);
 
-    if (mpi.rank == 0) {
-        min_time = MPI_Wtick() * TICK_FACTOR;
-        printf("min_time /s = %.17g\n", min_time);
-        t = MPI_Wtime();
+    /* initialize benchmark helper */
+    parallel_bm parbench;
+    bm *bench = init_parallel_bm(&parbench, mpi.rank, ROOT_RANK, NUM_REPEATS);
+    set_bm_num_warmups(bench, NUM_WARMUPS);
+    set_bm_num_subrepeats(bench, 1);
+    if (mpi.rank == ROOT_RANK) {
+        set_bm_time_func(bench, &MPI_Wtime);
+        set_bm_preferred_time(bench, MPI_Wtick() * TICK_FACTOR);
     }
 
     switch (method) {
 
-    case allgather:
-        for (unsigned i = 0; i < 1; ++i) {
-            double *xx = malloc(m * sizeof(*xx));
+    case allgather: {
+        double *xx = malloc(m * sizeof(*xx));
+        while (with_bm(bench)) {
             xtry(MPI_Allgather(x, k, MPI_DOUBLE,
                                xx, k, MPI_DOUBLE,
                                MPI_COMM_WORLD));
             cblas_dgemv(CblasRowMajor, CblasNoTrans,
                         k, m, 1., a, m, xx, 1, 0., y, 1);
-            free(xx);
         }
+        free(xx);
         break;
+    }
 
     case circulate:
         /* todo ... */
@@ -115,13 +107,11 @@ int main(int argc, char **argv)
         xensure(0);
     }
 
-    /** todo: do both repeats and subrepeats (make a macro?) */
-    if (mpi.rank == 0) {
-        t = MPI_Wtime() - t;
-        printf("time /s = %.17g\n", t);
-    }
+#ifndef NDEBUG
+    verify_gemv(mpi.rank == 0, a, x, y, k, m);
+#endif
 
-    verify_gemv(mpi.rank, a, x, y, k, m);
+    print_bm_stats(bench, "");
 
     free(a);
     free(x);
