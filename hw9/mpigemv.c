@@ -92,9 +92,9 @@ int main(int argc, char **argv)
 
     /* parse args (unsafe) */
     xensure(argc == 4);
-    const char *outfile = atoi(argv[1]); /* output filename */
+    const char *outfile = argv[1];      /* output filename */
     enum method method = atoi(argv[2]);
-    int m = atoi(argv[3]); /* total number of rows/columns */
+    int m = atoi(argv[3]);              /* total number of rows/columns */
 
     /* redirect stdout to a file because apparently Cray's MPI runner (aprun)
        thought it'd be a good idea to dump diagnostic messages to stdout */
