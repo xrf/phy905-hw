@@ -6,5 +6,5 @@ prelude=$dir/job_prelude_templates/$PRELUDE.sh
 # so we have to make a temporary file instead
 tmpfile=`mktemp`
 trap 'rm "$tmpfile"' EXIT HUP INT TERM
-"$dir/substitute" "prelude=$prelude" "$@" <"$NAME".template >"$tmpfile"
-qsub -N "$NAME" "$tmpfile"
+"$dir/substitute" "prelude=$prelude" "$@" <"$NAME".template.sh >"$tmpfile"
+qsub -N "$NAME".sh "$tmpfile"
