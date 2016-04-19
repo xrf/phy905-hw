@@ -177,6 +177,17 @@ JSON_ARGS = {
 def transpose(table):
     return list(zip(*table))
 
+def sort_dataframe(data, name, key=None):
+    key_col = data.pop(name)
+    if key is None:
+        key = lambda x: x
+    indices, key_col = zip(*sorted(enumerate(key_col),
+                                   key=lambda x: key(x[1])))
+    for col_name, col in data.items():
+        data[col_name] = [col[i] for i in indices]
+    data[name] = key_col
+    return data
+
 def records_to_dataframe(records):
     import itertools
     records = tuple(records)

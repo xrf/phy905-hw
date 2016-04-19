@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+# usage: substitute [<name>=<value>...]
+import sys
+s = sys.stdin.read()
+for arg in sys.argv[1:]:
+    name, value = arg.split("=", 1)
+    s = s.replace("{{" + name + "}}", value)
+sys.stdout.write(s)

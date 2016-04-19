@@ -91,9 +91,14 @@ int main(int argc, char **argv)
     srand(mpi.rank + 1);
 
     /* parse args (unsafe) */
-    xensure(argc > 2);
-    enum method method = atoi(argv[1]);
-    int m = atoi(argv[2]); /* total number of rows/columns */
+    xensure(argc == 4);
+    const char *outfile = atoi(argv[1]); /* output filename */
+    enum method method = atoi(argv[2]);
+    int m = atoi(argv[3]); /* total number of rows/columns */
+
+    /* redirect stdout to a file because apparently Cray's MPI runner (aprun)
+       thought it'd be a good idea to dump diagnostic messages to stdout */
+    xtry(!freopen(outfile, "w", stdout));
 
     int k = m / mpi.size; /* number of rows per process */
     xensure(k * mpi.size == m);
@@ -176,4 +181,5 @@ int main(int argc, char **argv)
     free(x);
     free(y);
     xtry(MPI_Finalize());
+    return 0;
 }

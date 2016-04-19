@@ -16,9 +16,14 @@ int main(int argc, char **argv)
     const struct mpi mpi = init_mpi(&argc, &argv);
 
     /* parse args (unsafe) */
-    xensure(argc == 3);
-    int other = atoi(argv[1]);          /* target rank */
-    int n = atoi(argv[2]);              /* number of elements */
+    xensure(argc == 4);
+    const char *outfile = atoi(argv[1]); /* output filename */
+    int other = atoi(argv[2]);           /* target rank */
+    int n = atoi(argv[3]);               /* number of elements */
+
+    /* redirect stdout to a file because apparently Cray's MPI runner (aprun)
+       thought it'd be a good idea to dump diagnostic messages to stdout */
+    xtry(!freopen(outfile, "w", stdout));
 
     double *x = malloc(n * sizeof(*x));
     init_random_array_d(x, n);
@@ -51,4 +56,5 @@ int main(int argc, char **argv)
 
     free(x);
     xtry(MPI_Finalize());
+    return 0;
 }

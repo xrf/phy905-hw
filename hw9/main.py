@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-import glob, logging, os, re, subprocess, sys
+import glob, json, logging, os, re, subprocess, sys
 import numpy as np
 import pandas as pd
 import matplotlib
-matplotlib.use("Agg")
+#matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 sys.path = ["../utils"] + list(sys.path)
 from utils import *
@@ -12,7 +12,7 @@ commands = {}
 TIME = "time_min"
 
 @register_command(commands)
-def estimate_bandwidth():
+def estimate_bandwidth(out_fn):
     data = {
         "size": [],
         "time_min": [],
@@ -29,11 +29,38 @@ def estimate_bandwidth():
         data["time_mean"].append(float(entries["mean"]))
         data["time_stdev"].append(float(entries["stdev"]))
         data["num_subrepeats"].append(float(entries["num_subrepeats"]))
-    fit = np.polyfit(data["size"], data["time_min"], 1)
-    save_json_file(out_fn, {
+    sort_dataframe(data, "size")
+
+    time = data["time_min"]
+    fit = [
+        np.linalg.lstsq(np.array(data["size"])[:, np.newaxis], time)[0][0],
+        0
+    ]
+
+    fig_fit_fn = "fig-fit.svg"
+    fig, ax = plt.subplots()
+    ax.plot(data["size"], time, label="data", marker="x")
+    ax.plot(data["size"], np.poly1d(fit)(data["size"]), label="fit")
+    ax.set_xlabel("number of double-precision floating-point elements")
+    ax.set_ylabel("time taken to transfer to another process and back /s")
+    ax.grid("on")
+    legend = ax.legend(loc="center left", bbox_to_anchor=(1, 0.5))
+    fig.tight_layout()
+    fig.savefig(fig_fit_fn,
+                bbox_extra_artists=(legend,),
+                bbox_inches="tight",
+                transparent=True)
+
+    # the factor of two accounts for the fact that we are sending data and
+    # receiving it again
+    bandwidth = 2 * 8. / fit[0]
+    json.dump({
         "data": data,
-        "fit": fit.tolist(),
-    }, json_args=JSON_ARGS)
+        "fig_fit_fn": fig_fit_fn,
+        "fit": fit,
+        "bandwidth /(B/s)": bandwidth,
+    }, sys.stdout, **JSON_ARGS)
+    sys.stdout.write("\n")
 
 @register_command(commands)
 def analyze(out_fn):

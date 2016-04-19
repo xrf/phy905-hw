@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+dir=`dirname "$0"`
+prelude=$dir/job_prelude_templates/$PRELUDE.sh
+# for some reason, qsub on Blue Waters via stdin is really buggy,
+# so we have to make a temporary file instead
+tmpfile=`mktemp`
+trap 'rm "$tmpfile"' EXIT HUP INT TERM
+"$dir/substitute" "prelude=$prelude" "$@" <"$NAME".template >"$tmpfile"
+qsub -N "$NAME" "$tmpfile"
