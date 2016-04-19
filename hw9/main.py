@@ -12,6 +12,30 @@ commands = {}
 TIME = "time_min"
 
 @register_command(commands)
+def estimate_bandwidth():
+    data = {
+        "size": [],
+        "time_min": [],
+        "time_mean": [],
+        "time_stdev": [],
+        "num_subrepeats": [],
+    }
+    for data_fn in sorted(glob.glob("bench_bandwidth/*.txt")):
+        entries = parse_keyvalues(load_file(data_fn), "=")
+        pattern = r"bench_bandwidth/(\d+).txt"
+        size, = re.match(pattern, data_fn).groups()
+        data["size"].append(int(size))
+        data["time_min"].append(float(entries["min"]))
+        data["time_mean"].append(float(entries["mean"]))
+        data["time_stdev"].append(float(entries["stdev"]))
+        data["num_subrepeats"].append(float(entries["num_subrepeats"]))
+    fit = np.polyfit(data["size"], data["time_min"], 1)
+    save_json_file(out_fn, {
+        "data": data,
+        "fit": fit.tolist(),
+    }, json_args=JSON_ARGS)
+
+@register_command(commands)
 def analyze(out_fn):
     data = {
         "np": [],
