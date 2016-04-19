@@ -3,7 +3,7 @@
 #include <math.h>
 #include <stdarg.h>
 #include <stddef.h>
-#include <stdnoreturn.h>
+#include "compat/noreturn_begin.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -227,4 +227,5 @@ void print_bm_stats(const bm *, const char *prefix);
 #ifdef __cplusplus
 }
 #endif
+#include "compat/noreturn_end.h"
 #endif
