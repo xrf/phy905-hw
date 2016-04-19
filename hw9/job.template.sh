@@ -8,5 +8,5 @@ m={{m}}
 method={{method}}
 outfile=bench/${np}_${method}_${m}.txt
 echo "Benchmarking ($outfile) ..."
-mpiexec -np "$np" ../dist/bin/mpigemv "$outfile".tmp "$method" "$m"
+mpiexec -n "$np" ../dist/bin/mpigemv "$outfile".tmp "$method" "$m"
 mv "$outfile".tmp "$outfile"
