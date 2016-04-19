@@ -17,7 +17,7 @@ typedef struct {
     int _root;
 } parallel_bm;
 
-bm *init_parallel_bm(parallel_bm *, int rank, int root, size_t num_repeats);
+bm *init_parallel_bm(parallel_bm *, int rank, int root);
 
 bm *parallel_bm_as_bm(parallel_bm *);
 

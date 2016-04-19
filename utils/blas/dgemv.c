@@ -15,6 +15,8 @@ void cblas_dgemv(CBLAS_ORDER layout,
                  int incy)
 {
     int i, j;
+    (void)layout;
+    (void)trans;
     assert(layout == CblasRowMajor);
     assert(trans == CblasNoTrans);
     for (i = 0; i < m; ++i) {

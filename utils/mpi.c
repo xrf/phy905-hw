@@ -18,11 +18,11 @@ static void broadcast_i(void *root, int *x)
     xtry(MPI_Bcast(x, 1, MPI_INT, *(int *)root, MPI_COMM_WORLD));
 }
 
-bm *init_parallel_bm(parallel_bm *self, int rank, int root, size_t num_repeats)
+bm *init_parallel_bm(parallel_bm *self, int rank, int root)
 {
     bm *bench = parallel_bm_as_bm(self);
     self->_root = root;
-    *bench = make_bm(num_repeats);
+    *bench = make_bm();
     set_bm_broadcast_func(bench, &broadcast_i, &self->_root);
     if (rank != root) {
         set_bm_time_func(bench, NULL);

@@ -179,13 +179,8 @@ void fullbenchmark_end(const struct fullbenchmark *self);
 */
 typedef struct fullbenchmark bm;
 
-/** Make a `bm` object.
-
-    @param num_repeats
-    The number of repeats in the outer loop.
-
-*/
-bm make_bm(size_t num_repeats);
+/** Make a `bm` object. */
+bm make_bm();
 
 /** Set the function used to obtain the current time in seconds.  When doing
     MPI benchmarks, the function must be set to `NULL` on all but the root
@@ -207,7 +202,10 @@ void set_bm_preferred_time(bm *, double preferred_time);
     are therefore ignored. */
 void set_bm_num_warmups(bm *, size_t num_warmups);
 
-/** Set the initial number of repeats in the inner loop.  The default is 4. */
+/** Set the number of repeats in the outer loop.  The default is 2. */
+void set_bm_num_repeats(bm *, size_t num_repeats);
+
+/** Set the initial number of repeats in the inner loop.  The default is 1. */
 void set_bm_num_subrepeats(bm *, size_t num_subrepeats);
 
 /** Get the current number of repeats in the inner loop. */

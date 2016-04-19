@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <cblas.h>
 #include <mpi.h>
 #include "../utils/utils.h"
@@ -11,6 +12,25 @@
 #define NUM_REPEATS 10
 #define TICK_FACTOR 10000
 #define ROOT_RANK 0
+#define EPSILON 1e-12
+
+static void clear_array_d(double *x, size_t count)
+{
+    /* we do not use memset explicitly here because the C/C++ standard does
+       not mandate 0.0 as having a bitwise-zero representation; instead, we
+       let the compiler optimize this into memset when applicable */
+    double *const x_end = x + count;
+    for (; x != x_end; ++x) {
+        *x = 0.;
+    }
+}
+
+static void swap_dp(double **px, double **py)
+{
+    double *p = *px;
+    *px = *py;
+    *py = p;
+}
 
 #ifndef NDEBUG
 static void verify_gemv(int is_root,
@@ -20,7 +40,7 @@ static void verify_gemv(int is_root,
                         int k,
                         int m)
 {
-    double *aa, *xx, *yy, *yy0;
+    double *aa = NULL, *xx = NULL, *yy = NULL, *yy0 = NULL;
     if (is_root) {
         aa = malloc(m * m * sizeof(*aa));
         xx = malloc(m * sizeof(*xx));
@@ -40,7 +60,15 @@ static void verify_gemv(int is_root,
         cblas_dgemv(CblasRowMajor, CblasNoTrans,
                     m, m, 1., aa, m, xx, 1, 0., yy0, 1);
         for (int i = 0; i < m; ++i) {
-            xensure(yy[i] == yy0[i]);
+            if (!(fabs(yy[i] - yy0[i]) <= EPSILON)) {
+                fprintf(stderr,
+                        "***error: yy[%i] expected to be %f but got %f\n",
+                        i,
+                        yy0[i],
+                        yy[i]);
+                fflush(stderr);
+                abort();
+            }
         }
         free(aa);
         free(xx);
@@ -58,13 +86,16 @@ enum method {
 int main(int argc, char **argv)
 {
     const struct mpi mpi = init_mpi(&argc, &argv);
+    /* srand(0) has the same effect as srand(1) on most implementations;
+       offset it by one to avoid this */
+    srand(mpi.rank + 1);
 
     /* parse args (unsafe) */
     xensure(argc > 2);
     enum method method = atoi(argv[1]);
     int m = atoi(argv[2]); /* total number of rows/columns */
 
-    double k = m / mpi.size; /* number of rows per process */
+    int k = m / mpi.size; /* number of rows per process */
     xensure(k * mpi.size == m);
 
     double *a = malloc(k * m * sizeof(*a));
@@ -76,9 +107,9 @@ int main(int argc, char **argv)
 
     /* initialize benchmark helper */
     parallel_bm parbench;
-    bm *bench = init_parallel_bm(&parbench, mpi.rank, ROOT_RANK, NUM_REPEATS);
+    bm *bench = init_parallel_bm(&parbench, mpi.rank, ROOT_RANK);
+    set_bm_num_repeats(bench, NUM_REPEATS);
     set_bm_num_warmups(bench, NUM_WARMUPS);
-    set_bm_num_subrepeats(bench, 1);
     if (mpi.rank == ROOT_RANK) {
         set_bm_time_func(bench, &MPI_Wtime);
         set_bm_preferred_time(bench, MPI_Wtick() * TICK_FACTOR);
@@ -99,9 +130,37 @@ int main(int argc, char **argv)
         break;
     }
 
-    case circulate:
-        /* todo ... */
+    case circulate: {
+        double *x1 = malloc(k * sizeof(*x1));
+        double *x2 = malloc(k * sizeof(*x2));
+        while (with_bm(bench)) {
+            clear_array_d(y, k);
+            memcpy(x1, x, k * sizeof(*x));
+            int i = k * mpi.rank;
+            do {
+                /* normally we'd use the % operator but % is broken
+                   when it comes to negative things */
+                MPI_Request reqs[2];
+                xtry(MPI_Isend(x1, k, MPI_DOUBLE,
+                               (mpi.rank + 1) % mpi.size,
+                               0, MPI_COMM_WORLD, reqs + 0));
+                xtry(MPI_Irecv(x2, k, MPI_DOUBLE,
+                               (mpi.rank - 1 + mpi.size) % mpi.size,
+                               0, MPI_COMM_WORLD, reqs + 1));
+                cblas_dgemv(CblasRowMajor, CblasNoTrans,
+                            k, k, 1., a + i, m, x1, 1, 1., y, 1);
+                xtry(MPI_Waitall(2, reqs, MPI_STATUSES_IGNORE));
+                swap_dp(&x1, &x2);
+                i -= k;
+                while (i < 0) {
+                    i += m;
+                }
+            } while (i != k * mpi.rank);
+        }
+        free(x1);
+        free(x2);
         break;
+    }
 
     default:
         xensure(0);

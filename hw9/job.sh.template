@@ -1,0 +1,20 @@
+#!/bin/bash
+#PBS -q normal
+#PBS -A babq
+#PBS -l nodes={{num_nodes}}:ppn=16:xe
+#PBS -l walltime=15:00
+# Note: this script is tailored to Blue Waters
+set -eu
+cd "$PBS_O_WORKDIR"
+export MPICH_NEMESIS_ASYNC_PROGRESS=1
+export MPICH_MAX_THREAD_SAFETY=multiple
+mkdir -p bench
+for m in 001024 016384 102400; do
+    for method in 1 2; do
+        outfile=bench/${PBS_NUM_NODES}_${PBS_NUM_PPN}_${method}_${m}.txt
+        printf "Benchmarking (%s) ...\n" "$outfile"
+        aprun -n "$PBS_NUM_NODES" -N "$PBS_NUM_PPN" \
+            ../dist/bin/mpigemv "$method" "$m" >"$outfile".tmp
+        mv "$outfile".tmp "$outfile"
+    done
+done

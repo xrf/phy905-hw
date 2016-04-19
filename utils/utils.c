@@ -176,7 +176,7 @@ int benchmark_with(size_t *i,
                    void *broadcast_ctx)
 {
     int keep_going;
-    double timediff, now;
+    double timediff = 0, now = 0;
     ++*i;
     if (*i < *count) {
         return 1;
@@ -235,14 +235,18 @@ struct statistics statistics_get(const struct statistics_state *self)
 
 struct fullbenchmark fullbenchmark_begin(size_t num_repeats)
 {
-    return make_bm(num_repeats);
+    struct fullbenchmark self = make_bm();
+    set_bm_num_repeats(&self, num_repeats);
+    set_bm_num_subrepeats(&self, 4);
+    return self;
 }
 
 struct fullbenchmark fullbenchmark_begin_custom(size_t num_repeats,
                                                 size_t initial_num_subrepeats,
                                                 double preferred_time)
 {
-    struct fullbenchmark self = make_bm(num_repeats);
+    struct fullbenchmark self = make_bm();
+    set_bm_num_repeats(&self, num_repeats);
     set_bm_num_subrepeats(&self, initial_num_subrepeats);
     set_bm_preferred_time(&self, preferred_time);
     return self;
@@ -260,12 +264,12 @@ void fullbenchmark_end(const struct fullbenchmark *self)
 
 /* ------------------------------------------------------------------------ */
 
-bm make_bm(size_t num_repeats)
+bm make_bm(void)
 {
     bm self;
     self.stats = statistics_initial;
-    self.num_repeats = num_repeats;
-    self.num_subrepeats = 4;
+    self.num_repeats = 2;
+    self.num_subrepeats = 1;
     self.preferred_time = 1.;
     self.repeat_index = (size_t)(-1);
     self._num_skipped = 0;
@@ -301,8 +305,16 @@ void set_bm_num_warmups(bm *self, size_t num_warmups)
     self->num_repeats += self->_num_skipped;
 }
 
+void set_bm_num_repeats(bm *self, size_t num_subrepeats)
+{
+    self->num_subrepeats = num_subrepeats + self->_num_skipped;
+}
+
 void set_bm_num_subrepeats(bm *self, size_t num_subrepeats)
 {
+    if (num_subrepeats < 1) {
+        num_subrepeats = 1;
+    }
     self->num_subrepeats = num_subrepeats;
 }
 
