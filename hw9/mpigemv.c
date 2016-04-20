@@ -141,10 +141,10 @@ int main(int argc, char **argv)
         while (with_bm(bench)) {
             clear_array_d(y, k);
             memcpy(x1, x, k * sizeof(*x));
-            int i = k * mpi.rank;
-            do {
-                /* normally we'd use the % operator but % is broken
-                   when it comes to negative things */
+            int i;
+            for (i = mpi.rank;
+                 i != (mpi.rank + 1) % mpi.size;
+                 i = (i - 1 + mpi.size) % mpi.size) {
                 MPI_Request reqs[2];
                 xtry(MPI_Isend(x1, k, MPI_DOUBLE,
                                (mpi.rank + 1) % mpi.size,
@@ -153,14 +153,12 @@ int main(int argc, char **argv)
                                (mpi.rank - 1 + mpi.size) % mpi.size,
                                0, MPI_COMM_WORLD, reqs + 1));
                 cblas_dgemv(CblasRowMajor, CblasNoTrans,
-                            k, k, 1., a + i, m, x1, 1, 1., y, 1);
+                            k, k, 1., a + k * i, m, x1, 1, 1., y, 1);
                 xtry(MPI_Waitall(2, reqs, MPI_STATUSES_IGNORE));
                 swap_dp(&x1, &x2);
-                i -= k;
-                while (i < 0) {
-                    i += m;
-                }
-            } while (i != k * mpi.rank);
+            }
+            cblas_dgemv(CblasRowMajor, CblasNoTrans,
+                        k, k, 1., a + k * i, m, x1, 1, 1., y, 1);
         }
         free(x1);
         free(x2);

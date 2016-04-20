@@ -94,12 +94,6 @@ def analyze(out_fn):
     for key, group in sorted(groups.items()):
         size, method = key
         series = {
-            # "color": {
-            #     128: "#e91e63",
-            #     256: "#f29312",
-            #     512: "#4caf50",
-            #     1024: "#0caff0",
-            # }[np],
             "color": {
                 102400: "#e91e63",
                 16384: "#f29312",
@@ -139,7 +133,7 @@ def plot(out_fn, data_fn):
         series = pd.DataFrame.from_dict(series)
         ax.plot(
             series["np"],
-            series[TIME], # / (series["size"] ** 2 / series["np"]),
+            series[TIME],
             label=series["label"][0],
             color=series["color"][0],
             linestyle=series["linestyle"][0],
