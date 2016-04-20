@@ -62,6 +62,10 @@ code {
     line-height: 1;
 }
 
+pre.equation {
+    font-size: 1em;
+}
+
 table.small {
     font-size: 60%;
 }

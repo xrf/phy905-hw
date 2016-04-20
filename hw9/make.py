@@ -42,7 +42,7 @@ plot = simple_command(
 report = simple_command(
     "python {0} report {out} {all1}",
     "index.html",
-    ["main.py", analysis, plot, "template.html"],
+    ["main.py", analysis, plot, "index.md"],
 )
 
 makefile = alias("all", [report]).merge(

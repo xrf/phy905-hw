@@ -47,7 +47,7 @@ analysis.json: main.py
 figs.json: analysis.json main.py
 	python main.py plot '$@' analysis.json
 
-index.html: analysis.json figs.json main.py template.html
-	python main.py report '$@' analysis.json figs.json template.html
+index.html: analysis.json figs.json index.md main.py
+	python main.py report '$@' analysis.json figs.json index.md
 
 .PHONY: all build clean

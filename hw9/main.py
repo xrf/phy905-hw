@@ -12,7 +12,7 @@ commands = {}
 TIME = "time_min"
 
 @register_command(commands)
-def estimate_bandwidth(out_fn):
+def estimate_bandwidth():
     data = {
         "size": [],
         "time_min": [],
@@ -39,7 +39,7 @@ def estimate_bandwidth(out_fn):
 
     fig_fit_fn = "fig-fit.svg"
     fig, ax = plt.subplots()
-    ax.plot(data["size"], time, label="data", marker="x")
+    ax.plot(data["size"], time, label="data", marker="x", linestyle="")
     ax.plot(data["size"], np.poly1d(fit)(data["size"]), label="fit")
     ax.set_xlabel("number of double-precision floating-point elements")
     ax.set_ylabel("time taken to transfer to another process and back /s")
@@ -87,6 +87,9 @@ def analyze(out_fn):
         data["time_mean"].append(float(entries["mean"]))
         data["time_stdev"].append(float(entries["stdev"]))
         data["num_subrepeats"].append(float(entries["num_subrepeats"]))
+    sort_dataframe(data, "method")
+    sort_dataframe(data, "np")
+    sort_dataframe(data, "size")
 
     records = dataframe_to_records(data)
     groups = group_records_by(records, ["size", "method"])
@@ -103,7 +106,7 @@ def analyze(out_fn):
                 "allgather": "-",
                 "circulate": "--",
             }[method],
-            "label": "size={0},method={1}".format(size, method),
+            "label": "M={0},{1}".format(size, method),
         }
         sort_key = lambda x: x["np"]
         series.update(records_to_dataframe(sorted(group, key=sort_key)))
@@ -128,9 +131,31 @@ def plot(out_fn, data_fn):
         "fig_time_fn": "fig-time.svg",
     }
 
+    mpi_rate = 1.5e9
+    flops = 4e9
+    mem_rate = 5e9
+    def model(N, m):
+        return (
+            2. * m * (1. - 1. / N) * 8. / mpi_rate +
+            2. * m ** 2 / N * (1. / flops + 8. / mem_rate)
+        )
+
     fig, ax = plt.subplots(figsize=figsize)
+    prev_series = None
     for _, series in sorted(grouped_data.items()):
         series = pd.DataFrame.from_dict(series)
+        if prev_series is None or series["size"][0] != prev_series["size"][0]:
+            prev_series = series
+            if prev_series is not None:
+                N = np.linspace(min(prev_series["np"]), max(prev_series["np"]))
+                size = prev_series["size"][0]
+                ax.plot(
+                    N,
+                    model(N=N, m=size),
+                    label="M={0},fit".format(size),
+                    color=prev_series["color"][0],
+                    linestyle=":",
+                    **plot_args)
         ax.plot(
             series["np"],
             series[TIME],
@@ -154,25 +179,22 @@ def plot(out_fn, data_fn):
     save_json_file(out_fn, fig_fns, json_args=JSON_ARGS)
 
 @register_command(commands)
-def report(out_fn, data_fn, figs_fn, template_fn):
-    import cgi
+def report(out_fn, data_fn, figs_fn, index_fn):
+    template_fn = ".template.html.tmp"
     datafile = load_json_file(data_fn)
     data = load_json_file(data_fn)["data"]
+    subprocess.check_call(["pandoc", "-f", "commonmark",
+                           "-t", "html", "-o", template_fn, index_fn])
     table = [
-        [str(x) for x in data["case"]],
-        [str(x) for x in data["test"]],
+        [str(x) for x in data["method"]],
+        [str(x) for x in data["np"]],
         [str(x) for x in data["size"]],
-        ["{0:.3g}".format(x) for x in data["time"]],
+        ["{0:.3g}".format(x) for x in data[TIME]],
     ]
     params = load_json_file(figs_fn)
-    params["code"] = cgi.escape(load_file("mpicomm.c"))
     params["data"] = table_to_html(transpose(table)).rstrip()
-    for i, cutoff in enumerate(datafile["cutoffs"]):
-        params["cutoff_{0}".format(i)] = cutoff
-    for i, fit in enumerate(datafile["fits"]):
-        for j, p in enumerate(fit):
-            params["fit_{0}_{1}".format(i, j)] = "{0:.3g}".format(p)
     html = main_template(substitute_template(template_fn, params))
+    html = html.replace("^2", "<sup>2</sup>")
     save_file(out_fn, html)
 
 def main():
