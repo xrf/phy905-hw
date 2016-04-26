@@ -3,6 +3,7 @@
 #PBS -l walltime=65:00
 #PBS -A babq
 set -eu
+cd "${PBS_O_WORKDIR-.}"
 
 cleanup() {
     rm -fr "$SCRATCH"/*.out
