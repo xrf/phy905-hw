@@ -5,7 +5,7 @@ all: ../dist/bin/ioda
 ../dist/bin/ioda: ../ext/ioda.c
 	echo "SCRATCH=$(SCRATCH)" >../dist/tmp/ioda-vars.sh
 	$(CC) $(CPPFLAGS) $(CFLAGS) \
-	    -DMYSCRATCHDIR=\""$(SCRATCH)"\" \
+	    -DMYSCRATCHDIR=\""$(SCRATCH)/"\" \
 	    -o $@ ../ext/ioda.c
 
 clean:
