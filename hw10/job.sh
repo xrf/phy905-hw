@@ -13,12 +13,12 @@ cleanup() {
 
 mkdir -p "$SCRATCH"
 cleanup
-aprun -n 1024 -ppn 16 -maxtime 20:00 ../dist/bin/ioda 16384 16384 32
+aprun -n 1024 -N 16 -t 1200 ../dist/bin/ioda 16384 16384 32
 lfs getstripe "$SCRATCH"/*.out
 cleanup
-aprun -n 1024 -ppn 16 -maxtime 20:00 ../dist/bin/ioda 16384 16384 16
+aprun -n 1024 -N 16 -t 1200 ../dist/bin/ioda 16384 16384 16
 lfs getstripe "$SCRATCH"/*.out
 cleanup
-aprun -n 1024 -ppn 16 -maxtime 20:00 ../dist/bin/ioda 16384 16384 0
+aprun -n 1024 -N 16 -t 1200 ../dist/bin/ioda 16384 16384 0
 lfs getstripe "$SCRATCH"/*.out
 cleanup
