@@ -1,6 +1,11 @@
 SCRATCH=/scratch/training/$$USER/phy905-hw10
 
-all: ../dist/bin/ioda
+all: index.html
+
+build: ../dist/bin/ioda
+
+index.html: main.py index.md data.txt
+	./main.py report $@ index.md data.txt
 
 ../dist/bin/ioda: ../ext/ioda.c
 	echo "SCRATCH=$(SCRATCH)" >../dist/tmp/ioda-vars.sh
@@ -9,4 +14,4 @@ all: ../dist/bin/ioda
 	    -o $@ ../ext/ioda.c
 
 clean:
-	rm -f ../dist/bin/ioda ../dist/tmp/ioda-vars.sh
+	rm -f index.html ../dist/bin/ioda ../dist/tmp/ioda-vars.sh
